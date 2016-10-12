@@ -1,0 +1,6 @@
+framework module Pods_Time_Management {
+  umbrella header "Pods-Time Management-umbrella.h"
+
+  export *
+  module * { export * }
+}
