@@ -26,7 +26,7 @@ class Error {
     func giveError(typeOfError: String) -> Bool {
         if let errType = knownError[typeOfError] {
             switch errType {
-            case .UserService(_):
+            case .UserService(_): //cz we don't care about the bool inside it we just care about saveError array
                 if !saveErrorForUserService.isEmpty {
                     let getError = saveErrorForUserService.removeLast()
                     switch getError {
@@ -35,6 +35,8 @@ class Error {
                             return err
                         }
                     }
+                } else {
+                    
                 }
 //                } else {
 //                    FIRCrashMessage("The saveError Array is empty")

@@ -63,11 +63,11 @@ class MainViewController: UIViewController {
                 }
             }
             var counter: Int = 0
-            UserService.userService.loadProfilePictureFromStorage(uid: uid)
+            UserService.userService.loadProfilePictureFromStorage(user: user)
             let loadPicFromStorage = manageError.giveError(typeOfError: "UserService")
             counter += 1
             if loadPicFromStorage == false && counter != 1 {
-                UserService.userService.loadProfilePictureFromFB(uid: uid)
+                UserService.userService.loadProfilePictureFromFB(user: user)
             }
             let loadPic = manageError.giveError(typeOfError: "UserService")
             if loadPic == true {

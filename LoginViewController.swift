@@ -19,6 +19,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var startingViewSpinner: UIActivityIndicatorView!
     
+    let mainQueue = DispatchQueue.main
+    let defaultQueue = DispatchQueue.global(qos: .default)
+    
     var manageError = Error()
     
     override func viewDidLoad() {
@@ -56,19 +59,23 @@ class LoginViewController: UIViewController {
         
         self.hidden(true)
         self.startingViewSpinner.startAnimating()
-        UserService.userService.signIn("Email", email: email, pass: pass)
-        let checkSignIn = manageError.giveError(typeOfError: "UserService")
-        if checkSignIn == true {
-            print("User has been loged in successfully")
-            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.login()
-        } else {
-            self.hidden(false)
-            self.startingViewSpinner.stopAnimating()
-            let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
+        defaultQueue.async {
+            UserService.userService.signIn("Email", email: email, pass: pass)
+            self.mainQueue.async {
+                let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
+                if checkSignIn == true {
+                    print("User has been loged in successfully")
+                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.login()
+                } else {
+                    self.hidden(false)
+                    self.startingViewSpinner.stopAnimating()
+                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
     }
     
@@ -76,19 +83,23 @@ class LoginViewController: UIViewController {
         
         self.hidden(true)
         self.startingViewSpinner.startAnimating()
-        UserService.userService.signIn("Facebook", email: nil, pass: nil)
-        let checkSignIn = manageError.giveError(typeOfError: "UserService")
-        if checkSignIn == true {
-            print("User has been loged in successfully")
-            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.login()
-        } else {
-            self.hidden(false)
-            self.startingViewSpinner.stopAnimating()
-            let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
+        defaultQueue.async {
+            UserService.userService.signIn("Facebook", email: nil, pass: nil)
+            self.mainQueue.async {
+                let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
+                if checkSignIn == true {
+                    print("User has been loged in successfully")
+                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.login()
+                } else {
+                    self.hidden(false)
+                    self.startingViewSpinner.stopAnimating()
+                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
     }
     

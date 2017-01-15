@@ -108,10 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "mainView")
             window?.rootViewController = mainViewController
-        } else {
-            let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
-            window?.rootViewController = mainViewController
         }
     }
 
