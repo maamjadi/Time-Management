@@ -24,6 +24,7 @@ class ProfileTableViewController: UITableViewController {
     let imagePicker = UIImagePickerController()
     var selectedPhoto: UIImage! = UIImage(named: "profile pic")! //we have changed it from UIImage!(nil) to this cz of error for swift 3
     var successfullyUpdated: Bool = false
+    var manageError = Error()
     
     let ref = FIRDatabase.database().reference()
     let user = FIRAuth.auth()?.currentUser
@@ -38,7 +39,7 @@ class ProfileTableViewController: UITableViewController {
         profileImage.addGestureRecognizer(tapRecognizer)
         
         tapDismissGesture()
-
+        
         
         // User is signed in.
         let name = user?.displayName
@@ -47,37 +48,23 @@ class ProfileTableViewController: UITableViewController {
         self.emailTextField.text = email
         self.nameTextField.text = name
         
-        let storage = FIRStorage.storage()
-        // Create a storage reference from our storage service
-        let storageRef = storage.reference(forURL: "gs://test-ae2fd.appspot.com") //changed for referenceForURL swift 3
-        let profilePicRef = storageRef.child("images"+"/Profile pictures"+"/\(user?.uid).jpg")
-        
-        profilePicRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
-            if (error != nil) {
-                // Uh-oh, an error occurred!
-                print("Unable to download image")
+        UserService.userService.loadProfilePictureFromStorage(user: user!)
+        let loadPic = manageError.giveError(typeOfError: "UserService")
+        if loadPic == true {
+            let imageData = UserService.userService.giveImageData()
+            if imageData != nil {
+                profileImage.image = UIImage(data: imageData!)
+                profileImage.isHidden = false
             } else {
-                // Data for "images" is returned
-                // ... let islandImage: UIImage! = UIImage(data: data!)
-                
-                if data != nil {
-                    self.profileImage.image = UIImage(data: data!)
-                }
+                profileImage.isHidden = true
             }
-            
         }
         
-        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-            if snapshot.hasChild((self.user?.uid)! + "/Personal information") {
-            let usersDict = snapshot.value as! NSDictionary
-            // ...
-                let userPersonalInformation = (usersDict.object(forKey: self.user!.uid) as AnyObject).object(forKey: "Personal information")
-                self.birthdayTextField.text = (userPersonalInformation as? AnyObject)?.object(forKey: "Birthday") as? String
-            }
-        })
-        
+        if let userBirthday = UserService.userService.getBirthday(uid: (user?.uid)!) {
+            birthdayTextField.text = userBirthday
+        }
     }
-
+    
     
     func selectPhoto(_ gestureRecognizer: UITapGestureRecognizer)
     {
@@ -129,7 +116,7 @@ class ProfileTableViewController: UITableViewController {
                 }
             }
             
-            if let newPassword = self.passwordTextField.text , newPassword != "" {
+            if let newPassword = self.passwordTextField.text , !(newPassword.isEmpty) {
                 if newPassword == verifyPassTextField.text {
                     self.user?.updatePassword(newPassword) { error in
                         if let error = error {
@@ -161,19 +148,13 @@ class ProfileTableViewController: UITableViewController {
                 }
                 let image = UIImage(named: "profile pic")
                 if profileImage.image != image {
-                    // Get a reference to the storage service, using the default Firebase App
-                    let storage = FIRStorage.storage()
-                    // Create a storage reference from our storage service
-                    let storageRef = storage.reference(forURL: "gs://test-ae2fd.appspot.com")
-                    let profilePicRef = storageRef.child("images"+"/Profile pictures"+"/\(user.uid).jpg")
                     let data: Data = UIImageJPEGRepresentation(self.profileImage.image!, 1)!
-                    let uploadTask = profilePicRef.put(data, metadata: nil) { metadata, error in
-                        if (error != nil) {
-                            // Uh-oh, an error occurred!
-                            self.successfullyUpdated = false
-                        } else {
-                            // Metadata contains file metadata such as size, content-type, and download URL.
-                            let downloadURL = metadata!.downloadURL
+                    if let userPhoto = user.photoURL {
+                        let localProfilePicURL: NSURL! = NSURL(fileURLWithPath: "file:///local/images/profile picture.jpg")
+                        let currentPhoto = NSData(contentsOf: localProfilePicURL as URL)
+                        let userPhotoData = NSData(contentsOf: userPhoto)
+                        if userPhotoData != currentPhoto {
+                            UserService.userService.changePicture(user: user, imageData: data)
                         }
                     }
                 }

@@ -14,7 +14,6 @@
 		4D5EF4391DAE572F00683FEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5EF4371DAE572F00683FEE /* LaunchScreen.storyboard */; };
 		4D5EF4441DAE572F00683FEE /* Time_ManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EF4431DAE572F00683FEE /* Time_ManagementTests.swift */; };
 		4D5EF44F1DAE572F00683FEE /* Time_ManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EF44E1DAE572F00683FEE /* Time_ManagementUITests.swift */; };
-		4D623B651DAE5FEF0021A1B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D623B641DAE5FEF0021A1B7 /* GoogleService-Info.plist */; };
 		4D623B6C1DAE69AA0021A1B7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D623B681DAE69AA0021A1B7 /* Bolts.framework */; };
 		4D623B6D1DAE69AA0021A1B7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D623B691DAE69AA0021A1B7 /* FBSDKCoreKit.framework */; };
 		4D623B6E1DAE69AA0021A1B7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D623B6A1DAE69AA0021A1B7 /* FBSDKLoginKit.framework */; };
@@ -26,8 +25,9 @@
 		4D80243E1DAE6E3900C4F4B8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8024361DAE6E3900C4F4B8 /* Error.swift */; };
 		4D80243F1DAE6E3900C4F4B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8024371DAE6E3900C4F4B8 /* UserService.swift */; };
 		4D8024401DAE6E3900C4F4B8 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */; };
-		4D8024411DAE6E3900C4F4B8 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8024391DAE6E3900C4F4B8 /* Authentication.storyboard */; };
 		4D8024431DAE744900C4F4B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8024421DAE744900C4F4B8 /* Main.storyboard */; };
+		4DDB12931DB65CCD00C199F8 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB12921DB65CCD00C199F8 /* Authentication.storyboard */; };
+		4DDB12971DB6632600C199F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB12961DB6632600C199F8 /* GoogleService-Info.plist */; };
 		F84C4F9B8963D549EB92F12D /* Pods_Time_Management.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAC4B196509433C81AD97F8D /* Pods_Time_Management.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +64,6 @@
 		4D5EF44E1DAE572F00683FEE /* Time_ManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_ManagementUITests.swift; sourceTree = "<group>"; };
 		4D5EF4501DAE572F00683FEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D623B631DAE5E9B0021A1B7 /* Time Management.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Time Management.entitlements"; sourceTree = "<group>"; };
-		4D623B641DAE5FEF0021A1B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D623B681DAE69AA0021A1B7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		4D623B691DAE69AA0021A1B7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4D623B6A1DAE69AA0021A1B7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -76,8 +75,9 @@
 		4D8024361DAE6E3900C4F4B8 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = ../Error.swift; sourceTree = "<group>"; };
 		4D8024371DAE6E3900C4F4B8 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = ../UserService.swift; sourceTree = "<group>"; };
 		4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keyboard.swift; path = ../Keyboard.swift; sourceTree = "<group>"; };
-		4D8024391DAE6E3900C4F4B8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		4D8024421DAE744900C4F4B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4DDB12921DB65CCD00C199F8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		4DDB12961DB6632600C199F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CBDDF95189836CACFC8706F /* Pods-Time Management.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Management.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Management/Pods-Time Management.debug.xcconfig"; sourceTree = "<group>"; };
 		BAC4B196509433C81AD97F8D /* Pods_Time_Management.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_Management.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,8 +169,8 @@
 		4D5EF45C1DAE574C00683FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4D623B641DAE5FEF0021A1B7 /* GoogleService-Info.plist */,
 				4D623B631DAE5E9B0021A1B7 /* Time Management.entitlements */,
+				4DDB12961DB6632600C199F8 /* GoogleService-Info.plist */,
 				4D5EF4351DAE572F00683FEE /* Assets.xcassets */,
 				4D5EF4371DAE572F00683FEE /* LaunchScreen.storyboard */,
 				4D5EF43A1DAE572F00683FEE /* Info.plist */,
@@ -186,7 +186,7 @@
 				4D8024331DAE6E3900C4F4B8 /* SignUpViewController.swift */,
 				4D8024341DAE6E3900C4F4B8 /* MainViewController.swift */,
 				4D8024351DAE6E3900C4F4B8 /* ProfileTableViewController.swift */,
-				4D8024391DAE6E3900C4F4B8 /* Authentication.storyboard */,
+				4DDB12921DB65CCD00C199F8 /* Authentication.storyboard */,
 			);
 			name = Users;
 			path = ..;
@@ -342,9 +342,9 @@
 			files = (
 				4D5EF4391DAE572F00683FEE /* LaunchScreen.storyboard in Resources */,
 				4D8024431DAE744900C4F4B8 /* Main.storyboard in Resources */,
-				4D8024411DAE6E3900C4F4B8 /* Authentication.storyboard in Resources */,
-				4D623B651DAE5FEF0021A1B7 /* GoogleService-Info.plist in Resources */,
+				4DDB12971DB6632600C199F8 /* GoogleService-Info.plist in Resources */,
 				4D5EF4361DAE572F00683FEE /* Assets.xcassets in Resources */,
+				4DDB12931DB65CCD00C199F8 /* Authentication.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MDJD.Time-Management";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -607,6 +608,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MDJD.Time-Management";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

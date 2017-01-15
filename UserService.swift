@@ -25,56 +25,33 @@ class UserService {
     
     
     func signUp(_ name: String, email: String, pass: String, imageData: Data) {
-        //        UserService.error.checkError = nil
         manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
-            //            UserService.error.checkError = true
             self.manageError.changeError(typeOfError: "UserService", error: true)
             if error != nil {
                 print(error?.localizedDescription)
-                //                UserService.error.checkError = false
                 self.manageError.changeError(typeOfError: "UserService", error: false)
                 return
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
-                    let profilePicRef = self.storageRef.child("images"+"/Profile pictures"+"/\(user.uid).jpg")
-                    self.ref.child("Users").child(user.uid).child("Licence/Type").setValue("free")
-                    self.ref.child("Users").child(user.uid).child("Licence/Date of creation").setValue(FIRServerValue.timestamp())
+                    self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
+                    self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
                     let changeRequest = user.profileChangeRequest()
                     changeRequest.displayName = name
                     changeRequest.commitChanges { error in
                         if let error = error {
                             // An error happened.
-                            //                            UserService.error.checkError = false
                             self.manageError.changeError(typeOfError: "UserService", error: false)
                             return
                         } else {
                             // Profile updated.
                         }
                     }
-                    let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
-                        if error == nil {
-                            //size, content type or the download URL
-                            let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-                            let changeRequest = user.profileChangeRequest()
-                            changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
-                            changeRequest.commitChanges { error in
-                                if let error = error {
-                                    // An error happened.
-                                    print(error.localizedDescription)
-                                    //                                    UserService.error.checkError = false
-                                    self.manageError.changeError(typeOfError: "UserService", error: false)
-                                    return
-                                } else {
-                                    // Profile updated.
-                                }
-                            }
-                        } else {
-                            print("error in uploading the image")
-                            //                            UserService.error.checkError = false
-                            self.manageError.changeError(typeOfError: "UserService", error: false)
-                            return
-                        }
+                    UserService.userService.changePicture(user: user, imageData: imageData)
+                    let checkError = self.manageError.giveError(typeOfError: "UserService")
+                    if checkError == false {
+                        self.manageError.changeError(typeOfError: "UserService", error: false)
+                        return
                     }
                     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.login()
@@ -84,7 +61,6 @@ class UserService {
     }
     
     func signIn(_ method: String, email: String?, pass: String?) {
-        //        UserService.error.checkError = nil
         manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
             
@@ -118,16 +94,15 @@ class UserService {
                         if error == nil {
                             print("You have been loged in")
                             var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-                                if !(snapshot.hasChild((user?.uid)! + "/Licence")) {
-                                    self.ref.child("Users").child((user?.uid)!).child("Licence/Type").setValue("free")
-                                    self.ref.child("Users").child((user?.uid)!).child("Licence/Date of creation").setValue(FIRServerValue.timestamp())
+                                if !(snapshot.hasChild((user?.uid)! + "/License")) {
+                                    self.ref.child("Users").child((user?.uid)!).child("License/Type").setValue("free")
+                                    self.ref.child("Users").child((user?.uid)!).child("License/Date of creation").setValue(FIRServerValue.timestamp())
                                 }
                             })
                             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
                             appDelegate.login()
-
+                            
                         } else {
-                            //                            UserService.error.checkError = false
                             self.manageError.changeError(typeOfError: "UserService", error: false)
                             return
                         }
@@ -140,14 +115,41 @@ class UserService {
         }
     }
     
+    func changePicture(user: FIRUser, imageData: Data) {
+        self.manageError.changeError(typeOfError: "UserService", error: nil)
+        let profilePicRef = self.storageRef.child("images"+"/Profile pictures"+"/\(user.uid).jpg")
+        let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
+            self.manageError.changeError(typeOfError: "UserService", error: true)
+            if error == nil {
+                //size, content type or the download URL
+                let downloadURL: String = metadata!.downloadURLs![0].absoluteString
+                let changeRequest = user.profileChangeRequest()
+                changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        // An error happened.
+                        print(error.localizedDescription)
+                        self.manageError.changeError(typeOfError: "UserService", error: false)
+                        return
+                    } else {
+                        // Profile updated.
+                    }
+                }
+            } else {
+                print("error in uploading the image")
+                self.manageError.changeError(typeOfError: "UserService", error: false)
+            }
+        }
+    }
+    
     private func returnTypeOfAccount(uid: String) -> String? {
         var typeOfAcc: String? = nil
         var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-            if snapshot.hasChild((uid) + "/Licence") {
+            if snapshot.hasChild((uid) + "/License") {
                 let usersDict = snapshot.value as! NSDictionary
                 // ...
-                let userPersonalInformation = (usersDict.object(forKey: uid) as AnyObject).object(forKey: "Licence")
-                typeOfAcc = ((userPersonalInformation) as AnyObject).object(forKey: "Type") as? String
+                let userLicense = (usersDict.object(forKey: uid) as AnyObject).object(forKey: "License")
+                typeOfAcc = ((userLicense) as AnyObject).object(forKey: "Type") as? String
             }
         })
         return typeOfAcc
@@ -155,42 +157,55 @@ class UserService {
     
     func giveImageData() -> Data? {
         if dateOfImage.count > 0 {
-                return dateOfImage.removeLast()
+            return dateOfImage.removeLast()
         }
         return nil
     }
     
     private var dateOfImage = [Data]()
     
-    func loadProfilePictureFromStorage(uid: String) {
+    func loadProfilePictureFromStorage(user: FIRUser) {
+        var checkIfLocalPicExist: Bool = false
         if dateOfImage.count > 0 {
             dateOfImage.removeAll()
         }
         manageError.changeError(typeOfError: "UserService", error: nil)
-        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(uid).jpg")
+        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         // Create local filesystem URL
         let localProfilePicURL: NSURL! = NSURL(fileURLWithPath: "file:///local/images/profile picture.jpg")
         // Download to the local filesystem
-        let downloadTask = profilePicRef.write(toFile: localProfilePicURL as URL) { (URL, error) -> Void in
-            self.manageError.changeError(typeOfError: "UserService", error: true)
-            if (error != nil) {
-                // Uh-oh, an error occurred!
-                print("unable to download the image")
-                self.manageError.changeError(typeOfError: "UserService", error: false)
-            } else {
-                // Local file URL for "images/island.jpg" is returned
-                print("user already has an image, no need to download it from facebook")
-                let data = NSData(contentsOf: URL!)
-                self.dateOfImage.append(data! as Data)
+        let localPicData = NSData(contentsOf: localProfilePicURL as URL)
+        if let userPhoto = user.photoURL {
+            let onlinePicData = NSData(contentsOf: userPhoto)
+            if localPicData == onlinePicData {
+                self.dateOfImage.append(localPicData! as Data)
+                checkIfLocalPicExist = true
+            }
+        }
+        
+        if checkIfLocalPicExist == false {
+            let downloadTask = profilePicRef.write(toFile: localProfilePicURL as URL) { (URL, error) -> Void in
+                self.manageError.changeError(typeOfError: "UserService", error: true)
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                    print("unable to download the image")
+                    self.manageError.changeError(typeOfError: "UserService", error: false)
+                } else {
+                    // Local file URL for "images/island.jpg" is returned
+                    print("user already has an image, no need to download it from facebook")
+                    let data = NSData(contentsOf: URL!)
+                    self.dateOfImage.append(data! as Data)
+                }
             }
         }
     }
-    func loadProfilePictureFromFB(uid: String) {
+    
+    func loadProfilePictureFromFB(user: FIRUser) {
         if dateOfImage.count > 0 {
             dateOfImage.removeAll()
         }
         manageError.changeError(typeOfError: "UserService", error: nil)
-        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(uid).jpg")
+        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         let profilePic = FBSDKGraphRequest(graphPath: "me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
         profilePic?.start(completionHandler: {(connection, result, error) -> Void in
             // Handle the result
@@ -205,7 +220,19 @@ class UserService {
                     let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
                         if error == nil {
                             //size, content type or the download URL
-                            let downloadURL = metadata!.downloadURL
+                            let downloadURL: String = metadata!.downloadURLs![0].absoluteString
+                            let changeRequest = user.profileChangeRequest()
+                            changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
+                            changeRequest.commitChanges { error in
+                                if let error = error {
+                                    // An error happened.
+                                    print(error.localizedDescription)
+                                    self.manageError.changeError(typeOfError: "UserService", error: false)
+                                    return
+                                } else {
+                                    // Profile updated.
+                                }
+                            }
                         } else {
                             print("error in downloading image")
                             self.manageError.changeError(typeOfError: "UserService", error: false)
@@ -216,6 +243,19 @@ class UserService {
             }
             
         })
+    }
+    
+    func getBirthday(uid: String) -> String? {
+        var userBirthday: String? = nil
+        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
+            if snapshot.hasChild(uid + "/Personal information") {
+                let usersDict = snapshot.value as! NSDictionary
+                // ...
+                let userPersonalInformation = (usersDict.object(forKey: uid) as AnyObject).object(forKey: "Personal information")
+                userBirthday = (userPersonalInformation as AnyObject).object(forKey: "Birthday") as? String
+            }
+        })
+        return userBirthday
     }
     
 }
