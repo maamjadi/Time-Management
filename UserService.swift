@@ -24,96 +24,125 @@ class UserService {
     // Create a storage reference from our storage service
     
     
-    func signUp(_ name: String, email: String, pass: String, imageData: Data) {
-        manageError.changeError(typeOfError: "UserService", error: nil)
-        FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
-            self.manageError.changeError(typeOfError: "UserService", error: true)
-            if error != nil {
-                print(error?.localizedDescription)
-                self.manageError.changeError(typeOfError: "UserService", error: false)
-                return
-            } else {
-                if let user = FIRAuth.auth()?.currentUser {
-                    self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
-                    self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
-                    let changeRequest = user.profileChangeRequest()
-                    changeRequest.displayName = name
-                    changeRequest.commitChanges { error in
-                        if let error = error {
-                            // An error happened.
-                            self.manageError.changeError(typeOfError: "UserService", error: false)
-                            return
-                        } else {
-                            // Profile updated.
-                        }
-                    }
-                    UserService.userService.changePicture(user: user, imageData: imageData)
-                    let checkError = self.manageError.giveError(typeOfError: "UserService")
-                    if checkError == false {
-                        self.manageError.changeError(typeOfError: "UserService", error: false)
-                        return
-                    }
-                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.login()
-                }
+//    func signUp(_ name: String, email: String, pass: String, imageData: Data) {
+//        manageError.changeError(typeOfError: "UserService", error: nil)
+//        FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
+//            self.manageError.changeError(typeOfError: "UserService", error: true)
+//            if error != nil {
+//                print(error?.localizedDescription)
+//                self.manageError.changeError(typeOfError: "UserService", error: false)
+//                return
+//            } else {
+//                if let user = FIRAuth.auth()?.currentUser {
+//                    self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
+//                    self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
+//                    let changeRequest = user.profileChangeRequest()
+//                    changeRequest.displayName = name
+//                    changeRequest.commitChanges { error in
+//                        if let error = error {
+//                            // An error happened.
+//                            self.manageError.changeError(typeOfError: "UserService", error: false)
+//                            return
+//                        } else {
+//                            // Profile updated.
+//                        }
+//                    }
+//                    UserService.userService.changePicture(user: user, imageData: imageData)
+//                    let checkError = self.manageError.giveError(typeOfError: "UserService")
+//                    if checkError == false {
+//                        self.manageError.changeError(typeOfError: "UserService", error: false)
+//                        return
+//                    }
+//                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.login()
+//                }
+//            }
+//        })
+//    }
+    
+    func initialLicense(_ user: FIRUser) {
+        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
+            if !(snapshot.hasChild((user.uid) + "/License")) {
+        self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
+        self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
             }
         })
     }
     
-    func signIn(_ method: String, email: String?, pass: String?) {
-        manageError.changeError(typeOfError: "UserService", error: nil)
-        switch method {
-            
-        case "Email":
-            FIRAuth.auth()?.signIn(withEmail: email!, password: pass!, completion: { (user, error) in
-                self.manageError.changeError(typeOfError: "UserService", error: true)
-                if error != nil {
-                    self.manageError.changeError(typeOfError: "UserService", error: false)
-                    return
-                } else {
-                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.login()
-                }
-            })
-            
-        case "Facebook":
-            let login: FBSDKLoginManager = FBSDKLoginManager()
-            login.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], handler: { (result, error) -> Void in
-                self.manageError.changeError(typeOfError: "UserService", error: true)
-                if error != nil {
-                    self.manageError.changeError(typeOfError: "UserService", error: false)
-                    return
-                }
-                else if (result?.isCancelled)! {
-                    self.manageError.changeError(typeOfError: "UserService", error: false)
-                    return
-                }
-                else {
-                    let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                    FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-                        if error == nil {
-                            print("You have been loged in")
-                            var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-                                if !(snapshot.hasChild((user?.uid)! + "/License")) {
-                                    self.ref.child("Users").child((user?.uid)!).child("License/Type").setValue("free")
-                                    self.ref.child("Users").child((user?.uid)!).child("License/Date of creation").setValue(FIRServerValue.timestamp())
-                                }
-                            })
-                            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                            appDelegate.login()
-                            
-                        } else {
-                            self.manageError.changeError(typeOfError: "UserService", error: false)
-                            return
-                        }
-                    }
-                }
-            })
-            
-        //        case "Google":
-        default: break
+    func authChangeReq(_ user: FIRUser, displayName: String?, photoURL: URL?) {
+        let changeRequest = user.profileChangeRequest()
+        if displayName != nil {
+            changeRequest.displayName = displayName
+        }
+        if photoURL != nil {
+            changeRequest.photoURL = photoURL
+        }
+        changeRequest.commitChanges { error in
+            if let error = error {
+                // An error happened.
+                print(error.localizedDescription)
+                self.manageError.changeError(typeOfError: "UserService", error: false)
+                return
+            } else {
+                // Profile updated.
+            }
         }
     }
+    
+//    func signIn(_ method: String, email: String?, pass: String?) {
+//        manageError.changeError(typeOfError: "UserService", error: nil)
+//        switch method {
+//            
+//        case "Email":
+//            FIRAuth.auth()?.signIn(withEmail: email!, password: pass!, completion: { (user, error) in
+//                self.manageError.changeError(typeOfError: "UserService", error: true)
+//                if error != nil {
+//                    self.manageError.changeError(typeOfError: "UserService", error: false)
+//                    return
+//                } else {
+//                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.login()
+//                }
+//            })
+//            
+//        case "Facebook":
+//            let login: FBSDKLoginManager = FBSDKLoginManager()
+//            login.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], handler: { (result, error) -> Void in
+//                self.manageError.changeError(typeOfError: "UserService", error: true)
+//                if error != nil {
+//                    self.manageError.changeError(typeOfError: "UserService", error: false)
+//                    return
+//                }
+//                else if (result?.isCancelled)! {
+//                    self.manageError.changeError(typeOfError: "UserService", error: false)
+//                    return
+//                }
+//                else {
+//                    let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+//                    FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+//                        if error == nil {
+//                            print("You have been loged in")
+//                            var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
+//                                if !(snapshot.hasChild((user?.uid)! + "/License")) {
+//                                    self.ref.child("Users").child((user?.uid)!).child("License/Type").setValue("free")
+//                                    self.ref.child("Users").child((user?.uid)!).child("License/Date of creation").setValue(FIRServerValue.timestamp())
+//                                }
+//                            })
+//                            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                            appDelegate.login()
+//                            
+//                        } else {
+//                            self.manageError.changeError(typeOfError: "UserService", error: false)
+//                            return
+//                        }
+//                    }
+//                }
+//            })
+//            
+//        //        case "Google":
+//        default: break
+//        }
+//    }
     
     func changePicture(user: FIRUser, imageData: Data) {
         self.manageError.changeError(typeOfError: "UserService", error: nil)
@@ -221,18 +250,8 @@ class UserService {
                         if error == nil {
                             //size, content type or the download URL
                             let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-                            let changeRequest = user.profileChangeRequest()
-                            changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
-                            changeRequest.commitChanges { error in
-                                if let error = error {
-                                    // An error happened.
-                                    print(error.localizedDescription)
-                                    self.manageError.changeError(typeOfError: "UserService", error: false)
-                                    return
-                                } else {
-                                    // Profile updated.
-                                }
-                            }
+                            let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
+                            UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
                         } else {
                             print("error in downloading image")
                             self.manageError.changeError(typeOfError: "UserService", error: false)

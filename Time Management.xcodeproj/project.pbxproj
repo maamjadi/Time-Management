@@ -26,6 +26,7 @@
 		4D80243F1DAE6E3900C4F4B8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8024371DAE6E3900C4F4B8 /* UserService.swift */; };
 		4D8024401DAE6E3900C4F4B8 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */; };
 		4D8024431DAE744900C4F4B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8024421DAE744900C4F4B8 /* Main.storyboard */; };
+		4D9715051E3EDA6A000C15B7 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9715041E3EDA6A000C15B7 /* AlertController.swift */; };
 		4DDB12931DB65CCD00C199F8 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB12921DB65CCD00C199F8 /* Authentication.storyboard */; };
 		4DDB12971DB6632600C199F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DDB12961DB6632600C199F8 /* GoogleService-Info.plist */; };
 		F84C4F9B8963D549EB92F12D /* Pods_Time_Management.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAC4B196509433C81AD97F8D /* Pods_Time_Management.framework */; };
@@ -76,6 +77,7 @@
 		4D8024371DAE6E3900C4F4B8 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = ../UserService.swift; sourceTree = "<group>"; };
 		4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keyboard.swift; path = ../Keyboard.swift; sourceTree = "<group>"; };
 		4D8024421DAE744900C4F4B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4D9715041E3EDA6A000C15B7 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		4DDB12921DB65CCD00C199F8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		4DDB12961DB6632600C199F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CBDDF95189836CACFC8706F /* Pods-Time Management.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Management.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Management/Pods-Time Management.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,9 +142,9 @@
 				4D5EF42B1DAE572F00683FEE /* AppDelegate.swift */,
 				4D8024361DAE6E3900C4F4B8 /* Error.swift */,
 				4D8024371DAE6E3900C4F4B8 /* UserService.swift */,
-				4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */,
 				4D623B5C1DAE5D760021A1B7 /* Home */,
 				4D5EF45D1DAE57AB00683FEE /* Users */,
+				4D9715031E3EDA2A000C15B7 /* Utilities */,
 				4D5EF45C1DAE574C00683FEE /* Supporting Files */,
 			);
 			path = "Time Management";
@@ -199,6 +201,15 @@
 				4D8024421DAE744900C4F4B8 /* Main.storyboard */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		4D9715031E3EDA2A000C15B7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4D8024381DAE6E3900C4F4B8 /* Keyboard.swift */,
+				4D9715041E3EDA6A000C15B7 /* AlertController.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		E7F7C5CBED6887BB9FBC0000 /* Frameworks */ = {
@@ -425,6 +436,7 @@
 				4D5EF4341DAE572F00683FEE /* Time_Management.xcdatamodeld in Sources */,
 				4D5EF42E1DAE572F00683FEE /* HomeViewController.swift in Sources */,
 				4D80243C1DAE6E3900C4F4B8 /* MainViewController.swift in Sources */,
+				4D9715051E3EDA6A000C15B7 /* AlertController.swift in Sources */,
 				4D5EF42C1DAE572F00683FEE /* AppDelegate.swift in Sources */,
 				4D80243B1DAE6E3900C4F4B8 /* SignUpViewController.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var startingViewSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
     let mainQueue = DispatchQueue.main
     let defaultQueue = DispatchQueue.global(qos: .default)
@@ -32,10 +32,8 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
                 // User is signed in.
-                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-                let mainViewController: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "mainView")
-                
-                self.present(mainViewController, animated: true, completion: nil)
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.login()
             }
             else {
                 // No user is signed in.
@@ -58,10 +56,15 @@ class LoginViewController: UIViewController {
         }
         
         self.hidden(true)
-        self.startingViewSpinner.startAnimating()
-        defaultQueue.async {
-            UserService.userService.signIn("Email", email: email, pass: pass)
-            self.mainQueue.async {
+        self.loadingSpinner.startAnimating()
+        FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
+            self.manageError.changeError(typeOfError: "UserService", error: true)
+            if error != nil {
+                print(error?.localizedDescription)
+                self.hidden(false)
+                self.loadingSpinner.stopAnimating()
+                self.giveAnAlert(error!.localizedDescription)
+            } else {
                 let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
                 if checkSignIn == true {
                     print("User has been loged in successfully")
@@ -69,38 +72,56 @@ class LoginViewController: UIViewController {
                     appDelegate.login()
                 } else {
                     self.hidden(false)
-                    self.startingViewSpinner.stopAnimating()
-                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    self.loadingSpinner.stopAnimating()
+                    self.giveAnAlert("There is an Error, please try again later")
                 }
             }
-        }
+        })
+        
     }
     
     @IBAction func facebookLoginButton() {
         
         self.hidden(true)
-        self.startingViewSpinner.startAnimating()
-        defaultQueue.async {
-            UserService.userService.signIn("Facebook", email: nil, pass: nil)
-            self.mainQueue.async {
-                let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
-                if checkSignIn == true {
-                    print("User has been loged in successfully")
-                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.login()
-                } else {
-                    self.hidden(false)
-                    self.startingViewSpinner.stopAnimating()
-                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
+        self.loadingSpinner.startAnimating()
+        let fbLoginManager: FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], handler: { (result, error) -> Void in
+            self.manageError.changeError(typeOfError: "UserService", error: true)
+            if error != nil {
+            }
+            else if (result?.isCancelled)! {
+            }
+            else {
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                    if error != nil {
+                        print(error?.localizedDescription)
+                        self.hidden(false)
+                        self.loadingSpinner.stopAnimating()
+                        self.giveAnAlert(error!.localizedDescription)
+                    } else {
+                        if let user = user {
+                            print("You have been logged in")
+                            UserService.userService.initialLicense(user)
+                            let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
+                            if checkSignIn == true {
+                                print("User has been loged in successfully")
+                                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+                                let mainViewController: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "mainView")
+                                
+                                self.present(mainViewController, animated: true, completion: nil)
+                            } else {
+                                self.hidden(false)
+                                self.loadingSpinner.stopAnimating()
+                                self.giveAnAlert("There is an Error, please try again later")
+                            }
+                        }
+                        
+                    }
                 }
             }
-        }
+        })
+        
     }
     
     func hidden(_ bool: Bool) {
