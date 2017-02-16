@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,AfterSignIn {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,14 +21,12 @@ class LoginViewController: UIViewController {
     
     let mainQueue = DispatchQueue.main
     let defaultQueue = DispatchQueue.global(qos: .default)
+
     
-    var manageError = Error()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.hidden(false)
-        
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
                 // User is signed in.
@@ -60,22 +58,7 @@ class LoginViewController: UIViewController {
         self.hidden(true)
         self.startingViewSpinner.startAnimating()
         defaultQueue.async {
-            UserService.userService.signIn("Email", email: email, pass: pass)
-            self.mainQueue.async {
-                let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
-                if checkSignIn == true {
-                    print("User has been loged in successfully")
-                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.login()
-                } else {
-                    self.hidden(false)
-                    self.startingViewSpinner.stopAnimating()
-                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
+            UserService.userService.signIn("Email", email: email, pass: pass,afterSignIn: self)
         }
     }
     
@@ -84,22 +67,8 @@ class LoginViewController: UIViewController {
         self.hidden(true)
         self.startingViewSpinner.startAnimating()
         defaultQueue.async {
-            UserService.userService.signIn("Facebook", email: nil, pass: nil)
-            self.mainQueue.async {
-                let checkSignIn = self.manageError.giveError(typeOfError: "UserService")
-                if checkSignIn == true {
-                    print("User has been loged in successfully")
-                    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.login()
-                } else {
-                    self.hidden(false)
-                    self.startingViewSpinner.stopAnimating()
-                    let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
+          UserService.userService.signIn("Facebook", email: nil, pass: nil,afterSignIn: self)
+        
         }
     }
     
@@ -109,6 +78,24 @@ class LoginViewController: UIViewController {
         self.emailTextField.isHidden = bool
         self.passwordTextField.isHidden = bool
         self.signUpButton.isHidden = bool
+    }
+    
+    func onFinish() {
+            let checkSignIn = Error.manageError.giveError(typeOfError: "UserService")
+        if checkSignIn == true {
+            print("User has been loged in successfully")
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.login()
+        }
+         else {
+            self.hidden(false)
+            self.startingViewSpinner.stopAnimating()
+            let alertController = UIAlertController(title: "Warning", message: "There is an Error, please try again later", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+
     }
     
 }

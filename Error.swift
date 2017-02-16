@@ -11,6 +11,8 @@ import FirebaseCrash
 
 class Error {
     
+    static let manageError = Error()
+    
     private var knownError = [String:Err]()
     
     private enum Err {

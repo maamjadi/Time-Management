@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,AfterSignIn {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -99,27 +99,8 @@ class SignUpViewController: UIViewController {
             self.loadingSpinner.startAnimating()
             var data = Data()
             data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
-            defaultQueue.async {
-                UserService.userService.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data)
-                self.mainQueue.async {
-                    let checkSignUp = self.manageError.giveError(typeOfError: "UserService")
-                    if checkSignUp == true {
-                        print("User successfully signed up")
-                        self.deregisterFromKeyboardNotifications()
-                        let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.login()
-                    }
-                    else if checkSignUp == false {
-                        self.hidden(false)
-                        self.loadingSpinner.stopAnimating()
-                        
-                        let alertController = UIAlertController(title: "Warning", message: "Something went wrong, please try again later", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                        
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                }
-            }
+                UserService.userService.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data,afterSignUp: self)
+            
         } else {
             let alertController = UIAlertController(title: "Warning", message: "Your passwords doesn't match", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
@@ -139,6 +120,26 @@ class SignUpViewController: UIViewController {
         self.dismissButton.isHidden = bool
     }
     
+    func onFinish() {
+        let checkSignUp = self.manageError.giveError(typeOfError: "UserService")
+        if checkSignUp == true {
+            print("User successfully signed up")
+            self.deregisterFromKeyboardNotifications()
+            let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.login()
+        }
+        else if checkSignUp == false {
+            self.hidden(false)
+            self.loadingSpinner.stopAnimating()
+            
+            let alertController = UIAlertController(title: "Warning", message: "Something went wrong, please try again later", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+    }
+
     
 }
 
