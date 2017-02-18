@@ -46,10 +46,9 @@ class SignUpViewController: UIViewController,AfterSignIn {
             if let user = user {
                 // User is signed in.
                 self.deregisterFromKeyboardNotifications()
-                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-                let mainViewController: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "mainView")
                 
-                self.present(mainViewController, animated: true, completion: nil)
+                let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.login()
             }
             else {
                 // No user is signed in.
@@ -87,10 +86,7 @@ class SignUpViewController: UIViewController,AfterSignIn {
     @IBAction func signUp() {
         guard let name = nameTextField.text , !name.isEmpty, let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty, let verPass = vertifyPassTextField.text , !verPass.isEmpty else {
             
-            let alertController = UIAlertController(title: "Warning", message: "Please fill all the informations", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
+            giveAnAlert("Please fill all the informations")
             
             return
         }
@@ -99,15 +95,15 @@ class SignUpViewController: UIViewController,AfterSignIn {
             self.loadingSpinner.startAnimating()
             var data = Data()
             data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
+          defaultQueue.async {
                 UserService.userService.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data,afterSignUp: self)
+          }
             
         } else {
-            let alertController = UIAlertController(title: "Warning", message: "Your passwords doesn't match", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
+            giveAnAlert("Your passwords doesn't match")
         }
     }
+    
     
     
     func hidden(_ bool: Bool) {
@@ -131,15 +127,9 @@ class SignUpViewController: UIViewController,AfterSignIn {
         else if checkSignUp == false {
             self.hidden(false)
             self.loadingSpinner.stopAnimating()
-            
-            let alertController = UIAlertController(title: "Warning", message: "Something went wrong, please try again later", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
+            self.giveAnAlert("Something went wrong, please try again later")
+        }       
     }
-
     
 }
 

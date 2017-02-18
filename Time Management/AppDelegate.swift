@@ -105,9 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func login() {
         if FIRAuth.auth()?.currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard.init(name: "Authentication", bundle: nil)
             let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "mainView")
-            window?.rootViewController = mainViewController
+            self.window?.rootViewController = mainViewController
         }
     }
 

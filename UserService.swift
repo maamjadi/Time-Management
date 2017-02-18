@@ -19,6 +19,7 @@ class UserService {
     fileprivate let storageRef = FIRStorage.storage().reference()
     // Create a storage reference from our storage service
     
+
     func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterSignIn) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
@@ -29,8 +30,7 @@ class UserService {
                 return
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
-                    self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
-                    self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
+                    initialLicense(user)
                     let changeRequest = user.profileChangeRequest()
                     changeRequest.displayName = name
                     changeRequest.commitChanges { error in
@@ -50,10 +50,20 @@ class UserService {
                     }
                 afterSignUp.onFinish()
                 }
+              }
+          })
+      }
+    
+    func initialLicense(_ user: FIRUser) {
+        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
+            if !(snapshot.hasChild((user.uid) + "/License")) {
+        self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
+        self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
             }
         })
     }
     
+
     func signIn(_ method: String, email: String?, pass: String? , afterSignIn:AfterSignIn) {
        Error.manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
@@ -89,13 +99,8 @@ class UserService {
                     FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                         if error == nil {
                             print("You have been loged in")
-                            var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-                                if !(snapshot.hasChild((user?.uid)! + "/License")) {
-                                    self.ref.child("Users").child((user?.uid)!).child("License/Type").setValue("free")
-                                    self.ref.child("Users").child((user?.uid)!).child("License/Date of creation").setValue(FIRServerValue.timestamp())
-                                    afterSignIn.onFinish()
-                                }
-                            })
+                            initialLicense(user)
+                            afterSignIn.onFinish()
                             
                         } else {
                             Error.manageError.changeError(typeOfError: "UserService", error: false)
@@ -107,8 +112,28 @@ class UserService {
             
         //        case "Google":
         default: break
+
+    func authChangeReq(_ user: FIRUser, displayName: String?, photoURL: URL?) {
+        let changeRequest = user.profileChangeRequest()
+        if displayName != nil {
+            changeRequest.displayName = displayName
+        }
+        if photoURL != nil {
+            changeRequest.photoURL = photoURL
+        }
+        changeRequest.commitChanges { error in
+            if let error = error {
+                // An error happened.
+                print(error.localizedDescription)
+                self.manageError.changeError(typeOfError: "UserService", error: false)
+                return
+            } else {
+                // Profile updated.
+            }
+
         }
     }
+    
     
     func changePicture(user: FIRUser, imageData: Data) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
@@ -216,18 +241,10 @@ class UserService {
                         if error == nil {
                             //size, content type or the download URL
                             let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-                            let changeRequest = user.profileChangeRequest()
-                            changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
-                            changeRequest.commitChanges { error in
-                                if let error = error {
-                                    // An error happened.
-                                    print(error.localizedDescription)
-                                    Error.manageError.changeError(typeOfError: "UserService", error: false)
-                                    return
-                                } else {
-                                    // Profile updated.
-                                }
-                            }
+
+                            let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
+                            UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
+                          
                         } else {
                             print("error in downloading image")
                             Error.manageError.changeError(typeOfError: "UserService", error: false)
