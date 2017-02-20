@@ -19,7 +19,7 @@ class UserService {
     fileprivate let storageRef = FIRStorage.storage().reference()
     // Create a storage reference from our storage service
     
-
+    
     func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterSignIn) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
@@ -30,42 +30,32 @@ class UserService {
                 return
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
-                    initialLicense(user)
-                    let changeRequest = user.profileChangeRequest()
-                    changeRequest.displayName = name
-                    changeRequest.commitChanges { error in
-                        if let error = error {
-                            // An error happened.
-                            Error.manageError.changeError(typeOfError: "UserService", error: false)
-                            return
-                        } else {
-                            // Profile updated.
-                        }
-                    }
+                    self.initialLicense(user)
+                    self.authChangeReq(user, displayName: name, photoURL: nil)
                     UserService.userService.changePicture(user: user, imageData: imageData)
                     let checkError = Error.manageError.giveError(typeOfError: "UserService")
                     if checkError == false {
                         Error.manageError.changeError(typeOfError: "UserService", error: false)
                         return
                     }
-                afterSignUp.onFinish()
+                    afterSignUp.onFinish()
                 }
-              }
-          })
-      }
-    
-    func initialLicense(_ user: FIRUser) {
-        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
-            if !(snapshot.hasChild((user.uid) + "/License")) {
-        self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
-        self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
             }
         })
     }
     
-
+    func initialLicense(_ user: FIRUser) {
+        var refHandle = self.ref.child("Users").observe(FIRDataEventType.value, with: { (snapshot) in
+            if !(snapshot.hasChild((user.uid) + "/License")) {
+                self.ref.child("Users").child(user.uid).child("License/Type").setValue("free")
+                self.ref.child("Users").child(user.uid).child("License/Date of creation").setValue(FIRServerValue.timestamp())
+            }
+        })
+    }
+    
+    
     func signIn(_ method: String, email: String?, pass: String? , afterSignIn:AfterSignIn) {
-       Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        Error.manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
             
         case "Email":
@@ -99,7 +89,7 @@ class UserService {
                     FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                         if error == nil {
                             print("You have been loged in")
-                            initialLicense(user)
+                            self.initialLicense(user!)
                             afterSignIn.onFinish()
                             
                         } else {
@@ -112,7 +102,10 @@ class UserService {
             
         //        case "Google":
         default: break
-
+        }
+    }
+    
+    
     func authChangeReq(_ user: FIRUser, displayName: String?, photoURL: URL?) {
         let changeRequest = user.profileChangeRequest()
         if displayName != nil {
@@ -125,12 +118,12 @@ class UserService {
             if let error = error {
                 // An error happened.
                 print(error.localizedDescription)
-                self.manageError.changeError(typeOfError: "UserService", error: false)
+                Error.manageError.changeError(typeOfError: "UserService", error: false)
                 return
             } else {
                 // Profile updated.
             }
-
+            
         }
     }
     
@@ -143,18 +136,8 @@ class UserService {
             if error == nil {
                 //size, content type or the download URL
                 let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-                let changeRequest = user.profileChangeRequest()
-                changeRequest.photoURL = NSURL(fileURLWithPath: downloadURL) as URL
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        // An error happened.
-                        print(error.localizedDescription)
-                        Error.manageError.changeError(typeOfError: "UserService", error: false)
-                        return
-                    } else {
-                        // Profile updated.
-                    }
-                }
+                let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
+                UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
             } else {
                 print("error in uploading the image")
                 Error.manageError.changeError(typeOfError: "UserService", error: false)
@@ -225,7 +208,7 @@ class UserService {
             dateOfImage.removeAll()
         }
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
-        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
+        //        let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         let profilePic = FBSDKGraphRequest(graphPath: "me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
         profilePic?.start(completionHandler: {(connection, result, error) -> Void in
             // Handle the result
@@ -237,19 +220,20 @@ class UserService {
                 let urlPic = (dictionary?["data"]! as! [String : AnyObject])["url"] as! String
                 if let imageData = try? Data(contentsOf: URL(string: urlPic)!) {
                     Error.manageError.changeError(typeOfError: "UserService", error: true)
-                    let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
-                        if error == nil {
-                            //size, content type or the download URL
-                            let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-
-                            let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
-                            UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
-                          
-                        } else {
-                            print("error in downloading image")
-                            Error.manageError.changeError(typeOfError: "UserService", error: false)
-                        }
-                    }
+                    //                    let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
+                    //                        if error == nil {
+                    //                            //size, content type or the download URL
+                    //                            let downloadURL: String = metadata!.downloadURLs![0].absoluteString
+                    //
+                    //                            let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
+                    //                            UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
+                    //
+                    //                        } else {
+                    //                            print("error in downloading image")
+                    //                            Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    //                        }
+                    //                    }
+                    self.changePicture(user: user, imageData: imageData)
                     self.dateOfImage.append(imageData)
                 }
             }

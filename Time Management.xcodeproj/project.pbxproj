@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D5BF0671E5AD96E00DD020D /* AfterSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5BF0661E5AD96E00DD020D /* AfterSignIn.swift */; };
 		4D5EF42C1DAE572F00683FEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EF42B1DAE572F00683FEE /* AppDelegate.swift */; };
 		4D5EF42E1DAE572F00683FEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EF42D1DAE572F00683FEE /* HomeViewController.swift */; };
 		4D5EF4341DAE572F00683FEE /* Time_Management.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EF4321DAE572F00683FEE /* Time_Management.xcdatamodeld */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		4A63D5BB38F5F541B02603FB /* Pods-Time Management.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Management.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Management/Pods-Time Management.release.xcconfig"; sourceTree = "<group>"; };
+		4D5BF0661E5AD96E00DD020D /* AfterSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AfterSignIn.swift; path = "Time Management/AfterSignIn.swift"; sourceTree = "<group>"; };
 		4D5EF4281DAE572F00683FEE /* Time Management.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Management.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5EF42B1DAE572F00683FEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D5EF42D1DAE572F00683FEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		4D5EF45D1DAE57AB00683FEE /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				4D5BF0661E5AD96E00DD020D /* AfterSignIn.swift */,
 				4D8024321DAE6E3900C4F4B8 /* LoginViewController.swift */,
 				4D8024331DAE6E3900C4F4B8 /* SignUpViewController.swift */,
 				4D8024341DAE6E3900C4F4B8 /* MainViewController.swift */,
@@ -430,6 +433,7 @@
 			files = (
 				4D80243E1DAE6E3900C4F4B8 /* Error.swift in Sources */,
 				4D80243D1DAE6E3900C4F4B8 /* ProfileTableViewController.swift in Sources */,
+				4D5BF0671E5AD96E00DD020D /* AfterSignIn.swift in Sources */,
 				4D8024401DAE6E3900C4F4B8 /* Keyboard.swift in Sources */,
 				4D80243F1DAE6E3900C4F4B8 /* UserService.swift in Sources */,
 				4D80243A1DAE6E3900C4F4B8 /* LoginViewController.swift in Sources */,
