@@ -220,19 +220,6 @@ class UserService {
                 let urlPic = (dictionary?["data"]! as! [String : AnyObject])["url"] as! String
                 if let imageData = try? Data(contentsOf: URL(string: urlPic)!) {
                     Error.manageError.changeError(typeOfError: "UserService", error: true)
-                    //                    let uploadTask = profilePicRef.put(imageData, metadata:nil) { metadata,error in
-                    //                        if error == nil {
-                    //                            //size, content type or the download URL
-                    //                            let downloadURL: String = metadata!.downloadURLs![0].absoluteString
-                    //
-                    //                            let profileURL = NSURL(fileURLWithPath: downloadURL) as URL
-                    //                            UserService.userService.authChangeReq(user, displayName: nil, photoURL: profileURL)
-                    //
-                    //                        } else {
-                    //                            print("error in downloading image")
-                    //                            Error.manageError.changeError(typeOfError: "UserService", error: false)
-                    //                        }
-                    //                    }
                     self.changePicture(user: user, imageData: imageData)
                     self.dateOfImage.append(imageData)
                 }
