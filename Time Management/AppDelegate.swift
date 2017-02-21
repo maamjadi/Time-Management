@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         login()
@@ -105,9 +106,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func login() {
         if FIRAuth.auth()?.currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard.init(name: "Authentication", bundle: nil)
             let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "mainView")
-            window?.rootViewController = mainViewController
+            self.window?.rootViewController = mainViewController
         }
     }
 
