@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol AfterSignIn {
+protocol AfterAsynchronous {
     func onFinish()->Void
 }

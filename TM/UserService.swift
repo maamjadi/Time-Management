@@ -20,7 +20,7 @@ class UserService {
     // Create a storage reference from our storage service
     
     
-    func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterSignIn) {
+    func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterAsynchronous) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
             Error.manageError.changeError(typeOfError: "UserService", error: true)
@@ -44,7 +44,7 @@ class UserService {
         })
     }
     
-    func signIn(_ method: String, email: String?, pass: String? , afterSignIn: AfterSignIn) {
+    func signIn(_ method: String, email: String?, pass: String? , afterSignIn: AfterAsynchronous) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
             
@@ -155,7 +155,7 @@ class UserService {
     
     private var dateOfImage = [Data]()
     
-    func loadProfilePictureFromStorage(user: FIRUser) {
+    func loadProfilePictureFromStorage(user: FIRUser , afterLoadingThePiture : AfterAsynchronous) {
         var checkIfLocalPicExist: Bool = false
         if dateOfImage.count > 0 {
             dateOfImage.removeAll()
@@ -189,6 +189,7 @@ class UserService {
                 }
             }
         }
+        afterLoadingThePiture.onFinish();
     }
     
     func loadProfilePictureFromFB(user: FIRUser) {

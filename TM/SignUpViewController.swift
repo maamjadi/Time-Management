@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController, AfterSignIn {
+class SignUpViewController: UIViewController, AfterAsynchronous {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!

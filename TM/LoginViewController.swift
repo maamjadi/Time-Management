@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, AfterSignIn {
+class LoginViewController: UIViewController, AfterAsynchronous {
     
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!

@@ -10,7 +10,8 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController , AfterAsynchronous {
+
     
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -73,7 +74,7 @@ class MainViewController: UIViewController {
                 }
             }
             var counter: Int = 0
-            UserService.userService.loadProfilePictureFromStorage(user: user)
+            UserService.userService.loadProfilePictureFromStorage(user: user , afterLoadingThePiture: self)
             let loadPicFromStorage = manageError.giveError(typeOfError: "UserService")
             counter += 1
             if loadPicFromStorage == false && counter != 1 {
@@ -95,5 +96,8 @@ class MainViewController: UIViewController {
             // No user is signed in.
         }
     }
-    
+    internal func onFinish() {
+        
+    }
+
 }

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class EmailViewController: UIViewController, AfterSignIn{
+class EmailViewController: UIViewController, AfterAsynchronous{
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!

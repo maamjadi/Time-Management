@@ -11,7 +11,9 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class ProfileTableViewController: UITableViewController {
+class ProfileTableViewController: UITableViewController , AfterAsynchronous
+{
+    
     
     
     @IBOutlet weak var birthdayTextField: UITextField!
@@ -62,22 +64,8 @@ class ProfileTableViewController: UITableViewController {
         self.emailTextField.text = email
         self.nameTextField.text = name
         
-        UserService.userService.loadProfilePictureFromStorage(user: user!)
-        let loadPic = Error.manageError.giveError(typeOfError: "UserService")
-        if loadPic == true {
-//            let imageData = UserService.userService.giveImageData()
-//            if imageData != nil {
-//                profileImage.image = UIImage(data: imageData!)
-//                profileImage.isHidden = false
-//            } else {
-//                profileImage.isHidden = true
-//            }
-        }
-        
-        if let userBirthday = UserService.userService.getBirthday(uid: (user?.uid)!) {
-            birthdayTextField.text = userBirthday
-        }
-    }
+        UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
+            }
     
     
     func selectPhoto(_ gestureRecognizer: UITapGestureRecognizer)
@@ -221,4 +209,23 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    internal func onFinish() {
+        
+        let loadPic = Error.manageError.giveError(typeOfError: "UserService")
+        if loadPic == true {
+            //            let imageData = UserService.userService.giveImageData()
+            //            if imageData != nil {
+            //                profileImage.image = UIImage(data: imageData!)
+            //                profileImage.isHidden = false
+            //            } else {
+            //                profileImage.isHidden = true
+            //            }
+        }
+        
+        if let userBirthday = UserService.userService.getBirthday(uid: (user?.uid)!) {
+            birthdayTextField.text = userBirthday
+        }
+
+    }
+
 }
