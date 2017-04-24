@@ -1,38 +1,22 @@
 //
-//  MainViewController.swift
-//  Authentication
+//  SettingTableViewController.swift
+//  TM
 //
-//  Created by Amin Amjadi on 7/30/16.
-//  Copyright © 2016 MDJD. All rights reserved.
+//  Created by Amin Amjadi on 4/24/17.
+//  Copyright © 2017 MDJD. All rights reserved.
 //
 
 import UIKit
 import FBSDKCoreKit
 import Firebase
 
-class MainViewController: UIViewController {
-    
-    @IBOutlet weak var nameTextField: UILabel!
+class SettingTableViewController: UITableViewController {
+
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var typeOfAccTextField: UILabel!
-    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
     var manageError = Error()
-    
-    @IBAction func logOut() {
-        
-        let firebaseAuth = FIRAuth.auth()
-        do {
-            try firebaseAuth?.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
-        FBSDKAccessToken.setCurrent(nil)
-        
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.login()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +31,7 @@ class MainViewController: UIViewController {
                 appDelegate.login()
             }
         }
-
+        
         
         typeOfAccTextField.isHidden = true
         nameTextField.isHidden = true
@@ -58,7 +42,6 @@ class MainViewController: UIViewController {
         
         if let user = FIRAuth.auth()?.currentUser {
             // User is signed in.
-            loadingSpinner.startAnimating()
             
             if let name = user.displayName {
                 nameTextField.text = name
@@ -85,19 +68,32 @@ class MainViewController: UIViewController {
             }
             let loadPic = manageError.giveError(typeOfError: "UserService")
             if loadPic == true {
-//                let imageData = UserService.userService.giveImageData()
-//                if imageData != nil {
-//                    profileImage.image = UIImage(data: imageData!)
-//                    profileImage.isHidden = false
-//                } else {
-//                    profileImage.isHidden = true
-//                }
+                //                let imageData = UserService.userService.giveImageData()
+                //                if imageData != nil {
+                //                    profileImage.image = UIImage(data: imageData!)
+                //                    profileImage.isHidden = false
+                //                } else {
+                //                    profileImage.isHidden = true
+                //                }
             }
-            loadingSpinner.stopAnimating()
             
         } else {
             // No user is signed in.
         }
     }
-    
+
+    @IBAction func logout() {
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        FBSDKAccessToken.setCurrent(nil)
+        
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.login()
+
+    }
 }

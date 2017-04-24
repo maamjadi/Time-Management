@@ -198,7 +198,7 @@ class ProfileTableViewController: UITableViewController {
             }
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainView = mainStoryboard.instantiateViewController(withIdentifier: "mainView")
+            let mainView = mainStoryboard.instantiateViewController(withIdentifier: "settingView")
             
             self.present(mainView, animated: true, completion: nil)
         }

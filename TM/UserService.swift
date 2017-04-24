@@ -52,12 +52,10 @@ class UserService {
             FIRAuth.auth()?.signIn(withEmail: email!, password: pass!, completion: { (user, error) in
                 if error != nil {
                     Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    afterSignIn.onFinish()
                     return
                 } else {
                     Error.manageError.changeError(typeOfError: "UserService", error: true)
-                    if(FIRAuth.auth()?.currentUser != nil){
-                        print("there is user")
-                    }
                     afterSignIn.onFinish()
                 }
             })
@@ -68,10 +66,12 @@ class UserService {
                 Error.manageError.changeError(typeOfError: "UserService", error: true)
                 if error != nil {
                     Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    afterSignIn.onFinish()
                     return
                 }
                 else if (result?.isCancelled)! {
                     Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    afterSignIn.onFinish()
                     return
                 }
                 else {
@@ -84,13 +84,13 @@ class UserService {
                             
                         } else {
                             Error.manageError.changeError(typeOfError: "UserService", error: false)
+                            afterSignIn.onFinish()
                             return
                         }
                     }
                 }
             })
             
-        //        case "Google":
         default: break
         }
     }

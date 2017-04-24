@@ -9,8 +9,9 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import GoogleSignIn
 
-class LoginViewController: UIViewController, AfterSignIn {
+class LoginViewController: UIViewController, AfterSignIn, GIDSignInUIDelegate {
     
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
@@ -20,12 +21,13 @@ class LoginViewController: UIViewController, AfterSignIn {
     
     let mainQueue = DispatchQueue.main
     let defaultQueue = DispatchQueue.global(qos: .default)
-
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
         self.hidden(false)
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil {
@@ -47,8 +49,19 @@ class LoginViewController: UIViewController, AfterSignIn {
         self.hidden(true)
         self.loadingSpinner.startAnimating()
         defaultQueue.async {
-          UserService.userService.signIn("Facebook", email: nil, pass: nil,afterSignIn: self)
+            UserService.userService.signIn("Facebook", email: nil, pass: nil,afterSignIn: self)
         }
+    }
+    
+    @IBAction func googleLoginButton() {
+        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        GIDSignIn.sharedInstance().signIn()
+
+    }
+    
+    private func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        self.hidden(false)
+        self.loadingSpinner.stopAnimating()
     }
     
     func hidden(_ bool: Bool) {

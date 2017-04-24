@@ -29,16 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TMTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TMUITests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06401FE6E42A605A35BDB1F05060B137</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>372456DC65F3E303C08FE0CC072D340D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5817BDB0A0D316474F0B1E560765B7FF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6174C968712FEC97B2DD9431B3952F0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

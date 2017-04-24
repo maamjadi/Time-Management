@@ -10,20 +10,11 @@ pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod 'GoogleSignIn'
 pod 'Firebase/Crash'
 pod 'Firebase/Invites'
 pod 'Firebase/Messaging'
 pod 'Firebase/Core'
 
-  target 'TMTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'TMUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+pod 'GoogleSignIn'
 
 end

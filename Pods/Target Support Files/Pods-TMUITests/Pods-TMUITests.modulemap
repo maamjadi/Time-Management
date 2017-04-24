@@ -1,6 +1,0 @@
-framework module Pods_TMUITests {
-  umbrella header "Pods-TMUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
