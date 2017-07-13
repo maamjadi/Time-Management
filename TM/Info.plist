@@ -47,6 +47,8 @@
 	<string>674529246039681</string>
 	<key>FacebookDisplayName</key>
 	<string>Time Management</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -56,8 +58,16 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need to access calendar in order to track your events</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Application needs to access Camera</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need to access location in order to locate you</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>It is for choosing pictures from your library</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>We need to access reminder in order to track your reminders</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -66,11 +76,15 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

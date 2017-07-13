@@ -11,7 +11,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
 
-class LoginViewController: UIViewController, AfterSignIn, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDelegate {
     
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, AfterSignIn, GIDSignInUIDelegate {
         } else {
             self.hidden(false)
             self.loadingSpinner.stopAnimating()
-            self.giveAnAlert("There is an Error, please try again later")
+            self.giveAnAlert("There is an Error, please try again later", alertControllerTitle: "Warning")
         }
     }
     

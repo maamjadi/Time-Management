@@ -15,18 +15,21 @@ class UserService {
     
     static let userService = UserService()
     
+    private let mainPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    
     fileprivate let ref = FIRDatabase.database().reference()
     fileprivate let storageRef = FIRStorage.storage().reference()
     // Create a storage reference from our storage service
     
     
-    func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterSignIn) {
+    func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterAsynchronous) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
             Error.manageError.changeError(typeOfError: "UserService", error: true)
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "error")
                 Error.manageError.changeError(typeOfError: "UserService", error: false)
+                afterSignUp.onFinish()
                 return
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
@@ -36,15 +39,15 @@ class UserService {
                     let checkError = Error.manageError.giveError(typeOfError: "UserService")
                     if checkError == false {
                         Error.manageError.changeError(typeOfError: "UserService", error: false)
-                        return
                     }
                     afterSignUp.onFinish()
+                    return
                 }
             }
         })
     }
     
-    func signIn(_ method: String, email: String?, pass: String? , afterSignIn: AfterSignIn) {
+    func signIn(_ method: String, email: String?, pass: String? , afterSignIn: AfterAsynchronous) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
             
@@ -57,6 +60,7 @@ class UserService {
                 } else {
                     Error.manageError.changeError(typeOfError: "UserService", error: true)
                     afterSignIn.onFinish()
+                    return
                 }
             })
             
@@ -81,6 +85,7 @@ class UserService {
                             print("You have been loged in")
                             self.initialLicense(user!)
                             afterSignIn.onFinish()
+                            return
                             
                         } else {
                             Error.manageError.changeError(typeOfError: "UserService", error: false)
@@ -95,7 +100,7 @@ class UserService {
         }
     }
     
-    func authChangeReq(_ user: FIRUser, displayName: String?, photoURL: URL?) {
+    private func authChangeReq(_ user: FIRUser, displayName: String?, photoURL: URL?) {
         let changeRequest = user.profileChangeRequest()
         if displayName != nil {
             changeRequest.displayName = displayName
@@ -125,8 +130,13 @@ class UserService {
         })
     }
     
-    func changePicture(user: FIRUser, imageData: Data) {
-        let profilePicRef = self.storageRef.child("images"+"/Profile pictures"+"/\(user.uid).jpg")
+    func updateNamePicture(user: FIRUser, imageData: Data, updateName: String?) {
+        changePicture(user: user, imageData: imageData)
+        self.authChangeReq(user, displayName: updateName, photoURL: nil)
+    }
+    
+    private func changePicture(user: FIRUser, imageData: Data) {
+        let profilePicRef = self.storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         _ = profilePicRef.put(imageData, metadata:nil) { metadata,error in
             if error == nil {
                 //size, content type or the download URL
@@ -153,25 +163,31 @@ class UserService {
         return typeOfAcc
     }
     
-    private var dateOfImage = [Data]()
+    private var dateOfImage: Data? = nil
     
-    func loadProfilePictureFromStorage(user: FIRUser) {
+    func giveImageData() -> Data? {
+        return dateOfImage
+    }
+    
+    func loadProfilePictureFromStorage(user: FIRUser , afterLoadingThePiture : AfterAsynchronous) {
         var checkIfLocalPicExist: Bool = false
-        if dateOfImage.count > 0 {
-            dateOfImage.removeAll()
-        }
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         // Create local filesystem URL
-        let localProfilePicURL: NSURL! = NSURL(fileURLWithPath: "file:///local/images/profile picture.jpg")
+        //let localProfilePicURL: NSURL! = NSURL(fileURLWithPath: "file:///local/images/profile picture.jpg")
+        let documentsDirectory = mainPath + "/User"
+        let filePath = "file:\(documentsDirectory)/profilePicture.jpg"
+        guard let localProfilePicURL = URL.init(string: filePath) else { return }
         // Download to the local filesystem
-        let localPicData = NSData(contentsOf: localProfilePicURL as URL)
+        if let localPicData = NSData(contentsOf: localProfilePicURL as URL) {
         if let userPhoto = user.photoURL {
             let onlinePicData = NSData(contentsOf: userPhoto)
             if localPicData == onlinePicData {
-                //                self.dateOfImage.append(localPicData! as Data)
+                                self.dateOfImage = localPicData as Data
                 checkIfLocalPicExist = true
+                Error.manageError.changeError(typeOfError: "UserService", error: true)
             }
+        }
         }
         
         if checkIfLocalPicExist == false {
@@ -181,20 +197,21 @@ class UserService {
                     // Uh-oh, an error occurred!
                     print("unable to download the image")
                     Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    self.loadProfilePictureFromFB(user: user, afterLoadingThePiture: afterLoadingThePiture)
                 } else {
                     // Local file URL for "images/island.jpg" is returned
                     print("user already has an image, no need to download it from facebook")
                     let data = NSData(contentsOf: URL!)
-                    self.dateOfImage.append(data! as Data)
+                    self.dateOfImage = data! as Data
+                    afterLoadingThePiture.onFinish();
+                    return
                 }
             }
         }
+        
     }
     
-    func loadProfilePictureFromFB(user: FIRUser) {
-        if dateOfImage.count > 0 {
-            dateOfImage.removeAll()
-        }
+    func loadProfilePictureFromFB(user: FIRUser, afterLoadingThePiture : AfterAsynchronous) {
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         let profilePic = FBSDKGraphRequest(graphPath: "me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
         profilePic?.start(completionHandler: {(connection, result, error) -> Void in
@@ -208,11 +225,19 @@ class UserService {
                 if let imageData = try? Data(contentsOf: URL(string: urlPic)!) {
                     Error.manageError.changeError(typeOfError: "UserService", error: true)
                     self.changePicture(user: user, imageData: imageData)
-                    self.dateOfImage.append(imageData)
+                    self.dateOfImage = imageData
+                    print("FB profile picture imported to FIR")
+                    afterLoadingThePiture.onFinish();
+                    return
                 }
+            } else {
+                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                afterLoadingThePiture.onFinish();
+                return
             }
             
         })
+        
     }
     
     func getBirthday(uid: String) -> String? {
@@ -226,6 +251,19 @@ class UserService {
             }
         })
         return userBirthday
+    }
+    
+    func createDirectory() {
+        let documentDirectoryPath = mainPath + "/User"
+        var objeCtBool: ObjCBool = true
+        let dirExist = FileManager.default.fileExists(atPath: documentDirectoryPath, isDirectory: &objeCtBool)
+        if dirExist == false {
+            do {
+            try FileManager.default.createDirectory(atPath: documentDirectoryPath, withIntermediateDirectories: true, attributes: nil)
+            }catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
 }

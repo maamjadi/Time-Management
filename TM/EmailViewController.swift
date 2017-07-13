@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class EmailViewController: UIViewController, AfterSignIn{
+class EmailViewController: UIViewController, AfterAsynchronous{
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -47,7 +47,7 @@ class EmailViewController: UIViewController, AfterSignIn{
     
     @IBAction func login() {
         guard let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty else {
-            self.giveAnAlert("Please fill all the informations")
+            self.giveAnAlert("Please fill all the informations", alertControllerTitle: "Warning")
             return
         }
         
@@ -75,7 +75,7 @@ class EmailViewController: UIViewController, AfterSignIn{
         } else {
             self.hidden(false)
             self.loadingSpinner.stopAnimating()
-            self.giveAnAlert("There is an Error, please try again later")
+            self.giveAnAlert("There is an Error, please try again later", alertControllerTitle: "Warning")
         }
     }
 

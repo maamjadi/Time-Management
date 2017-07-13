@@ -8,15 +8,18 @@
 
 import UIKit
 import FBSDKCoreKit
-import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
-class SettingTableViewController: UITableViewController {
+class SettingTableViewController: UITableViewController, AfterAsynchronous {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var typeOfAccTextField: UILabel!
     
     var manageError = Error()
+    let user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,47 +42,24 @@ class SettingTableViewController: UITableViewController {
         profileImage.clipsToBounds = true
         
         navigationController?.isNavigationBarHidden = true
-        
-        if let user = FIRAuth.auth()?.currentUser {
-            // User is signed in.
             
-            if let name = user.displayName {
+            if let name = user?.displayName {
                 nameTextField.text = name
                 nameTextField.isHidden = false
             }
-            let uid = user.uid
+            let uid = user?.uid
             
             //            if let typeExist = UserService.userService.returnTypeOfAccount(uid: uid) {
             //                typeOfAccTextField.text = typeExist
             //                typeOfAccTextField.isHidden = false
             //            }
             
-            if let photoURL = user.photoURL {
+            if let photoURL = user?.photoURL {
                 if let data = try? Data(contentsOf: photoURL) {
                     self.profileImage.image = UIImage(data: data)
                 }
             }
-            var counter: Int = 0
-            UserService.userService.loadProfilePictureFromStorage(user: user)
-            let loadPicFromStorage = manageError.giveError(typeOfError: "UserService")
-            counter += 1
-            if loadPicFromStorage == false && counter != 1 {
-                UserService.userService.loadProfilePictureFromFB(user: user)
-            }
-            let loadPic = manageError.giveError(typeOfError: "UserService")
-            if loadPic == true {
-                //                let imageData = UserService.userService.giveImageData()
-                //                if imageData != nil {
-                //                    profileImage.image = UIImage(data: imageData!)
-                //                    profileImage.isHidden = false
-                //                } else {
-                //                    profileImage.isHidden = true
-                //                }
-            }
-            
-        } else {
-            // No user is signed in.
-        }
+            UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
     }
 
     @IBAction func logout() {
@@ -94,6 +74,15 @@ class SettingTableViewController: UITableViewController {
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.login()
+
+    }
+    
+    func onFinish() {
+        let loadPic = manageError.giveError(typeOfError: "UserService")
+        if loadPic == true {
+                            let imageData = UserService.userService.giveImageData()
+                            profileImage.image = UIImage(data: imageData!)
+        }
 
     }
 }

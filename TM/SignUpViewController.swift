@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController, AfterSignIn {
+class SignUpViewController: UIViewController, AfterAsynchronous {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -102,7 +102,7 @@ class SignUpViewController: UIViewController, AfterSignIn {
     @IBAction func signUp() {
         guard let name = nameTextField.text , !name.isEmpty, let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty, let verPass = vertifyPassTextField.text , !verPass.isEmpty else {
             
-            giveAnAlert("Please fill all the informations")
+            giveAnAlert("Please fill all the informations", alertControllerTitle: "Warning")
             
             return
         }
@@ -116,7 +116,7 @@ class SignUpViewController: UIViewController, AfterSignIn {
           }
             
         } else {
-            giveAnAlert("Your passwords doesn't match")
+            giveAnAlert("Your passwords doesn't match", alertControllerTitle: "Warning")
         }
     }
     
@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController, AfterSignIn {
         else if checkSignUp == false {
             self.hidden(false)
             self.loadingSpinner.stopAnimating()
-            self.giveAnAlert("Something went wrong, please try again later")
+            self.giveAnAlert("Something went wrong, please try again later", alertControllerTitle: "Warning")
         }       
     }
     

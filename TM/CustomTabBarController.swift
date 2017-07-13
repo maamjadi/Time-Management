@@ -8,40 +8,24 @@
 
 import UIKit
 
-class CustomTabBarController: UITabBarController {
+class CustomTabBarController: UITabBarController, CustomMenuButtonAction {
+    
+    let menuBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         self.setupMiddleButton()
         self.tabBar.barStyle = .black
-    }
-    
-    func setupMiddleButton() {
-        
-        let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
-        
-        var menuButtonFrame = menuButton.frame
-        menuButtonFrame.origin.y = self.view.bounds.height - menuButtonFrame.height
-        menuButtonFrame.origin.x = self.view.bounds.width/2 - menuButtonFrame.size.width/2
-        menuButton.frame = menuButtonFrame
-        
-        menuButton.backgroundColor = UIColor.white
-        menuButton.layer.cornerRadius = menuButtonFrame.height/2
-        
-        menuButton.setImage(UIImage(named: "profile pic"), for: UIControlState.normal) // 450 x 450px
-        menuButton.contentMode = .scaleAspectFit
-        menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
-        
-        self.view.addSubview(menuButton)
-        
-        
-        self.view.layoutIfNeeded()
+        self.setupMiddleButton(menuButton: menuBtn, image: "addBtn", backgroundColor: .white)
     }
     
     func menuButtonAction(sender: UIButton) {
         self.selectedIndex = 2
+        let storyboard = UIStoryboard.init(name: "Visualization", bundle: nil)
+        let addEventTableViewController: UITableViewController = storyboard.instantiateViewController(withIdentifier: "AddEventView") as! UITableViewController
+        addEventTableViewController.modalTransitionStyle = .partialCurl
+        self.present(addEventTableViewController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,4 +44,16 @@ class CustomTabBarController: UITabBarController {
     }
     */
 
+}
+
+extension CustomTabBarController {
+    func hideTabBar() {
+        self.tabBar.isHidden = true
+        self.menuBtn.isHidden = true
+    }
+    
+    func showTabBar() {
+        self.tabBar.isHidden = false
+        self.menuBtn.isHidden = false
+    }
 }

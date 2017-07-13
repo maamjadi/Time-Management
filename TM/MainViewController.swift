@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, AfterAsynchronous {
     
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -76,28 +76,26 @@ class MainViewController: UIViewController {
                     self.profileImage.image = UIImage(data: data)
                 }
             }
-            var counter: Int = 0
-            UserService.userService.loadProfilePictureFromStorage(user: user)
-            let loadPicFromStorage = manageError.giveError(typeOfError: "UserService")
-            counter += 1
-            if loadPicFromStorage == false && counter != 1 {
-                UserService.userService.loadProfilePictureFromFB(user: user)
-            }
-            let loadPic = manageError.giveError(typeOfError: "UserService")
-            if loadPic == true {
-//                let imageData = UserService.userService.giveImageData()
-//                if imageData != nil {
-//                    profileImage.image = UIImage(data: imageData!)
-//                    profileImage.isHidden = false
-//                } else {
-//                    profileImage.isHidden = true
-//                }
-            }
-            loadingSpinner.stopAnimating()
+            UserService.userService.loadProfilePictureFromStorage(user: user, afterLoadingThePiture: self)
+            
             
         } else {
             // No user is signed in.
         }
+    }
+    
+    func onFinish() {
+        let loadPic = manageError.giveError(typeOfError: "UserService")
+        if loadPic == true {
+                            let imageData = UserService.userService.giveImageData()
+                            if imageData != nil {
+                                profileImage.image = UIImage(data: imageData!)
+                                profileImage.isHidden = false
+                            } else {
+                                profileImage.isHidden = true
+                            }
+        }
+        loadingSpinner.stopAnimating()
     }
     
 }

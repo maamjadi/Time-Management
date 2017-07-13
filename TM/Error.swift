@@ -17,12 +17,14 @@ class Error {
     
     private enum Err {
         case UserService(Bool?)
+        case Permissions(Bool?)
     }
     
     private var saveErrorForUserService = [Err]()
     
     init() {
         knownError["UserService"] = Err.UserService(true)
+        knownError["Permission"] = Err.Permissions(true)
     }
     
     func giveError(typeOfError: String) -> Bool {
@@ -36,6 +38,7 @@ class Error {
                         if let err = error {
                             return err
                         }
+                    default: break
                     }
                 } else {
                     
@@ -44,6 +47,10 @@ class Error {
 //                    FIRCrashMessage("The saveError Array is empty")
 //                    fatalError()
 //                }
+            case .Permissions(let error):
+                if let err = error {
+                    return err
+                }
             }
         }
         return false
@@ -58,6 +65,8 @@ class Error {
                 }
 //                knownError[typeOfError] = Err.UserService(error)
                 saveErrorForUserService.append(.UserService(error))
+            case .Permissions(_):
+                knownError["Permission"] = Err.Permissions(error)
             }
         }
     }
