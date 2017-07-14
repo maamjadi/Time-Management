@@ -664,7 +664,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DGF-Hm-ScT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eC4-gg-JFt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eC4-gg-JFt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -686,7 +686,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gv1-e2-Wxu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Gv1-e2-Wxu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

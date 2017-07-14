@@ -24,6 +24,7 @@
 		4D6797F91F096ADB00746B3C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F51F096ADB00746B3C /* FBSDKShareKit.framework */; };
 		4D718BD31E6C07AE0092C82E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D718BD21E6C07AE0092C82E /* Assets.xcassets */; };
 		4D718BD51E6C1AA70092C82E /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D718BD41E6C1AA70092C82E /* EmailViewController.swift */; };
+		4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */; };
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
 		4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */; };
 		4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */; };
@@ -66,6 +67,7 @@
 		4DD4F15F1E6AC24B00B0CAEE /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */; };
 		4DD4F1611E6B389600B0CAEE /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD4F1601E6B389600B0CAEE /* Setting.storyboard */; };
 		4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */; };
+		4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,7 @@
 		4D6797F51F096ADB00746B3C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4D718BD21E6C07AE0092C82E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D718BD41E6C1AA70092C82E /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
 		4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		4DD4F1601E6B389600B0CAEE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		65AD3509D6B9F305EB35B2BA /* Pods-TM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TM/Pods-TM.debug.xcconfig"; sourceTree = "<group>"; };
 		B7177ABB015CFB88A97B6696 /* Pods_TMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C8B5712B888373BEC0EE2C /* Pods-TM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TM.release.xcconfig"; path = "Pods/Target Support Files/Pods-TM/Pods-TM.release.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */,
 				4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */,
 				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
+				4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				4DD4F14C1E6AC16E00B0CAEE /* HomeViewController.swift */,
 				4D261C0F1F139930009B5529 /* AddEventTableViewController.swift */,
 				4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */,
+				4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */,
+				4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */,
 				4DD4F1391E6ABF3100B0CAEE /* IQUIView+Hierarchy.swift in Sources */,
 				4DD4F1571E6AC19B00B0CAEE /* ProfileTableViewController.swift in Sources */,
 				4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */,
@@ -660,6 +667,7 @@
 				4DD4F1451E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				4DD4F1491E6ABF6400B0CAEE /* Error.swift in Sources */,
 				4DD4F1581E6AC19B00B0CAEE /* SignUpViewController.swift in Sources */,
+				4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */,
 				4DD4F13D1E6ABF3100B0CAEE /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				4D2DCC811F0E7ABB000EE7D0 /* UIViewExtensions.swift in Sources */,
 				4D2DCC7F1F0E6D7F000EE7D0 /* EventStore.swift in Sources */,

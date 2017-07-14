@@ -15,19 +15,24 @@ class EventStore {
     
     private var eventStore = EKEventStore()
     
+    private var pointerToAfterAsync: AfterAsynchronous? = nil
+    
     func checkEventKitAuthorizationStatus(afterCheck: AfterAsynchronous) {
+        pointerToAfterAsync = afterCheck
         let calendarAuthorization = checkEventAuthorizationStatus(typeOfEntity: EKEntityType.event)
         let reminderAuthorization = checkEventAuthorizationStatus(typeOfEntity: EKEntityType.reminder)
         
         if calendarAuthorization == true && reminderAuthorization == true {
             Error.manageError.changeError(typeOfError: "Permission", error: true)
             loadCalendars()
-            loadReminders()
-            afterCheck.onFinish()
         } else {
             Error.manageError.changeError(typeOfError: "Permission", error: false)
             afterCheck.onFinish()
         }
+    }
+    
+    private func callOnFinish() {
+        pointerToAfterAsync?.onFinish()
     }
     
     private func checkEventAuthorizationStatus(typeOfEntity: EKEntityType) -> Bool {
@@ -66,15 +71,20 @@ class EventStore {
         return returnValue
     }
     
-    private var iCarouselCalendar: [EKEvent] = []
-    private var reminderTitles: [EKReminder] = []
+    private var homeViewCalendars: [EKEvent] = []
+    private var homeViewReminders: [EKReminder] = []
     
     func giveCalendarsSinceNow() -> [EKEvent] {
-        return iCarouselCalendar
+        return homeViewCalendars
     }
     
     func giveReminders() -> [EKReminder] {
-        return reminderTitles
+        return homeViewReminders
+    }
+    
+    func eraseEventArrays() {
+        homeViewCalendars.removeAll()
+        homeViewReminders.removeAll()
     }
     
     private func loadCalendars() {
@@ -85,11 +95,11 @@ class EventStore {
             
              let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
             let events = eventStore.events(matching: predicate)
-            
             for event in events {
-                iCarouselCalendar.append(event)
+                homeViewCalendars.append(event)
             }
         }
+        loadReminders()
     }
     
     private func loadReminders() {
@@ -97,11 +107,11 @@ class EventStore {
        eventStore.fetchReminders(matching: predicate) { (fetchedEvents: [EKReminder]?) in
         if let events = fetchedEvents {
         for event in events {
-            self.reminderTitles.append(event)
+            self.homeViewReminders.append(event)
         }
         }
+        self.callOnFinish()
         }
-        
     }
 
 }
