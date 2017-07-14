@@ -18,6 +18,17 @@ class CustomTabBarController: UITabBarController, CustomMenuButtonAction {
         // Do any additional setup after loading the view.
         self.tabBar.barStyle = .black
         self.setupMiddleButton(menuButton: menuBtn, image: "addBtn", backgroundColor: .white)
+        
+        let controller1 = self.viewControllers?[0]
+        let controller2 = self.viewControllers?[1]
+        let controller3 = self.viewControllers?[2]
+        let controller4 = self.viewControllers?[3]
+        
+        let customController = UIViewController()
+        let custom = UINavigationController(rootViewController: customController)
+        custom.title = ""
+        
+        self.viewControllers = [controller1!,controller2!,custom,controller3!,controller4!]
     }
     
     func menuButtonAction(sender: UIButton) {

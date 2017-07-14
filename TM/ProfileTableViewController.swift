@@ -212,6 +212,7 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
             }
         }
         guard let pass = passwordTextField.text, !pass.isEmpty else {
+            verifyPassTextField.text = nil
             verifyPassTextField.isEnabled = false
             return
         }
@@ -243,7 +244,7 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
     }
     
     func savingProcessFinished() {
-        loadingEffect.fadeOut()
+        loadingEffect.fadeOut(sizeTransformation: false)
         navigationController?.isNavigationBarHidden = false
         loadingEffect.removeFromSuperview()
     }

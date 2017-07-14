@@ -15,12 +15,16 @@ import EventKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, iCarouselDataSource, iCarouselDelegate, AfterAsynchronous  {
     var calendars = [EKEvent]()
     var reminders = [EKReminder]()
+    var rowsWhichAreChecked = [NSIndexPath]()
     @IBOutlet var carousel: iCarousel!
     @IBOutlet var reminderTableView: UITableView!
     @IBOutlet weak var needPermissionView: UIView!
     @IBOutlet var noReminderView: UIVisualEffectView!
     @IBOutlet weak var secStackView: UIStackView!
     @IBOutlet weak var firstStackVIew: UIStackView!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topViewDetail: UIStackView!
+    @IBOutlet weak var dismissTopViewDetail: UIVisualEffectView!
     
 
     override func viewDidLoad() {
@@ -34,9 +38,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.reminderTableView.dataSource = self
         self.reminderTableView.delegate = self
         
-         self.view.bringSubview(toFront: needPermissionView)
-        
         navigationController?.isNavigationBarHidden = true
+        
+        let tapTopView = UITapGestureRecognizer(target: self, action: #selector(topViewTapped(sender:)))
+        tapTopView.delegate = self as? UIGestureRecognizerDelegate
+        topView.addGestureRecognizer(tapTopView)
+        
+        let tapTopViewDismiss = UITapGestureRecognizer(target: self, action: #selector(topViewDismiss(sender:)))
+            tapTopViewDismiss.delegate = self as? UIGestureRecognizerDelegate
+        dismissTopViewDetail.addGestureRecognizer(tapTopViewDismiss)
+        
+        
 //        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
 //            
 //        if user != nil {
@@ -74,7 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             //don't do anything specific to the index within
             //this `if ... else` statement because the view will be
             //recycled and used with other index values later
-            itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: 310, height: 200))
             itemView.image = UIImage(named: "page.png")
             itemView.contentMode = .center
             
@@ -111,19 +123,49 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reminders.count
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Reminders", for: indexPath)
+        let cell: ReminderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Reminders", for: indexPath) as! ReminderTableViewCell
         let reminder:EKReminder! = self.reminders[indexPath.row]
-        cell.textLabel?.text = reminder.title
+        cell.reminderLabel?.text = reminder.title
         let formatter:DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if let dueDate = reminder.dueDateComponents?.date {
-            cell.detailTextLabel?.text = formatter.string(from: dueDate)
+            cell.scheduleLabel?.text = formatter.string(from: dueDate)
         } else {
-            cell.detailTextLabel?.text = "N/A"
+            cell.scheduleLabel?.text = "N/A"
         }
+        
+        let isRowChecked = rowsWhichAreChecked.contains(indexPath as NSIndexPath)
+        
+        if(isRowChecked == true)
+        {
+            cell.checkbox.isChecked = true
+            cell.checkbox.buttonClicked(sender: cell.checkbox)
+        }else{
+            cell.checkbox.isChecked = false
+            cell.checkbox.buttonClicked(sender: cell.checkbox)
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell: ReminderTableViewCell = tableView.cellForRow(at: indexPath) as! ReminderTableViewCell
+        // cross checking for checked rows
+        if(rowsWhichAreChecked.contains(indexPath as NSIndexPath) == false) {
+            cell.checkbox.isChecked = true
+            cell.checkbox.buttonClicked(sender: cell.checkbox)
+            rowsWhichAreChecked.append(indexPath as NSIndexPath)
+        } else {
+            cell.checkbox.isChecked = false
+            cell.checkbox.buttonClicked(sender: cell.checkbox)
+            // remove the indexPath from rowsWhichAreCheckedArray
+            if let checkedItemIndex = rowsWhichAreChecked.index(of: indexPath as NSIndexPath){
+                rowsWhichAreChecked.remove(at: checkedItemIndex)
+            }
+        }
     }
     
     func checkReminders(nReminders: Int) {
@@ -146,6 +188,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    func topViewTapped(sender: UIView) {
+        self.view.bringSubview(toFront: topViewDetail)
+        
+        topViewDetail.fadeIn(0.2, sizeTransformation: false)
+    }
+    
+    func topViewDismiss(sender: UIVisualEffect) {
+        topViewDetail.fadeOut(0.1, sizeTransformation: false)
+    }
+    
     func onFinish() {
         let tabBar = self.tabBarController as! CustomTabBarController
         let checkAuthorizationStatus = Error.manageError.giveError(typeOfError: "Permission")
@@ -161,6 +213,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             needPermissionView.fadeOut()
         } else {
             tabBar.hideTabBar()
+            self.view.bringSubview(toFront: needPermissionView)
             needPermissionView.fadeIn()
         }
     }

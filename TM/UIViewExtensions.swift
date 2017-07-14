@@ -17,10 +17,10 @@ extension UIView {
             self.transform  = CGAffineTransform.identity
         }, completion: completion)  }
     
-    func fadeOut(_ duration: TimeInterval = 0.8, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+    func fadeOut(_ duration: TimeInterval = 0.8, delay: TimeInterval = 0.0, sizeTransformation: Bool = true, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.alpha = 0.0
-            self.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+            if sizeTransformation == true { self.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5) }
         }, completion: completion)
     }
 }

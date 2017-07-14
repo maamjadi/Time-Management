@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A291m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2QR-Cb-afK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A291m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="epO-E6-BD2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -125,7 +125,7 @@
                             <outlet property="delegate" destination="2QR-Cb-afK" id="9uZ-Cf-c6E"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="jrP-im-ovN"/>
+                    <navigationItem key="navigationItem" id="VBe-0T-DTL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="nameTextField" destination="59z-mQ-luE" id="v5N-7k-9Xy"/>
@@ -135,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="65w-0U-sWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103.2" y="877.51124437781118"/>
+            <point key="canvasLocation" x="836" y="877.51124437781118"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Gfb-Da-1q1">
@@ -657,14 +657,14 @@
                     <blurEffect style="extraLight"/>
                 </visualEffectView>
             </objects>
-            <point key="canvasLocation" x="1742" y="878"/>
+            <point key="canvasLocation" x="2680.8000000000002" y="877.51124437781118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4ca-g7-SjU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DGF-Hm-ScT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eC4-gg-JFt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eC4-gg-JFt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -675,11 +675,34 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIw-Li-JvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="822" y="878"/>
+            <point key="canvasLocation" x="1760.8" y="877.51124437781118"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="biQ-uQ-85f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="epO-E6-BD2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" image="SettingsTab" selectedImage="SettingsTab" id="jrP-im-ovN">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gv1-e2-Wxu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2QR-Cb-afK" kind="relationship" relationship="rootViewController" id="gfU-BU-cRT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mLg-GF-A1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-103.2" y="877.51124437781118"/>
         </scene>
     </scenes>
     <resources>
         <image name="Admin 2_Fotor" width="633" height="629"/>
+        <image name="SettingsTab" width="37" height="37"/>
         <image name="profile pic" width="748" height="748"/>
     </resources>
     <inferredMetricsTieBreakers>

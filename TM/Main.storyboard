@@ -415,6 +415,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="yhk-fC-qWa" kind="relationship" relationship="viewControllers" id="bZ0-2C-8tu"/>
+                        <segue destination="NBj-dI-g9V" kind="relationship" relationship="viewControllers" id="Twg-tu-tfn"/>
+                        <segue destination="pHy-xd-6AM" kind="relationship" relationship="viewControllers" id="4P9-To-DE2"/>
                         <segue destination="cdO-zl-7JZ" kind="relationship" relationship="viewControllers" id="vpO-oG-gUq"/>
                     </connections>
                 </tabBarController>
@@ -440,7 +442,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ty-li-Rtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1635" y="1107"/>
+            <point key="canvasLocation" x="1581" y="1027"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="rhV-60-1CZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="NBj-dI-g9V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RdN-7Z-avj"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0lL-Se-FZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="676"/>
+        </scene>
+        <!--Planner-->
+        <scene sceneID="5Ex-W1-2BZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Planner" id="pHy-xd-6AM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="YtX-VR-SLr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yH5-SF-Ufn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583" y="887"/>
         </scene>
         <!--Email View Controller-->
         <scene sceneID="cTz-kd-Fln">
