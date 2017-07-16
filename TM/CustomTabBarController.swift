@@ -17,8 +17,9 @@ class CustomTabBarController: UITabBarController, CustomMenuButtonAction {
 
         // Do any additional setup after loading the view.
         self.tabBar.barStyle = .black
-        self.setupMiddleButton(menuButton: menuBtn, image: "addBtn", backgroundColor: .white)
-        
+        DispatchQueue.main.async {
+        self.setupMiddleButton(menuButton: self.menuBtn, image: "addBtn", backgroundColor: .white)
+        }
         let controller1 = self.viewControllers?[0]
         let controller2 = self.viewControllers?[1]
         let controller3 = self.viewControllers?[2]
@@ -34,7 +35,7 @@ class CustomTabBarController: UITabBarController, CustomMenuButtonAction {
     func menuButtonAction(sender: UIButton) {
         self.selectedIndex = 2
         let storyboard = UIStoryboard.init(name: "Visualization", bundle: nil)
-        let addEventTableViewController: UITableViewController = storyboard.instantiateViewController(withIdentifier: "AddEventView") as! UITableViewController
+        let addEventTableViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "AddEventView") as! UIViewController
         addEventTableViewController.modalTransitionStyle = .partialCurl
         self.present(addEventTableViewController, animated: true, completion: nil)
     }

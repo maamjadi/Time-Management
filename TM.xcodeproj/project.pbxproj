@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1AC62A49BE4482496502C82B /* Pods_TM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A4E3C93C2635FFD806E35E /* Pods_TM.framework */; };
 		4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */; };
-		4D261C101F139930009B5529 /* AddEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D261C0F1F139930009B5529 /* AddEventTableViewController.swift */; };
 		4D261C161F13A554009B5529 /* CustomMenuButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */; };
 		4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */; };
 		4D2C4E461F17D94600675E8B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D2C4E451F17D94600675E8B /* Calendar.storyboard */; };
@@ -25,6 +24,10 @@
 		4D718BD31E6C07AE0092C82E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D718BD21E6C07AE0092C82E /* Assets.xcassets */; };
 		4D718BD51E6C1AA70092C82E /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D718BD41E6C1AA70092C82E /* EmailViewController.swift */; };
 		4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */; };
+		4D745E321F1B5EF400FA7FC1 /* SpringyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */; };
+		4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D745E331F1B63C500FA7FC1 /* AppConstants.swift */; };
+		4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */; };
+		4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */; };
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
 		4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */; };
 		4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */; };
@@ -90,7 +93,6 @@
 /* Begin PBXFileReference section */
 		25A4E3C93C2635FFD806E35E /* Pods_TM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		4D261C0F1F139930009B5529 /* AddEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventTableViewController.swift; sourceTree = "<group>"; };
 		4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenuButtonAction.swift; sourceTree = "<group>"; };
 		4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		4D2C4E451F17D94600675E8B /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,10 @@
 		4D718BD21E6C07AE0092C82E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D718BD41E6C1AA70092C82E /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringyScrollView.swift; sourceTree = "<group>"; };
+		4D745E331F1B63C500FA7FC1 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
 		4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +304,8 @@
 				4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */,
 				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
 				4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */,
+				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
+				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -321,9 +329,10 @@
 			children = (
 				4DD4F14B1E6AC16E00B0CAEE /* Visualization.storyboard */,
 				4DD4F14C1E6AC16E00B0CAEE /* HomeViewController.swift */,
-				4D261C0F1F139930009B5529 /* AddEventTableViewController.swift */,
 				4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */,
 				4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */,
+				4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */,
+				4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -650,13 +659,16 @@
 				4DD4F14E1E6AC16E00B0CAEE /* HomeViewController.swift in Sources */,
 				4DD4F1401E6ABF3100B0CAEE /* IQTextView.swift in Sources */,
 				4DD4F13E1E6ABF3100B0CAEE /* IQKeyboardManager.swift in Sources */,
+				4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */,
 				4DD4F13A1E6ABF3100B0CAEE /* IQUIViewController+Additions.swift in Sources */,
 				4DD4F1351E6ABF3100B0CAEE /* iCarousel.m in Sources */,
 				4DD4F1431E6ABF3100B0CAEE /* IQTitleBarButtonItem.swift in Sources */,
+				4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */,
 				4DD4F13B1E6ABF3100B0CAEE /* IQUIWindow+Hierarchy.swift in Sources */,
+				4D745E321F1B5EF400FA7FC1 /* SpringyScrollView.swift in Sources */,
 				4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */,
-				4D261C101F139930009B5529 /* AddEventTableViewController.swift in Sources */,
 				4DD4F1561E6AC19B00B0CAEE /* MainViewController.swift in Sources */,
+				4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */,
 				4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */,
 				4DD4F1411E6ABF3100B0CAEE /* IQBarButtonItem.swift in Sources */,
 				4DD129E11E6ABBF7002BFAFF /* AppDelegate.swift in Sources */,
