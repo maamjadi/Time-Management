@@ -12,7 +12,8 @@ import FBSDKLoginKit
 import EventKit
 
 
-class HomeViewController: UIViewController, AfterAsynchronous  {
+class HomeViewController: UIViewController, AfterAsynchronous {
+    
     var calendars = [EKEvent]() { didSet { setNeedsFocusUpdate() } }
     var reminders = [EKReminder]() { didSet { setNeedsFocusUpdate() }}
     var rowsWhichAreChecked = [NSIndexPath]()
@@ -100,7 +101,10 @@ class HomeViewController: UIViewController, AfterAsynchronous  {
             noReminderView.frame.size = reminderTableView.frame.size
             noReminderView.frame.origin = secStackView.frame.origin
             
-            self.view.addSubview(noReminderView)
+            view.addSubview(noReminderView)
+            if topViewDetail.alpha == 1 {
+                self.view.bringSubview(toFront: topViewDetail)
+            }
         }
         else if nReminders > 0 {
             reminderTableView.separatorStyle = .singleLine
@@ -118,10 +122,12 @@ class HomeViewController: UIViewController, AfterAsynchronous  {
         self.view.bringSubview(toFront: topViewDetail)
         
         topViewDetail.fadeIn(0.2, sizeTransformation: false)
+        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5451, green: 0.5451, blue: 0.5451, alpha: 1), tintColor: #colorLiteral(red: 0.2078, green: 0.2078, blue: 0.2078, alpha: 1))
     }
     
     func topViewDismiss(sender: UIVisualEffect) {
         topViewDetail.fadeOut(0.1, sizeTransformation: false)
+        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5137, green: 0.5137, blue: 0.5137, alpha: 1), tintColor: #colorLiteral(red: 0.349, green: 0.349, blue: 0.349, alpha: 1))
     }
     
     struct Storyboard {
@@ -136,7 +142,9 @@ class HomeViewController: UIViewController, AfterAsynchronous  {
             calendars = EventStore.eventKit.giveCalendarsSinceNow()
             reminders = EventStore.eventKit.giveReminders()
             EventStore.eventKit.eraseEventArrays()
-            checkReminders(nReminders: reminders.count)
+            DispatchQueue.main.async {
+            self.checkReminders(nReminders: self.reminders.count)
+            }
             DispatchQueue.main.async() {
                 self.collectionView.reloadData()
                 self.reminderTableView.reloadData()

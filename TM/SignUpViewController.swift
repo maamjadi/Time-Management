@@ -39,6 +39,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileImage.tintColor = UIColor.white.withAlphaComponent(0.5)
         self.hidden(false)
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil {
@@ -65,6 +66,9 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
 //        registerForKeyboardNotifications()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     func selectPhoto(_ gestureRecognizer: UITapGestureRecognizer)
     {

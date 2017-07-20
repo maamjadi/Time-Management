@@ -18,6 +18,9 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var gLoginButton: UIButton!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var emailTextField: UITextFieldX!
+    @IBOutlet weak var passwordTextField: UITextFieldX!
+    @IBOutlet weak var orTextView: UIView!
     
     let mainQueue = DispatchQueue.main
     let defaultQueue = DispatchQueue.global(qos: .default)
@@ -46,6 +49,7 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
     }
     
     @IBAction func facebookLoginButton() {
+        fbLoginButton.tintColor = UIColor.white.withAlphaComponent(0.5)
         self.hidden(true)
         self.loadingSpinner.startAnimating()
         defaultQueue.async {
@@ -54,9 +58,24 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
     }
     
     @IBAction func googleLoginButton() {
+        gLoginButton.tintColor = UIColor.white.withAlphaComponent(0.5)
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         GIDSignIn.sharedInstance().signIn()
 
+    }
+    
+    @IBAction func changeColorFB(_ sender: UIButton) {
+        sender.tintColor = #colorLiteral(red: 0.2235, green: 0.3412, blue: 0.5804, alpha: 1)
+    }
+    @IBAction func changeColorFBToNormal(_ sender: UIButton) {
+        sender.tintColor = UIColor.white.withAlphaComponent(0.5)
+    }
+    
+    @IBAction func changeColorGoogle(_ sender: UIButton) {
+        sender.tintColor = #colorLiteral(red: 0.8353, green: 0.2588, blue: 0.2078, alpha: 1)
+    }
+    @IBAction func changeColorGToNormal(_ sender: UIButton) {
+        sender.tintColor = UIColor.white.withAlphaComponent(0.5)
     }
     
     private func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
@@ -64,11 +83,29 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
         self.loadingSpinner.stopAnimating()
     }
     
+    @IBAction func login(_ sender: UIButton) {
+        guard let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty else {
+            self.giveAnAlert("Please fill all the informations", alertControllerTitle: "Warning")
+            return
+        }
+        
+        self.hidden(true)
+        
+        self.loadingSpinner.startAnimating()
+        defaultQueue.async {
+            UserService.userService.signIn("Email", email: email, pass: pass,afterSignIn: self)
+    }
+    }
+    
+    
     func hidden(_ bool: Bool) {
         self.fbLoginButton.isHidden = bool
         self.loginButton.isHidden = bool
         self.signUpButton.isHidden = bool
         self.gLoginButton.isHidden = bool
+        self.emailTextField.isHidden = bool
+        self.passwordTextField.isHidden = bool
+        self.orTextView.isHidden = bool
     }
     
     func onFinish() {

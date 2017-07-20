@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1AC62A49BE4482496502C82B /* Pods_TM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A4E3C93C2635FFD806E35E /* Pods_TM.framework */; };
 		4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */; };
-		4D261C161F13A554009B5529 /* CustomMenuButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */; };
+		4D261C161F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */; };
 		4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */; };
 		4D2C4E461F17D94600675E8B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D2C4E451F17D94600675E8B /* Calendar.storyboard */; };
 		4D2DCC7B1F0E6BB9000EE7D0 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */; };
@@ -22,10 +22,10 @@
 		4D6797F81F096ADB00746B3C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */; };
 		4D6797F91F096ADB00746B3C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F51F096ADB00746B3C /* FBSDKShareKit.framework */; };
 		4D718BD31E6C07AE0092C82E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D718BD21E6C07AE0092C82E /* Assets.xcassets */; };
-		4D718BD51E6C1AA70092C82E /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D718BD41E6C1AA70092C82E /* EmailViewController.swift */; };
 		4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */; };
 		4D745E321F1B5EF400FA7FC1 /* SpringyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */; };
 		4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D745E331F1B63C500FA7FC1 /* AppConstants.swift */; };
+		4D7487F61F20DB2900334076 /* CustomTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7487F51F20DB2900334076 /* CustomTopView.swift */; };
 		4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */; };
 		4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */; };
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
@@ -71,6 +71,16 @@
 		4DD4F1611E6B389600B0CAEE /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD4F1601E6B389600B0CAEE /* Setting.storyboard */; };
 		4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */; };
 		4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */; };
+		4DF80A921F1E3CDB0012250A /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A881F1E3CDB0012250A /* UIViewXRadialGradient.swift */; };
+		4DF80A931F1E3CDB0012250A /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A891F1E3CDB0012250A /* UITextFieldX.swift */; };
+		4DF80A941F1E3CDB0012250A /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8A1F1E3CDB0012250A /* UIButtonX.swift */; };
+		4DF80A951F1E3CDB0012250A /* UILabelX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8B1F1E3CDB0012250A /* UILabelX.swift */; };
+		4DF80A961F1E3CDB0012250A /* UIViewAnchorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8C1F1E3CDB0012250A /* UIViewAnchorPoint.swift */; };
+		4DF80A971F1E3CDB0012250A /* UIViewControllerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8D1F1E3CDB0012250A /* UIViewControllerX.swift */; };
+		4DF80A981F1E3CDB0012250A /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8E1F1E3CDB0012250A /* UIImageViewX.swift */; };
+		4DF80A991F1E3CDB0012250A /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8F1F1E3CDB0012250A /* UIViewX.swift */; };
+		4DF80A9A1F1E3CDB0012250A /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A901F1E3CDB0012250A /* UIVisualEffectViewX.swift */; };
+		4DF80A9B1F1E3CDB0012250A /* UISliderX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A911F1E3CDB0012250A /* UISliderX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +103,7 @@
 /* Begin PBXFileReference section */
 		25A4E3C93C2635FFD806E35E /* Pods_TM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenuButtonAction.swift; sourceTree = "<group>"; };
+		4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenuButtonTappedDelegate.swift; sourceTree = "<group>"; };
 		4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		4D2C4E451F17D94600675E8B /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -106,10 +116,10 @@
 		4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4D6797F51F096ADB00746B3C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4D718BD21E6C07AE0092C82E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4D718BD41E6C1AA70092C82E /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringyScrollView.swift; sourceTree = "<group>"; };
 		4D745E331F1B63C500FA7FC1 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		4D7487F51F20DB2900334076 /* CustomTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTopView.swift; sourceTree = "<group>"; };
 		4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
@@ -164,6 +174,16 @@
 		4DD4F1601E6B389600B0CAEE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		4DF80A881F1E3CDB0012250A /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
+		4DF80A891F1E3CDB0012250A /* UITextFieldX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
+		4DF80A8A1F1E3CDB0012250A /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
+		4DF80A8B1F1E3CDB0012250A /* UILabelX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelX.swift; sourceTree = "<group>"; };
+		4DF80A8C1F1E3CDB0012250A /* UIViewAnchorPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAnchorPoint.swift; sourceTree = "<group>"; };
+		4DF80A8D1F1E3CDB0012250A /* UIViewControllerX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerX.swift; sourceTree = "<group>"; };
+		4DF80A8E1F1E3CDB0012250A /* UIImageViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
+		4DF80A8F1F1E3CDB0012250A /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
+		4DF80A901F1E3CDB0012250A /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
+		4DF80A911F1E3CDB0012250A /* UISliderX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISliderX.swift; sourceTree = "<group>"; };
 		65AD3509D6B9F305EB35B2BA /* Pods-TM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TM/Pods-TM.debug.xcconfig"; sourceTree = "<group>"; };
 		B7177ABB015CFB88A97B6696 /* Pods_TMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C8B5712B888373BEC0EE2C /* Pods-TM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TM.release.xcconfig"; path = "Pods/Target Support Files/Pods-TM/Pods-TM.release.xcconfig"; sourceTree = "<group>"; };
@@ -296,16 +316,18 @@
 		4DD4F10C1E6ABDF200B0CAEE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4DF80A871F1E3CDB0012250A /* DesignableX */,
 				4DD4F1591E6AC1AB00B0CAEE /* AfterAsynchronous.swift */,
 				4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */,
 				4DD4F15B1E6AC1C700B0CAEE /* UIViewControllerExtensions.swift */,
 				4DD4F15D1E6AC20200B0CAEE /* TM-Bridging-Header.h */,
 				4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */,
-				4D261C151F13A554009B5529 /* CustomMenuButtonAction.swift */,
+				4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */,
 				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
 				4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */,
 				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
 				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
+				4D7487F51F20DB2900334076 /* CustomTopView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -317,7 +339,6 @@
 				4DD4F1511E6AC19B00B0CAEE /* MainViewController.swift */,
 				4DD4F1521E6AC19B00B0CAEE /* ProfileTableViewController.swift */,
 				4DD4F1531E6AC19B00B0CAEE /* SignUpViewController.swift */,
-				4D718BD41E6C1AA70092C82E /* EmailViewController.swift */,
 				4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */,
 				4DD4F1601E6B389600B0CAEE /* Setting.storyboard */,
 			);
@@ -418,6 +439,23 @@
 				4DD4F1341E6ABF3100B0CAEE /* IQKeyboardManager.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4DF80A871F1E3CDB0012250A /* DesignableX */ = {
+			isa = PBXGroup;
+			children = (
+				4DF80A881F1E3CDB0012250A /* UIViewXRadialGradient.swift */,
+				4DF80A891F1E3CDB0012250A /* UITextFieldX.swift */,
+				4DF80A8A1F1E3CDB0012250A /* UIButtonX.swift */,
+				4DF80A8B1F1E3CDB0012250A /* UILabelX.swift */,
+				4DF80A8C1F1E3CDB0012250A /* UIViewAnchorPoint.swift */,
+				4DF80A8D1F1E3CDB0012250A /* UIViewControllerX.swift */,
+				4DF80A8E1F1E3CDB0012250A /* UIImageViewX.swift */,
+				4DF80A8F1F1E3CDB0012250A /* UIViewX.swift */,
+				4DF80A901F1E3CDB0012250A /* UIVisualEffectViewX.swift */,
+				4DF80A911F1E3CDB0012250A /* UISliderX.swift */,
+			);
+			path = DesignableX;
 			sourceTree = "<group>";
 		};
 		6AD5DBE43B9E9E2A3A04D200 /* Pods */ = {
@@ -642,6 +680,7 @@
 			files = (
 				4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */,
 				4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */,
+				4DF80A9A1F1E3CDB0012250A /* UIVisualEffectViewX.swift in Sources */,
 				4DD4F1391E6ABF3100B0CAEE /* IQUIView+Hierarchy.swift in Sources */,
 				4DD4F1571E6AC19B00B0CAEE /* ProfileTableViewController.swift in Sources */,
 				4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */,
@@ -651,19 +690,26 @@
 				4D3C74E91F1802B6001C21E6 /* CheckBoxButton.swift in Sources */,
 				4DD4F1441E6ABF3100B0CAEE /* IQToolbar.swift in Sources */,
 				4DD4F1541E6AC19B00B0CAEE /* LoginViewController.swift in Sources */,
-				4D261C161F13A554009B5529 /* CustomMenuButtonAction.swift in Sources */,
+				4D261C161F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift in Sources */,
 				4DD4F13F1E6ABF3100B0CAEE /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				4DD129E91E6ABBF7002BFAFF /* TM.xcdatamodeld in Sources */,
 				4DD4F1361E6ABF3100B0CAEE /* IQNSArray+Sort.swift in Sources */,
 				4DD4F14A1E6ABF6400B0CAEE /* UserService.swift in Sources */,
+				4D7487F61F20DB2900334076 /* CustomTopView.swift in Sources */,
 				4DD4F14E1E6AC16E00B0CAEE /* HomeViewController.swift in Sources */,
+				4DF80A981F1E3CDB0012250A /* UIImageViewX.swift in Sources */,
+				4DF80A951F1E3CDB0012250A /* UILabelX.swift in Sources */,
+				4DF80A931F1E3CDB0012250A /* UITextFieldX.swift in Sources */,
 				4DD4F1401E6ABF3100B0CAEE /* IQTextView.swift in Sources */,
+				4DF80A961F1E3CDB0012250A /* UIViewAnchorPoint.swift in Sources */,
+				4DF80A991F1E3CDB0012250A /* UIViewX.swift in Sources */,
 				4DD4F13E1E6ABF3100B0CAEE /* IQKeyboardManager.swift in Sources */,
 				4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */,
 				4DD4F13A1E6ABF3100B0CAEE /* IQUIViewController+Additions.swift in Sources */,
 				4DD4F1351E6ABF3100B0CAEE /* iCarousel.m in Sources */,
 				4DD4F1431E6ABF3100B0CAEE /* IQTitleBarButtonItem.swift in Sources */,
 				4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */,
+				4DF80A971F1E3CDB0012250A /* UIViewControllerX.swift in Sources */,
 				4DD4F13B1E6ABF3100B0CAEE /* IQUIWindow+Hierarchy.swift in Sources */,
 				4D745E321F1B5EF400FA7FC1 /* SpringyScrollView.swift in Sources */,
 				4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */,
@@ -674,14 +720,16 @@
 				4DD129E11E6ABBF7002BFAFF /* AppDelegate.swift in Sources */,
 				4DD4F1381E6ABF3100B0CAEE /* IQUITextFieldView+Additions.swift in Sources */,
 				4DD4F1371E6ABF3100B0CAEE /* IQUIScrollView+Additions.swift in Sources */,
+				4DF80A921F1E3CDB0012250A /* UIViewXRadialGradient.swift in Sources */,
 				4DD4F1421E6ABF3100B0CAEE /* IQPreviousNextView.swift in Sources */,
-				4D718BD51E6C1AA70092C82E /* EmailViewController.swift in Sources */,
 				4DD4F1451E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				4DD4F1491E6ABF6400B0CAEE /* Error.swift in Sources */,
 				4DD4F1581E6AC19B00B0CAEE /* SignUpViewController.swift in Sources */,
 				4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */,
 				4DD4F13D1E6ABF3100B0CAEE /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				4D2DCC811F0E7ABB000EE7D0 /* UIViewExtensions.swift in Sources */,
+				4DF80A941F1E3CDB0012250A /* UIButtonX.swift in Sources */,
+				4DF80A9B1F1E3CDB0012250A /* UISliderX.swift in Sources */,
 				4D2DCC7F1F0E6D7F000EE7D0 /* EventStore.swift in Sources */,
 				4DD4F15F1E6AC24B00B0CAEE /* Keyboard.swift in Sources */,
 				4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */,

@@ -12,7 +12,7 @@ class SpringyFlowLayout: UICollectionViewFlowLayout {
     var dynamicAnimator: UIDynamicAnimator?
     
     func setupLayout() {
-        minimumInteritemSpacing = 5
+        minimumInteritemSpacing = 20
         minimumLineSpacing = AppConstants.minimumLineSpacing
         dynamicAnimator = nil
     }
@@ -35,7 +35,7 @@ class SpringyFlowLayout: UICollectionViewFlowLayout {
                 let spring = UIAttachmentBehavior(item: item, attachedToAnchor: item.center)
                 spring.length = 0
                 spring.damping = 0.5
-                spring.frequency = 0.8
+                spring.frequency = 1
                 dynamicAnimator?.addBehavior(spring)
             }
         }
@@ -65,7 +65,7 @@ class SpringyFlowLayout: UICollectionViewFlowLayout {
                     // The farther away the item - the more stretch the spring will be
                     let anchorPoint: CGFloat = spring.anchorPoint.y
                     let distanceFromTouch: CGFloat = fabs(anchorPoint - touchLocation.y)
-                    let scrollResistance: CGFloat = distanceFromTouch / 500
+                    let scrollResistance: CGFloat = distanceFromTouch / 995
                     
                     var center = item.center
                     center.y += delta * scrollResistance

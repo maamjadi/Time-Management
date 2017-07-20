@@ -8,6 +8,6 @@
 
 import Foundation
 
-@objc protocol CustomMenuButtonAction {
-    func menuButtonAction(sender: UIButton)->Void
+@objc protocol CustomMenuButtonTappedDelegate {
+    func menuButtonAction(tabBarController: CustomTabBarController, button: UIButton)->Void
 }

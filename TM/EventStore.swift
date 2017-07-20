@@ -42,7 +42,7 @@ class EventStore {
         switch (status) {
         case EKAuthorizationStatus.notDetermined:
             // This happens on first-run
-            returnValue = (requestAccessToCalendar(typeOfEntity: typeOfEntity))!
+            returnValue = (requestAccessToCalendar(typeOfEntity: typeOfEntity))
             break
         case EKAuthorizationStatus.authorized:
             // Things are in line with being able to show the calendars in the table view
@@ -57,8 +57,8 @@ class EventStore {
 
     }
     
-    private func requestAccessToCalendar(typeOfEntity: EKEntityType) -> Bool? {
-        var returnValue:Bool? = nil
+    private func requestAccessToCalendar(typeOfEntity: EKEntityType) -> Bool {
+        var returnValue:Bool = false
         eventStore.requestAccess(to: typeOfEntity, completion: { (granted, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "Error")
@@ -66,6 +66,7 @@ class EventStore {
             } else {
                 print("User accepted event permission")
                 returnValue = true
+                self.checkEventKitAuthorizationStatus(afterCheck: self.pointerToAfterAsync!)
             }
         })
         return returnValue

@@ -11,11 +11,14 @@ import UIKit
 class AddEventViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var detailMenuBtnView: UIView!
+    @IBOutlet weak var menuButton: UIButton!
     
     var items = ["Calendar", "Time", "List", "Invite", "Location", "Alert", "Tag", "Notes", "Starts", "Ends"]
     var getInitialScrollViewContent = true
     var initialContentSize: CGFloat?
     var tempItems = [String]()
+
     
     var collectionViewLayout: SpringyFlowLayout? {
         return collectionView.collectionViewLayout as? SpringyFlowLayout
@@ -29,6 +32,10 @@ class AddEventViewController: UIViewController {
         // Do any additional setup after loading the view.
         tempItems = items
         collectionViewLayout?.setupLayout()
+        detailMenuBtnView.layer.cornerRadius = detailMenuBtnView.frame.size.width / 2
+        detailMenuBtnView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+        buttonReleased()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +43,55 @@ class AddEventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func menuButtonAction(_ sender: UIButton) {
+        if detailMenuBtnView.transform != .identity {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.detailMenuBtnView.transform = .identity
+                
+                self.menuButton.setImage(UIImage(named: "addEventMainButtonDetail"), for: .normal)
+            })
+        }
+    }
+    
+    @IBAction func menuButtonRelease(_ sender: UIButton, forEvent event: UIEvent) {
+        menuAction(event: event)
+    }
+    
+    @IBAction func menuButtonReleaseOutside(_ sender: UIButton, forEvent event: UIEvent) {
+        menuAction(event: event)
+    }
+    
+    func buttonReleased() {
+        if detailMenuBtnView.transform == .identity {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.detailMenuBtnView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+                self.menuButton.setImage(UIImage(named: "addEventMainButton"), for: .normal)
+            })
+        }
+    }
+    
+    func menuAction(event: UIEvent) {
+        if let touch = event.allTouches?.first {
+            let pointOfTouch = touch.location(in: self.view)
+            let menuFrame = menuButton.frame
+            let width = menuFrame.size.width
+            let origin = menuFrame.origin
+            let detailViewOrigin = detailMenuBtnView.frame.origin
+            if (pointOfTouch.y < origin.y-width && pointOfTouch.y >= detailViewOrigin.y && pointOfTouch.x >= origin.x && pointOfTouch.x <= origin.x+width*2) {
+                saveEvent()
+            }
+            else if (pointOfTouch.x < origin.x-width && pointOfTouch.x > detailViewOrigin.x && pointOfTouch.y >= origin.y && pointOfTouch.y <= origin.y+width*2) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        buttonReleased()
+    }
+    
+    func saveEvent() {
+        print("Save Funtion")
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -89,4 +144,5 @@ extension AddEventViewController: UIScrollViewDelegate {
         }
         self.collectionView.reloadData()
     }
+    
 }
