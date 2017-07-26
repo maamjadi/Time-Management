@@ -54,7 +54,7 @@ class EventStore {
         }
         
         return returnValue
-
+        
     }
     
     private func requestAccessToCalendar(typeOfEntity: EKEntityType) -> Bool {
@@ -94,7 +94,7 @@ class EventStore {
             let startDate = Date(timeIntervalSinceNow: 0)
             let endDate = Date(timeIntervalSinceNow: +365*24*3600)
             
-             let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
+            let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
             let events = eventStore.events(matching: predicate)
             for event in events {
                 homeViewCalendars.append(event)
@@ -105,14 +105,14 @@ class EventStore {
     
     private func loadReminders() {
         let predicate = eventStore.predicateForReminders(in: nil)
-       eventStore.fetchReminders(matching: predicate) { (fetchedEvents: [EKReminder]?) in
-        if let events = fetchedEvents {
-        for event in events {
-            self.homeViewReminders.append(event)
-        }
-        }
-        self.callOnFinish()
+        eventStore.fetchReminders(matching: predicate) { (fetchedEvents: [EKReminder]?) in
+            if let events = fetchedEvents {
+                for event in events {
+                    self.homeViewReminders.append(event)
+                }
+            }
+            self.callOnFinish()
         }
     }
-
+    
 }

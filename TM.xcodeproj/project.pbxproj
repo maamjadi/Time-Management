@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1AC62A49BE4482496502C82B /* Pods_TM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A4E3C93C2635FFD806E35E /* Pods_TM.framework */; };
 		4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */; };
-		4D261C161F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */; };
+		4D108BC51F261670000701EF /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D108BC41F261670000701EF /* ColorConstants.swift */; };
 		4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */; };
 		4D2C4E461F17D94600675E8B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D2C4E451F17D94600675E8B /* Calendar.storyboard */; };
 		4D2DCC7B1F0E6BB9000EE7D0 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */; };
@@ -17,6 +17,7 @@
 		4D2DCC7F1F0E6D7F000EE7D0 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */; };
 		4D2DCC811F0E7ABB000EE7D0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */; };
 		4D3C74E91F1802B6001C21E6 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */; };
+		4D3E05F81F251EC20044B901 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */; };
 		4D6797F61F096ADB00746B3C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F21F096ADB00746B3C /* Bolts.framework */; };
 		4D6797F71F096ADB00746B3C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F31F096ADB00746B3C /* FBSDKCoreKit.framework */; };
 		4D6797F81F096ADB00746B3C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */; };
@@ -27,6 +28,7 @@
 		4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D745E331F1B63C500FA7FC1 /* AppConstants.swift */; };
 		4D7487F61F20DB2900334076 /* CustomTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7487F51F20DB2900334076 /* CustomTopView.swift */; };
 		4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */; };
+		4D85117E1F214CA4008A300D /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */; };
 		4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */; };
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
 		4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */; };
@@ -71,6 +73,7 @@
 		4DD4F1611E6B389600B0CAEE /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD4F1601E6B389600B0CAEE /* Setting.storyboard */; };
 		4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */; };
 		4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */; };
+		4DE06B5B1F27D6E700062E61 /* MonthViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE06B5A1F27D6E700062E61 /* MonthViewCollectionViewCell.swift */; };
 		4DF80A921F1E3CDB0012250A /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A881F1E3CDB0012250A /* UIViewXRadialGradient.swift */; };
 		4DF80A931F1E3CDB0012250A /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A891F1E3CDB0012250A /* UITextFieldX.swift */; };
 		4DF80A941F1E3CDB0012250A /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF80A8A1F1E3CDB0012250A /* UIButtonX.swift */; };
@@ -103,7 +106,7 @@
 /* Begin PBXFileReference section */
 		25A4E3C93C2635FFD806E35E /* Pods_TM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenuButtonTappedDelegate.swift; sourceTree = "<group>"; };
+		4D108BC41F261670000701EF /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		4D2C4E451F17D94600675E8B /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -111,6 +114,7 @@
 		4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
+		4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D6797F21F096ADB00746B3C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		4D6797F31F096ADB00746B3C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		4D745E331F1B63C500FA7FC1 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4D7487F51F20DB2900334076 /* CustomTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTopView.swift; sourceTree = "<group>"; };
 		4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
 		4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +179,7 @@
 		4DD4F1601E6B389600B0CAEE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		4DE06B5A1F27D6E700062E61 /* MonthViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DF80A881F1E3CDB0012250A /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
 		4DF80A891F1E3CDB0012250A /* UITextFieldX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
 		4DF80A8A1F1E3CDB0012250A /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
@@ -228,6 +234,8 @@
 			children = (
 				4D2C4E451F17D94600675E8B /* Calendar.storyboard */,
 				4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */,
+				4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */,
+				4DE06B5A1F27D6E700062E61 /* MonthViewCollectionViewCell.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -318,16 +326,16 @@
 			children = (
 				4DF80A871F1E3CDB0012250A /* DesignableX */,
 				4DD4F1591E6AC1AB00B0CAEE /* AfterAsynchronous.swift */,
+				4D7487F51F20DB2900334076 /* CustomTopView.swift */,
 				4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */,
 				4DD4F15B1E6AC1C700B0CAEE /* UIViewControllerExtensions.swift */,
 				4DD4F15D1E6AC20200B0CAEE /* TM-Bridging-Header.h */,
 				4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */,
-				4D261C151F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift */,
 				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
 				4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */,
 				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
 				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
-				4D7487F51F20DB2900334076 /* CustomTopView.swift */,
+				4D108BC41F261670000701EF /* ColorConstants.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -354,6 +362,7 @@
 				4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */,
 				4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */,
 				4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */,
+				4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -491,12 +500,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DD12A081E6ABBF7002BFAFF /* Build configuration list for PBXNativeTarget "TM" */;
 			buildPhases = (
-				8543515EE4CAA9D75083CA2B /* 📦 Check Pods Manifest.lock */,
+				8543515EE4CAA9D75083CA2B /* [CP] Check Pods Manifest.lock */,
 				4DD129D91E6ABBF7002BFAFF /* Sources */,
 				4DD129DA1E6ABBF7002BFAFF /* Frameworks */,
 				4DD129DB1E6ABBF7002BFAFF /* Resources */,
-				8BFAACB468BAC00AE07509F8 /* 📦 Embed Pods Frameworks */,
-				1CA196D7AE1BF7B62F41F726 /* 📦 Copy Pods Resources */,
+				8BFAACB468BAC00AE07509F8 /* [CP] Embed Pods Frameworks */,
+				1CA196D7AE1BF7B62F41F726 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -626,14 +635,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1CA196D7AE1BF7B62F41F726 /* 📦 Copy Pods Resources */ = {
+		1CA196D7AE1BF7B62F41F726 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,29 +650,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TM/Pods-TM-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8543515EE4CAA9D75083CA2B /* 📦 Check Pods Manifest.lock */ = {
+		8543515EE4CAA9D75083CA2B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8BFAACB468BAC00AE07509F8 /* 📦 Embed Pods Frameworks */ = {
+		8BFAACB468BAC00AE07509F8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,11 +695,11 @@
 				4DD4F1631E6B3B4900B0CAEE /* CustomTabBarController.swift in Sources */,
 				4DD4F15A1E6AC1AB00B0CAEE /* AfterAsynchronous.swift in Sources */,
 				4DD4F13C1E6ABF3100B0CAEE /* IQKeyboardManagerConstants.swift in Sources */,
+				4D3E05F81F251EC20044B901 /* CalendarCollectionViewCell.swift in Sources */,
 				4DD4F15C1E6AC1C700B0CAEE /* UIViewControllerExtensions.swift in Sources */,
 				4D3C74E91F1802B6001C21E6 /* CheckBoxButton.swift in Sources */,
 				4DD4F1441E6ABF3100B0CAEE /* IQToolbar.swift in Sources */,
 				4DD4F1541E6AC19B00B0CAEE /* LoginViewController.swift in Sources */,
-				4D261C161F13A554009B5529 /* CustomMenuButtonTappedDelegate.swift in Sources */,
 				4DD4F13F1E6ABF3100B0CAEE /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				4DD129E91E6ABBF7002BFAFF /* TM.xcdatamodeld in Sources */,
 				4DD4F1361E6ABF3100B0CAEE /* IQNSArray+Sort.swift in Sources */,
@@ -708,6 +717,7 @@
 				4DD4F13A1E6ABF3100B0CAEE /* IQUIViewController+Additions.swift in Sources */,
 				4DD4F1351E6ABF3100B0CAEE /* iCarousel.m in Sources */,
 				4DD4F1431E6ABF3100B0CAEE /* IQTitleBarButtonItem.swift in Sources */,
+				4D108BC51F261670000701EF /* ColorConstants.swift in Sources */,
 				4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */,
 				4DF80A971F1E3CDB0012250A /* UIViewControllerX.swift in Sources */,
 				4DD4F13B1E6ABF3100B0CAEE /* IQUIWindow+Hierarchy.swift in Sources */,
@@ -715,7 +725,9 @@
 				4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */,
 				4DD4F1561E6AC19B00B0CAEE /* MainViewController.swift in Sources */,
 				4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */,
+				4D85117E1F214CA4008A300D /* TagsCollectionViewCell.swift in Sources */,
 				4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */,
+				4DE06B5B1F27D6E700062E61 /* MonthViewCollectionViewCell.swift in Sources */,
 				4DD4F1411E6ABF3100B0CAEE /* IQBarButtonItem.swift in Sources */,
 				4DD129E11E6ABBF7002BFAFF /* AppDelegate.swift in Sources */,
 				4DD4F1381E6ABF3100B0CAEE /* IQUITextFieldView+Additions.swift in Sources */,

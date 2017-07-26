@@ -22,45 +22,48 @@ class HomeViewController: UIViewController, AfterAsynchronous {
     @IBOutlet var noReminderView: UIVisualEffectView!
     @IBOutlet weak var secStackView: UIStackView!
     @IBOutlet weak var firstStackVIew: UIStackView!
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topView: CustomTopView!
     @IBOutlet weak var topViewDetail: UIStackView!
     @IBOutlet weak var dismissTopViewDetail: UIVisualEffectView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewEvents: UICollectionView!
+    @IBOutlet weak var collectionViewTags: UICollectionView!
     @IBOutlet weak var topBackgroundImage: UIImageView!
     
-
+    let listOfImages = ["barTag","entertainmentTag","meetingTag","favoriteTag","gymTag","holidayTag","partyTag","shoppingTag","studyTag","workTag"]
+    let listOfColors = [UIColor.purple, UIColor.cyan, UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.red, UIColor.magenta, UIColor.brown, UIColor.gray]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.reminderTableView.reloadData()
-        self.collectionView.reloadData()
+        self.collectionViewEvents.reloadData()
+        self.collectionViewTags.reloadData()
         
         navigationController?.isNavigationBarHidden = true
         
         let tapTopView = UITapGestureRecognizer(target: self, action: #selector(topViewTapped(sender:)))
-        tapTopView.delegate = self as? UIGestureRecognizerDelegate
         topView.addGestureRecognizer(tapTopView)
         
         let tapTopViewDismiss = UITapGestureRecognizer(target: self, action: #selector(topViewDismiss(sender:)))
-            tapTopViewDismiss.delegate = self as? UIGestureRecognizerDelegate
         dismissTopViewDetail.addGestureRecognizer(tapTopViewDismiss)
-
         
-//        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-//            
-//        if user != nil {
-//
-//        try! FIRAuth.auth()!.signOut()
-//        
-//        FBSDKAccessToken.setCurrent(nil)
-//        
-//            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.login()
-//            }
-//        }
+        
+        //        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        //
+        //        if user != nil {
+        //
+        //        try! FIRAuth.auth()!.signOut()
+        //
+        //        FBSDKAccessToken.setCurrent(nil)
+        //
+        //            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        //            appDelegate.login()
+        //            }
+        //        }
         UserService.userService.createDirectory()
-
+        
     }
     
     func setBackgroundImage() {
@@ -89,7 +92,7 @@ class HomeViewController: UIViewController, AfterAsynchronous {
         EventStore.eventKit.checkEventKitAuthorizationStatus(afterCheck: self)
         setBackgroundImage()
     }
-
+    
     @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
         let openSettingsUrl = URL(string: UIApplicationOpenSettingsURLString)
         UIApplication.shared.openURL(openSettingsUrl!)
@@ -111,28 +114,29 @@ class HomeViewController: UIViewController, AfterAsynchronous {
             noReminderView.removeFromSuperview()
         }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func topViewTapped(sender: UIView) {
+    func topViewTapped(sender: UITapGestureRecognizer) {
         self.view.bringSubview(toFront: topViewDetail)
         
         topViewDetail.fadeIn(0.2, sizeTransformation: false)
-        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5451, green: 0.5451, blue: 0.5451, alpha: 1), tintColor: #colorLiteral(red: 0.2078, green: 0.2078, blue: 0.2078, alpha: 1))
+        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5725, green: 0.5725, blue: 0.5725, alpha: 1), tintColor: #colorLiteral(red: 0.0863, green: 0.0863, blue: 0.0863, alpha: 1))
     }
     
-    func topViewDismiss(sender: UIVisualEffect) {
+    func topViewDismiss(sender: UITapGestureRecognizer) {
         topViewDetail.fadeOut(0.1, sizeTransformation: false)
-        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5137, green: 0.5137, blue: 0.5137, alpha: 1), tintColor: #colorLiteral(red: 0.349, green: 0.349, blue: 0.349, alpha: 1))
+        (self.tabBarController as! CustomTabBarController).changeCenterButtonColor(backgroundColor: #colorLiteral(red: 0.5725, green: 0.5725, blue: 0.5725, alpha: 1), tintColor: #colorLiteral(red: 0.0902, green: 0.0902, blue: 0.0902, alpha: 1))
     }
     
     struct Storyboard {
         static let TableViewCellIdentifier = "Reminder"
         static let CollectionViewCellIdentifier = "Event"
+        static let TagCollectionViewCellIdentifier = "Tag"
     }
     
     func onFinish() {
@@ -143,10 +147,10 @@ class HomeViewController: UIViewController, AfterAsynchronous {
             reminders = EventStore.eventKit.giveReminders()
             EventStore.eventKit.eraseEventArrays()
             DispatchQueue.main.async {
-            self.checkReminders(nReminders: self.reminders.count)
+                self.checkReminders(nReminders: self.reminders.count)
             }
             DispatchQueue.main.async() {
-                self.collectionView.reloadData()
+                self.collectionViewEvents.reloadData()
                 self.reminderTableView.reloadData()
             }
             tabBar.showTabBar()
@@ -157,24 +161,35 @@ class HomeViewController: UIViewController, AfterAsynchronous {
             needPermissionView.fadeIn()
         }
     }
-
-
+    
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return calendars.count
+        if collectionView == collectionViewEvents {
+            return calendars.count
+        } else {
+            return listOfImages.count-1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Storyboard.CollectionViewCellIdentifier, for: indexPath) as! EventCollectionViewCell
-        cell.event = calendars[indexPath.item]
-        return cell
+        if collectionView == collectionViewEvents {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Storyboard.CollectionViewCellIdentifier, for: indexPath) as! EventCollectionViewCell
+            cell.event = calendars[indexPath.row]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Storyboard.TagCollectionViewCellIdentifier, for: indexPath) as! TagsCollectionViewCell
+            cell.defaultIcon.image = UIImage(named: listOfImages[indexPath.row])
+            cell.defaultView.backgroundColor = listOfColors[indexPath.row]
+            return cell
+        }
     }
 }
 
@@ -231,18 +246,31 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension HomeViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        
-        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-        
-        var offset = targetContentOffset.pointee
-        
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-        let roundedIndex = round(index)
-        
-        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        targetContentOffset.pointee = offset
-        
+        if scrollView == self.collectionViewEvents {
+            let layout = self.collectionViewEvents?.collectionViewLayout as! UICollectionViewFlowLayout
+            
+            let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+            
+            var offset = targetContentOffset.pointee
+            
+            let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+            let roundedIndex = round(index)
+            
+            offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+            targetContentOffset.pointee = offset
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == self.collectionViewEvents {
+            topView.animateTheView()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == self.collectionViewEvents {
+            topView.animateTheView()
+        }
     }
 }
 

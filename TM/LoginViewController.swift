@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
         gLoginButton.tintColor = UIColor.white.withAlphaComponent(0.5)
         Error.manageError.changeError(typeOfError: "UserService", error: nil)
         GIDSignIn.sharedInstance().signIn()
-
+        
     }
     
     @IBAction func changeColorFB(_ sender: UIButton) {
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
         self.loadingSpinner.startAnimating()
         defaultQueue.async {
             UserService.userService.signIn("Email", email: email, pass: pass,afterSignIn: self)
-    }
+        }
     }
     
     

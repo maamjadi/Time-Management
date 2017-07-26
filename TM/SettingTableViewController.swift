@@ -13,10 +13,11 @@ import FirebaseStorage
 import FirebaseDatabase
 
 class SettingTableViewController: UITableViewController, AfterAsynchronous {
-
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var typeOfAccTextField: UILabel!
+    @IBOutlet weak var themeSwitch: UISwitch!
     
     var manageError = Error()
     let user = FIRAuth.auth()?.currentUser
@@ -42,26 +43,35 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
         profileImage.clipsToBounds = true
         
         navigationController?.isNavigationBarHidden = true
-            
-            if let name = user?.displayName {
-                nameTextField.text = name
-                nameTextField.isHidden = false
+        
+        if let name = user?.displayName {
+            nameTextField.text = name
+            nameTextField.isHidden = false
+        }
+        let uid = user?.uid
+        
+        //            if let typeExist = UserService.userService.returnTypeOfAccount(uid: uid) {
+        //                typeOfAccTextField.text = typeExist
+        //                typeOfAccTextField.isHidden = false
+        //            }
+        
+        if let photoURL = user?.photoURL {
+            if let data = try? Data(contentsOf: photoURL) {
+                self.profileImage.image = UIImage(data: data)
             }
-            let uid = user?.uid
-            
-            //            if let typeExist = UserService.userService.returnTypeOfAccount(uid: uid) {
-            //                typeOfAccTextField.text = typeExist
-            //                typeOfAccTextField.isHidden = false
-            //            }
-            
-            if let photoURL = user?.photoURL {
-                if let data = try? Data(contentsOf: photoURL) {
-                    self.profileImage.image = UIImage(data: data)
-                }
-            }
-            UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
+        }
+        UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
+        
+        if let savedValue = UserDefaults.standard.value(forKey: "theme") {
+            themeSwitch.isOn = savedValue as! Bool
+        }
     }
-
+    
+    @IBAction func themeSwitchIsChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "theme")
+        ColorConstants.colorConstants.changeDefaultTheme()
+    }
+    
     @IBAction func logout() {
         let firebaseAuth = FIRAuth.auth()
         do {
@@ -74,15 +84,15 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.login()
-
+        
     }
     
     func onFinish() {
         let loadPic = manageError.giveError(typeOfError: "UserService")
         if loadPic == true {
-                            let imageData = UserService.userService.giveImageData()
-                            profileImage.image = UIImage(data: imageData!)
+            let imageData = UserService.userService.giveImageData()
+            profileImage.image = UIImage(data: imageData!)
         }
-
+        
     }
 }

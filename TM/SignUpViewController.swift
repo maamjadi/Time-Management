@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if user != nil {
                 // User is signed in.
-//                self.deregisterFromKeyboardNotifications()
+                //                self.deregisterFromKeyboardNotifications()
                 
                 let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.login()
@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
         
         tapDismissGesture()
         
-//        registerForKeyboardNotifications()
+        //        registerForKeyboardNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +97,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
             alertController.addAction(photoLibraryAction)
         }
         alertController.addAction(cancelAction)
-
+        
         
         self.present(alertController, animated: true, completion: nil)
     }
@@ -115,9 +115,9 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
             self.loadingSpinner.startAnimating()
             var data = Data()
             data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
-          defaultQueue.async {
+            defaultQueue.async {
                 UserService.userService.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data,afterSignUp: self)
-          }
+            }
             
         } else {
             giveAnAlert("Your passwords doesn't match", alertControllerTitle: "Warning")
@@ -140,7 +140,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
         let checkSignUp = Error.manageError.giveError(typeOfError: "UserService")
         if checkSignUp == true {
             print("User successfully signed up")
-//            self.deregisterFromKeyboardNotifications()
+            //            self.deregisterFromKeyboardNotifications()
             let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.login()
         }
@@ -148,7 +148,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
             self.hidden(false)
             self.loadingSpinner.stopAnimating()
             self.giveAnAlert("Something went wrong, please try again later", alertControllerTitle: "Warning")
-        }       
+        }
     }
     
 }

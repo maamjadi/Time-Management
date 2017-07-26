@@ -11,10 +11,10 @@ import UIKit
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     let centerBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.tabBar.barStyle = .black
         self.delegate = self
@@ -28,7 +28,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.viewControllers = [controller1!,controller2!,customController,controller3!,controller4!]
         
-        self.setupMiddleButton(centerButton: self.centerBtn, image: "addBtn", backgroundColor: #colorLiteral(red: 0.5137, green: 0.5137, blue: 0.5137, alpha: 1))
+        self.setupMiddleButton(centerButton: self.centerBtn, image: "addBtn", backgroundColor: #colorLiteral(red: 0.5725, green: 0.5725, blue: 0.5725, alpha: 1))
     }
     
     func setupMiddleButton(centerButton: UIButton, image: String, backgroundColor: UIColor = .clear) {
@@ -39,7 +39,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         centerButton.frame = menuButtonFrame
         
         centerButton.backgroundColor = backgroundColor
-        centerButton.tintColor = #colorLiteral(red: 0.349, green: 0.349, blue: 0.349, alpha: 1)
+        centerButton.tintColor = #colorLiteral(red: 0.0863, green: 0.0863, blue: 0.0863, alpha: 1)
         centerButton.layer.cornerRadius = menuButtonFrame.height/2
         
         centerButton.setImage(UIImage(named: image), for: UIControlState.normal) // 450 x 450px
@@ -68,7 +68,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.present(vc, animated: true, completion: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,15 +95,15 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         centerBtn.tintColor = tintColor
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

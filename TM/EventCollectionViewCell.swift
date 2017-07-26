@@ -32,7 +32,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         tagLabel.text = "Red"
         calendarLabel.text = event.calendarItemExternalIdentifier
         let checkAlarm = event.hasAlarms
-        let alarm: String = checkAlarm ? (event.alarms?.count as! String) : "None"
+        let alarm: String = checkAlarm ? (String(describing: event.alarms?.count)) : "None"
         alertLabel.text = alarm
     }
     

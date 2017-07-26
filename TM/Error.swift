@@ -43,10 +43,10 @@ class Error {
                 } else {
                     
                 }
-//                } else {
-//                    FIRCrashMessage("The saveError Array is empty")
-//                    fatalError()
-//                }
+                //                } else {
+                //                    FIRCrashMessage("The saveError Array is empty")
+                //                    fatalError()
+            //                }
             case .Permissions(let error):
                 if let err = error {
                     return err
@@ -61,9 +61,9 @@ class Error {
             switch errType {
             case .UserService(_):
                 if saveErrorForUserService.count > 0 {
-                saveErrorForUserService.removeAll()
+                    saveErrorForUserService.removeAll()
                 }
-//                knownError[typeOfError] = Err.UserService(error)
+                //                knownError[typeOfError] = Err.UserService(error)
                 saveErrorForUserService.append(.UserService(error))
             case .Permissions(_):
                 knownError["Permission"] = Err.Permissions(error)

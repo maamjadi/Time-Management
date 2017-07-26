@@ -9,16 +9,18 @@
 import UIKit
 
 class AddEventViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var detailMenuBtnView: UIView!
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var dimView: UIView!
+    @IBOutlet var timeView: UIView!
     
     var items = ["Calendar", "Time", "List", "Invite", "Location", "Alert", "Tag", "Notes", "Starts", "Ends"]
     var getInitialScrollViewContent = true
     var initialContentSize: CGFloat?
     var tempItems = [String]()
-
+    
     
     var collectionViewLayout: SpringyFlowLayout? {
         return collectionView.collectionViewLayout as? SpringyFlowLayout
@@ -28,16 +30,19 @@ class AddEventViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
-
+        
         // Do any additional setup after loading the view.
         tempItems = items
         collectionViewLayout?.setupLayout()
         detailMenuBtnView.layer.cornerRadius = detailMenuBtnView.frame.size.width / 2
         detailMenuBtnView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         buttonReleased()
-
+        
+        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissSubviews(sender:)))
+        dimView.addGestureRecognizer(dismissTap)
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,17 +75,26 @@ class AddEventViewController: UIViewController {
         }
     }
     
+    func dismissSubviews(sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+            self.dimView.alpha = 0
+            self.timeView.transform = CGAffineTransform(scaleX: 0.1, y: 0.05)
+        }, completion: {(success) in
+            self.timeView.removeFromSuperview()
+        })
+    }
+    
     func menuAction(event: UIEvent) {
         if let touch = event.allTouches?.first {
             let pointOfTouch = touch.location(in: self.view)
             let menuFrame = menuButton.frame
             let width = menuFrame.size.width
             let origin = menuFrame.origin
-            let detailViewOrigin = detailMenuBtnView.frame.origin
-            if (pointOfTouch.y < origin.y-width && pointOfTouch.y >= detailViewOrigin.y && pointOfTouch.x >= origin.x && pointOfTouch.x <= origin.x+width*2) {
+            //let detailViewOrigin = detailMenuBtnView.frame.origin
+            if (pointOfTouch.y < origin.y-width && pointOfTouch.y >= 0 && pointOfTouch.x >= origin.x && pointOfTouch.x <= origin.x+width*2) {
                 saveEvent()
             }
-            else if (pointOfTouch.x < origin.x-width && pointOfTouch.x > detailViewOrigin.x && pointOfTouch.y >= origin.y && pointOfTouch.y <= origin.y+width*2) {
+            else if (pointOfTouch.x < origin.x-width && pointOfTouch.x >= 0 && pointOfTouch.y >= origin.y && pointOfTouch.y <= origin.y+width*2) {
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -93,15 +107,15 @@ class AddEventViewController: UIViewController {
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AddEventViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -109,6 +123,18 @@ extension AddEventViewController: UICollectionViewDelegate, UICollectionViewData
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        dimView.isUserInteractionEnabled = true
+        self.timeView.center = self.view.center
+        self.timeView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+        self.view.addSubview(timeView)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
+            self.dimView.alpha = 0.7
+            self.timeView.transform = .identity
+        })
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -1,4 +1,4 @@
-# Uncomment this line to define a global platform for your project
+
 # platform :ios, '9.0'
 
 target 'TM' do
@@ -16,5 +16,7 @@ pod 'Firebase/Messaging'
 pod 'Firebase/Core'
 
 pod 'GoogleSignIn'
+  
+pod 'JTAppleCalendar', '~> 7.0'
 
 end

@@ -125,54 +125,54 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
     
     func updateManualFirstP() {
         if successfullyUpdated == true {
-        if let newPassword = self.passwordTextField.text , !(newPassword.isEmpty) {
-            if newPassword == verifyPassTextField.text {
-                updatePassAsyncProccess = true
-                self.user?.updatePassword(newPassword) { error in
-                    if error != nil {
-                        // An error happened.
-                        self.giveAnAlert("Password must be at least 6 digits!", alertControllerTitle: "Alert")
-                        self.successfullyUpdated = false
-                        self.updateManualSecP()
-                        return
-                    } else {
-                        // Password updated.
-                        print("password updated:" + newPassword)
-                        self.updateManualSecP()
-                        return
+            if let newPassword = self.passwordTextField.text , !(newPassword.isEmpty) {
+                if newPassword == verifyPassTextField.text {
+                    updatePassAsyncProccess = true
+                    self.user?.updatePassword(newPassword) { error in
+                        if error != nil {
+                            // An error happened.
+                            self.giveAnAlert("Password must be at least 6 digits!", alertControllerTitle: "Alert")
+                            self.successfullyUpdated = false
+                            self.updateManualSecP()
+                            return
+                        } else {
+                            // Password updated.
+                            print("password updated:" + newPassword)
+                            self.updateManualSecP()
+                            return
+                        }
                     }
+                } else {
+                    self.giveAnAlert("Your passwords doesn't match", alertControllerTitle: "Warning")
+                    self.successfullyUpdated = false
                 }
-            } else {
-                self.giveAnAlert("Your passwords doesn't match", alertControllerTitle: "Warning")
-                self.successfullyUpdated = false
             }
-        }
-        if updatePassAsyncProccess == false {
-            updateManualSecP()
-        }
+            if updatePassAsyncProccess == false {
+                updateManualSecP()
+            }
         }
     }
     
     func updateManualSecP() {
         savingProcessFinished()
         if successfullyUpdated == true {
-        if let user = user {
-            let image = UIImage(named: "profile pic")
-            if profileImage.image != image {
-                var data = Data()
-                let userName = self.nameTextField.text
-                data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
-                UserService.userService.updateNamePicture(user: user, imageData: data, updateName: userName)
-                print("picture and name Updated")
+            if let user = user {
+                let image = UIImage(named: "profile pic")
+                if profileImage.image != image {
+                    var data = Data()
+                    let userName = self.nameTextField.text
+                    data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
+                    UserService.userService.updateNamePicture(user: user, imageData: data, updateName: userName)
+                    print("picture and name Updated")
+                }
+                
             }
-        
+            
+            if let birthday = birthdayTextField.text , birthday != "" {
+                self.ref.child("Users").child(user!.uid).child("Personal information/Birthday").setValue(birthday)
+            }
+            saveButtonAction()
         }
-        
-        if let birthday = birthdayTextField.text , birthday != "" {
-            self.ref.child("Users").child(user!.uid).child("Personal information/Birthday").setValue(birthday)
-        }
-        saveButtonAction()
-    }
     }
     
     @IBAction func updateProfile() {
@@ -248,7 +248,7 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
         navigationController?.isNavigationBarHidden = false
         loadingEffect.removeFromSuperview()
     }
-
+    
     
     func onFinish() {
         

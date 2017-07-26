@@ -180,14 +180,14 @@ class UserService {
         guard let localProfilePicURL = URL.init(string: filePath) else { return }
         // Download to the local filesystem
         if let localPicData = NSData(contentsOf: localProfilePicURL as URL) {
-        if let userPhoto = user.photoURL {
-            let onlinePicData = NSData(contentsOf: userPhoto)
-            if localPicData == onlinePicData {
-                                self.dateOfImage = localPicData as Data
-                checkIfLocalPicExist = true
-                Error.manageError.changeError(typeOfError: "UserService", error: true)
+            if let userPhoto = user.photoURL {
+                let onlinePicData = NSData(contentsOf: userPhoto)
+                if localPicData == onlinePicData {
+                    self.dateOfImage = localPicData as Data
+                    checkIfLocalPicExist = true
+                    Error.manageError.changeError(typeOfError: "UserService", error: true)
+                }
             }
-        }
         }
         
         if checkIfLocalPicExist == false {
@@ -259,7 +259,7 @@ class UserService {
         let dirExist = FileManager.default.fileExists(atPath: documentDirectoryPath, isDirectory: &objeCtBool)
         if dirExist == false {
             do {
-            try FileManager.default.createDirectory(atPath: documentDirectoryPath, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: documentDirectoryPath, withIntermediateDirectories: true, attributes: nil)
             }catch {
                 print(error.localizedDescription)
             }

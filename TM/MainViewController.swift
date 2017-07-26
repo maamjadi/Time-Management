@@ -47,7 +47,7 @@ class MainViewController: UIViewController, AfterAsynchronous {
                 appDelegate.login()
             }
         }
-
+        
         
         typeOfAccTextField.isHidden = true
         nameTextField.isHidden = true
@@ -87,13 +87,13 @@ class MainViewController: UIViewController, AfterAsynchronous {
     func onFinish() {
         let loadPic = manageError.giveError(typeOfError: "UserService")
         if loadPic == true {
-                            let imageData = UserService.userService.giveImageData()
-                            if imageData != nil {
-                                profileImage.image = UIImage(data: imageData!)
-                                profileImage.isHidden = false
-                            } else {
-                                profileImage.isHidden = true
-                            }
+            let imageData = UserService.userService.giveImageData()
+            if imageData != nil {
+                profileImage.image = UIImage(data: imageData!)
+                profileImage.isHidden = false
+            } else {
+                profileImage.isHidden = true
+            }
         }
         loadingSpinner.stopAnimating()
     }
