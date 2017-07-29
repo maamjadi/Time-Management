@@ -10,6 +10,7 @@
 		1AC62A49BE4482496502C82B /* Pods_TM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A4E3C93C2635FFD806E35E /* Pods_TM.framework */; };
 		4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */; };
 		4D108BC51F261670000701EF /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D108BC41F261670000701EF /* ColorConstants.swift */; };
+		4D26F6331F2A62E600CDC102 /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26F6321F2A62E600CDC102 /* CustomSegmentControl.swift */; };
 		4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */; };
 		4D2C4E461F17D94600675E8B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D2C4E451F17D94600675E8B /* Calendar.storyboard */; };
 		4D2DCC7B1F0E6BB9000EE7D0 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */; };
@@ -29,6 +30,7 @@
 		4D7487F61F20DB2900334076 /* CustomTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7487F51F20DB2900334076 /* CustomTopView.swift */; };
 		4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */; };
 		4D85117E1F214CA4008A300D /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */; };
+		4D8F97831F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8F97821F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift */; };
 		4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */; };
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
 		4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */; };
@@ -107,6 +109,7 @@
 		25A4E3C93C2635FFD806E35E /* Pods_TM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		4D108BC41F261670000701EF /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		4D26F6321F2A62E600CDC102 /* CustomSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		4D2C4E451F17D94600675E8B /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		4D2DCC7A1F0E6BB9000EE7D0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -126,6 +129,7 @@
 		4D7487F51F20DB2900334076 /* CustomTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTopView.swift; sourceTree = "<group>"; };
 		4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D8F97821F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDateTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
 		4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
 				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
 				4D108BC41F261670000701EF /* ColorConstants.swift */,
+				4D26F6321F2A62E600CDC102 /* CustomSegmentControl.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -343,12 +348,12 @@
 		4DD4F10D1E6ABDFA00B0CAEE /* User */ = {
 			isa = PBXGroup;
 			children = (
+				4DD4F1601E6B389600B0CAEE /* Setting.storyboard */,
 				4DD4F14F1E6AC19B00B0CAEE /* LoginViewController.swift */,
 				4DD4F1511E6AC19B00B0CAEE /* MainViewController.swift */,
 				4DD4F1521E6AC19B00B0CAEE /* ProfileTableViewController.swift */,
 				4DD4F1531E6AC19B00B0CAEE /* SignUpViewController.swift */,
 				4D0D3A541EADDAC60057C83A /* SettingTableViewController.swift */,
-				4DD4F1601E6B389600B0CAEE /* Setting.storyboard */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -359,10 +364,11 @@
 				4DD4F14B1E6AC16E00B0CAEE /* Visualization.storyboard */,
 				4DD4F14C1E6AC16E00B0CAEE /* HomeViewController.swift */,
 				4D2986AF1F181449000688FD /* ReminderTableViewCell.swift */,
-				4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */,
 				4D7D8B241F1A7A0200837C98 /* AddEventViewController.swift */,
+				4DD6B31A1F19328A00E70B67 /* EventCollectionViewCell.swift */,
 				4D940A2C1F1A895100CF1D81 /* AddEventCollectionViewCell.swift */,
 				4D85117D1F214CA4008A300D /* TagsCollectionViewCell.swift */,
+				4D8F97821F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -687,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D26F6331F2A62E600CDC102 /* CustomSegmentControl.swift in Sources */,
 				4D0D3A551EADDAC60057C83A /* SettingTableViewController.swift in Sources */,
 				4D72C2AE1F1957DE0045CF8A /* DateExtension.swift in Sources */,
 				4DF80A9A1F1E3CDB0012250A /* UIVisualEffectViewX.swift in Sources */,
@@ -712,6 +719,7 @@
 				4DD4F1401E6ABF3100B0CAEE /* IQTextView.swift in Sources */,
 				4DF80A961F1E3CDB0012250A /* UIViewAnchorPoint.swift in Sources */,
 				4DF80A991F1E3CDB0012250A /* UIViewX.swift in Sources */,
+				4D8F97831F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift in Sources */,
 				4DD4F13E1E6ABF3100B0CAEE /* IQKeyboardManager.swift in Sources */,
 				4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */,
 				4DD4F13A1E6ABF3100B0CAEE /* IQUIViewController+Additions.swift in Sources */,

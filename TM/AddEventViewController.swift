@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTAppleCalendar
 
 class AddEventViewController: UIViewController {
     
@@ -15,11 +16,42 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var dimView: UIView!
     @IBOutlet var timeView: UIView!
+    @IBOutlet weak var hourSelector: UIView!
+    @IBOutlet weak var hourSelector2: UIView!
+    @IBOutlet weak var minuteSelector: UIView!
+    @IBOutlet weak var minuteSelector2: UIView!
+    @IBOutlet weak var centertimeSelector: UIView!
+    @IBOutlet weak var centertimeSelector2: UIView!
+    @IBOutlet weak var expandChooseDateTimeBtn: UIButton!
+    @IBOutlet weak var expandChooseDateTimeBtn2: UIButton!
+    @IBOutlet weak var chooseDateTimeCalendar: JTAppleCalendarView!
+    @IBOutlet weak var chooseDateTimeCalendar2: JTAppleCalendarView!
+    @IBOutlet weak var hourTimeViewLabel: UILabel!
+    @IBOutlet weak var hourTimeViewLabel2: UILabel!
+    @IBOutlet weak var minuteTimeViewLabel: UILabel!
+    @IBOutlet weak var minuteTimeViewLabel2: UILabel!
+    @IBOutlet weak var amPMTimeViewLabel: UILabel!
+    @IBOutlet weak var amPMTimeViewLabel2: UILabel!
+    @IBOutlet weak var monthTimeViewLabel: UILabel!
+    @IBOutlet weak var monthTimeViewLabel2: UILabel!
+    @IBOutlet weak var monthCalendarTimeViewLabel: UILabel!
+    @IBOutlet weak var monthCalendarTimeViewLabel2: UILabel!
+    @IBOutlet weak var dateTimeViewLabel: UILabel!
+    @IBOutlet weak var dateTimeViewLabel2: UILabel!
+    @IBOutlet weak var dayTimeViewLabel: UILabel!
+    @IBOutlet weak var dayTimeViewLabel2: UILabel!
+    @IBOutlet weak var chooseDatePanelTimeView: UIStackView!
+    @IBOutlet weak var chooseDatePanelTimeView2: UIStackView!
+    @IBOutlet weak var startViewTabTimeView: UIView!
+    @IBOutlet weak var endViewTabTimeView: UIView!
+    @IBOutlet weak var moreViewTabTimeView: UIView!
     
     var items = ["Calendar", "Time", "List", "Invite", "Location", "Alert", "Tag", "Notes", "Starts", "Ends"]
     var getInitialScrollViewContent = true
     var initialContentSize: CGFloat?
     var tempItems = [String]()
+    let formatter = DateFormatter()
+    let date = Date()
     
     
     var collectionViewLayout: SpringyFlowLayout? {
@@ -40,7 +72,25 @@ class AddEventViewController: UIViewController {
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissSubviews(sender:)))
         dimView.addGestureRecognizer(dismissTap)
+        hourSelector.layer.cornerRadius = hourSelector.frame.size.width / 2
+        minuteSelector.layer.cornerRadius = minuteSelector.frame.size.width / 2
+        centertimeSelector.layer.cornerRadius = centertimeSelector.frame.size.width / 2
         
+        setupChooseDateCalendarView()
+        
+        let width = self.view.frame.size.width
+        endViewTabTimeView.transform = CGAffineTransform(translationX: width, y: 0)
+        moreViewTabTimeView.transform = CGAffineTransform(translationX: 2*width, y: 0)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        chooseDatePanelTimeView.transform = CGAffineTransform(translationX: chooseDatePanelTimeView.frame.size.width + 20, y: 0)
+        chooseDatePanelTimeView2.transform = CGAffineTransform(translationX: chooseDatePanelTimeView.frame.size.width + 20, y: 0)
+        chooseDatePanelTimeView.isHidden = true
+        chooseDatePanelTimeView2.isHidden = true
+        chooseDateTimeCalendar.scrollToDate(date, animateScroll: false)
+        chooseDateTimeCalendar.selectDates(from: date, to: date)
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +134,23 @@ class AddEventViewController: UIViewController {
         })
     }
     
+    func showSubviewForCollectionView(cell: UICollectionViewCell) {
+        guard let validCell = cell as? AddEventCollectionViewCell else { return }
+        if validCell.title.text == "Time" {
+            dimView.isUserInteractionEnabled = true
+            self.timeView.center = self.view.center
+            self.timeView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+            timeView.layer.cornerRadius = 10
+            self.view.addSubview(timeView)
+            timeView.clipsToBounds = true
+            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
+                self.dimView.alpha = 0.7
+                self.timeView.transform = .identity
+            })
+        }
+    }
+    
     func menuAction(event: UIEvent) {
         if let touch = event.allTouches?.first {
             let pointOfTouch = touch.location(in: self.view)
@@ -103,6 +170,135 @@ class AddEventViewController: UIViewController {
     
     func saveEvent() {
         print("Save Funtion")
+    }
+    
+    @IBAction func timeSegmentValueChanged(_ sender: CustomSegmentControl) {
+        let width = self.view.frame.size.width
+        switch sender.selectedButtonIndex {
+        case 0:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.startViewTabTimeView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.endViewTabTimeView.transform = CGAffineTransform(translationX: width, y: 0)
+                self.moreViewTabTimeView.transform = CGAffineTransform(translationX: 2*width, y: 0)
+            })
+            break
+        case 1:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.startViewTabTimeView.transform = CGAffineTransform(translationX: -width, y: 0)
+                self.endViewTabTimeView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.moreViewTabTimeView.transform = CGAffineTransform(translationX: width, y: 0)
+            })
+            break
+        case 2:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.startViewTabTimeView.transform = CGAffineTransform(translationX: -(2*width), y: 0)
+                self.endViewTabTimeView.transform = CGAffineTransform(translationX: -width, y: 0)
+                self.moreViewTabTimeView.transform = CGAffineTransform(translationX: 0, y: 0)
+            })
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func expandChooseDateTime(_ sender: UIButton) {
+        expandChooseDateTimeBtn.isHidden = true
+        chooseDatePanelTimeView.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            self.chooseDatePanelTimeView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func dismissChooseDatePanelTimeView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.chooseDatePanelTimeView.transform = CGAffineTransform(translationX: self.chooseDatePanelTimeView.frame.size.width + 20, y: 0)
+        }) { (sucess) in
+            self.expandChooseDateTimeBtn.isHidden = false
+            self.chooseDatePanelTimeView.isHidden = true
+        }
+    }
+    
+    @IBAction func nextMonthTimeView() {
+        chooseDateTimeCalendar.visibleDates { (visibleDates) in
+            if let startDate = visibleDates.monthDates.first?.date {
+                var components = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
+                
+                // Change int value which you want to minus from current Date.
+                components.day = 1
+                components.month = components.month!+1
+                let nextMonth = Calendar.current.date(from: components)
+                self.chooseDateTimeCalendar.scrollToDate(nextMonth!)
+            }
+        }
+    }
+    
+    @IBAction func previousMonthTimeView() {
+        chooseDateTimeCalendar.visibleDates { (visibleDates) in
+            if let startDate = visibleDates.monthDates.first?.date {
+                var components = Calendar.current.dateComponents([.year, .month, .day], from: startDate)
+                
+                // Change int value which you want to minus from current Date.
+                components.day = 1
+                components.month = components.month!-1
+                let nextMonth = Calendar.current.date(from: components)
+                self.chooseDateTimeCalendar.scrollToDate(nextMonth!)
+            }
+        }
+    }
+    
+    func handleChooseDateCellTimeView(cell: JTAppleCell?, cellState: CellState) {
+        guard let validCell = cell as? ChooseDateTimeCollectionViewCell else { return }
+    }
+    
+    func handleChooseDateTextColorTimeView() {
+        
+    }
+    
+    func handleChooseDateSelectedViewTimeView() {
+        
+    }
+    
+    func selectedCellUpdateTimeView(cell: JTAppleCell?, cellState: CellState) {
+        guard let validCell = cell as? ChooseDateTimeCollectionViewCell else { return }
+        formatter.dateFormat = "MMM"
+        monthTimeViewLabel.text = " " + formatter.string(from: cellState.date)
+        formatter.dateFormat = "dd"
+        dateTimeViewLabel.text = formatter.string(from: cellState.date)
+    }
+    
+    func setupChooseDateCalendarView() {
+        chooseDateTimeCalendar.minimumLineSpacing = 0
+        chooseDateTimeCalendar.minimumInteritemSpacing = 0
+        
+        chooseDateTimeCalendar.visibleDates { (visibleDates) in
+            if let startDate = visibleDates.monthDates.first?.date {
+                
+                self.formatter.dateFormat = "MMMM"
+                self.monthCalendarTimeViewLabel.text = self.formatter.string(from: startDate)
+            }
+        }
+    }
+    
+    
+    func editingTimeBegin(component: String, state: String) {
+        switch component {
+        case "time":
+            if state == "begin" {
+                
+            } else {
+                
+            }
+            break
+        case "date":
+            if state == "begin" {
+                
+            } else {
+                
+            }
+            break
+        default:
+            break
+        }
     }
     
     
@@ -126,15 +322,7 @@ extension AddEventViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        dimView.isUserInteractionEnabled = true
-        self.timeView.center = self.view.center
-        self.timeView.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
-        self.view.addSubview(timeView)
-        
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
-            self.dimView.alpha = 0.7
-            self.timeView.transform = .identity
-        })
+        showSubviewForCollectionView(cell: collectionView.cellForItem(at: indexPath)!)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -152,6 +340,7 @@ extension AddEventViewController: UICollectionViewDelegate, UICollectionViewData
 extension AddEventViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionView {
         let offestY = scrollView.contentOffset.y
         let contentSize = scrollView.contentSize.height
         let frameSize = scrollView.frame.size.height
@@ -169,6 +358,40 @@ extension AddEventViewController: UIScrollViewDelegate {
             collectionViewLayout?.setupLayout()
         }
         self.collectionView.reloadData()
+    }
+    }
+}
+
+extension AddEventViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = Calendar.current.timeZone
+        formatter.locale = Calendar.current.locale
+        
+        let startDate = formatter.date(from: "2017 01 01")!
+        let endDate = formatter.date(from: "2017 12 31")!
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1)
+        return parameters
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "ChooseDateTimeCell", for: indexPath) as! ChooseDateTimeCollectionViewCell
+        cell.dateOfCell.text = cellState.text
+        handleChooseDateCellTimeView(cell: cell, cellState: cellState)
+        return cell
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleChooseDateCellTimeView(cell: cell, cellState: cellState)
+        dismissChooseDatePanelTimeView()
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleChooseDateCellTimeView(cell: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        setupChooseDateCalendarView()
     }
     
 }

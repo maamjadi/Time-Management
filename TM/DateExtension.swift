@@ -8,8 +8,7 @@
 
 import Foundation
 
-extension Date
-{
+extension Date {
     
     func dateAt(hours: Int, minutes: Int) -> Date
     {
@@ -32,4 +31,5 @@ extension Date
         let newDate = calendar.date(from: date_components)!
         return newDate
     }
+    
 }

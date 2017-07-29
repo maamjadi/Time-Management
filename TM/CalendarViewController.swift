@@ -30,11 +30,11 @@ class CalendarViewController: UIViewController {
         setupCalendar()
         
         let expandCalendarGesture = UIPanGestureRecognizer(target: self, action: #selector(expandCalendar(sender:)))
-        calendarCollectionView.addGestureRecognizer(expandCalendarGesture)
+        //calendarCollectionView.addGestureRecognizer(expandCalendarGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        calendarCollectionView.scrollToDate(date)
+        calendarCollectionView.scrollToDate(date, animateScroll: false)
         calendarCollectionView.selectDates(from: date, to: date)
     }
 
@@ -103,6 +103,10 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    func handleCellEvents(cell: JTAppleCell?, cellState: CellState) {
+        
+    }
+    
     func hidePrePostDates(cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? MonthViewCollectionViewCell else { return }
         if cellState.dateBelongsTo == .thisMonth {
@@ -115,6 +119,7 @@ class CalendarViewController: UIViewController {
     func handleCells(cell: JTAppleCell?, cellState: CellState) {
         handleSelectedDates(cell: cell, cellState: cellState)
         handleCellTextColor(cell: cell, cellState: cellState)
+        handleCellEvents(cell: cell, cellState: cellState)
     }
     
     func setupMonthView() {
