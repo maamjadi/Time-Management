@@ -53,13 +53,13 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
         self.hidden(true)
         self.loadingSpinner.startAnimating()
         defaultQueue.async {
-            UserService.userService.signIn("Facebook", email: nil, pass: nil,afterSignIn: self)
+            UserService.shared.signIn("Facebook", email: nil, pass: nil,afterSignIn: self)
         }
     }
     
     @IBAction func googleLoginButton() {
         gLoginButton.tintColor = UIColor.white.withAlphaComponent(0.5)
-        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        AppError.manageError.changeError(typeOfError: "UserService", error: nil)
         GIDSignIn.sharedInstance().signIn()
         
     }
@@ -67,18 +67,20 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
     @IBAction func changeColorFB(_ sender: UIButton) {
         sender.tintColor = #colorLiteral(red: 0.2235, green: 0.3412, blue: 0.5804, alpha: 1)
     }
+    
     @IBAction func changeColorFBToNormal(_ sender: UIButton) {
-        sender.tintColor = UIColor.white.withAlphaComponent(0.5)
+         sender.tintColor = UIColor.white.withAlphaComponent(0.5)
     }
     
     @IBAction func changeColorGoogle(_ sender: UIButton) {
         sender.tintColor = #colorLiteral(red: 0.8353, green: 0.2588, blue: 0.2078, alpha: 1)
     }
+    
     @IBAction func changeColorGToNormal(_ sender: UIButton) {
         sender.tintColor = UIColor.white.withAlphaComponent(0.5)
     }
     
-    private func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+    internal func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         self.hidden(false)
         self.loadingSpinner.stopAnimating()
     }
@@ -93,7 +95,7 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
         
         self.loadingSpinner.startAnimating()
         defaultQueue.async {
-            UserService.userService.signIn("Email", email: email, pass: pass,afterSignIn: self)
+            UserService.shared.signIn("Email", email: email, pass: pass,afterSignIn: self)
         }
     }
     
@@ -109,7 +111,7 @@ class LoginViewController: UIViewController, AfterAsynchronous, GIDSignInUIDeleg
     }
     
     func onFinish() {
-        let checkSignIn = Error.manageError.giveError(typeOfError: "UserService")
+        let checkSignIn = AppError.manageError.giveError(typeOfError: "UserService")
         if checkSignIn == true {
             print("User has been logged in successfully")
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate

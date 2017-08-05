@@ -13,7 +13,7 @@ import FBSDKLoginKit
 class UserService {
     
     
-    static let userService = UserService()
+    static let shared = UserService()
     
     private let mainPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     
@@ -23,22 +23,22 @@ class UserService {
     
     
     func signUp(_ name: String, email: String, pass: String, imageData: Data , afterSignUp : AfterAsynchronous) {
-        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        AppError.manageError.changeError(typeOfError: "UserService", error: nil)
         FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user , error) in
-            Error.manageError.changeError(typeOfError: "UserService", error: true)
+            AppError.manageError.changeError(typeOfError: "UserService", error: true)
             if error != nil {
                 print(error?.localizedDescription ?? "error")
-                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                AppError.manageError.changeError(typeOfError: "UserService", error: false)
                 afterSignUp.onFinish()
                 return
             } else {
                 if let user = FIRAuth.auth()?.currentUser {
                     self.initialLicense(user)
                     self.authChangeReq(user, displayName: name, photoURL: nil)
-                    UserService.userService.changePicture(user: user, imageData: imageData)
-                    let checkError = Error.manageError.giveError(typeOfError: "UserService")
+                    self.changePicture(user: user, imageData: imageData)
+                    let checkError = AppError.manageError.giveError(typeOfError: "UserService")
                     if checkError == false {
-                        Error.manageError.changeError(typeOfError: "UserService", error: false)
+                        AppError.manageError.changeError(typeOfError: "UserService", error: false)
                     }
                     afterSignUp.onFinish()
                     return
@@ -48,17 +48,17 @@ class UserService {
     }
     
     func signIn(_ method: String, email: String?, pass: String? , afterSignIn: AfterAsynchronous) {
-        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        AppError.manageError.changeError(typeOfError: "UserService", error: nil)
         switch method {
             
         case "Email":
             FIRAuth.auth()?.signIn(withEmail: email!, password: pass!, completion: { (user, error) in
                 if error != nil {
-                    Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: false)
                     afterSignIn.onFinish()
                     return
                 } else {
-                    Error.manageError.changeError(typeOfError: "UserService", error: true)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: true)
                     afterSignIn.onFinish()
                     return
                 }
@@ -67,14 +67,14 @@ class UserService {
         case "Facebook":
             let login: FBSDKLoginManager = FBSDKLoginManager()
             login.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], handler: { (result, error) -> Void in
-                Error.manageError.changeError(typeOfError: "UserService", error: true)
+                AppError.manageError.changeError(typeOfError: "UserService", error: true)
                 if error != nil {
-                    Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: false)
                     afterSignIn.onFinish()
                     return
                 }
                 else if (result?.isCancelled)! {
-                    Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: false)
                     afterSignIn.onFinish()
                     return
                 }
@@ -88,7 +88,7 @@ class UserService {
                             return
                             
                         } else {
-                            Error.manageError.changeError(typeOfError: "UserService", error: false)
+                            AppError.manageError.changeError(typeOfError: "UserService", error: false)
                             afterSignIn.onFinish()
                             return
                         }
@@ -112,7 +112,7 @@ class UserService {
             if let error = error {
                 // An error happened.
                 print(error.localizedDescription)
-                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                AppError.manageError.changeError(typeOfError: "UserService", error: false)
                 return
             } else {
                 // Profile updated.
@@ -145,7 +145,7 @@ class UserService {
                 self.authChangeReq(user, displayName: nil, photoURL: profileURL)
             } else {
                 print("error in uploading the image")
-                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                AppError.manageError.changeError(typeOfError: "UserService", error: false)
             }
         }
     }
@@ -171,7 +171,7 @@ class UserService {
     
     func loadProfilePictureFromStorage(user: FIRUser , afterLoadingThePiture : AfterAsynchronous) {
         var checkIfLocalPicExist: Bool = false
-        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        AppError.manageError.changeError(typeOfError: "UserService", error: nil)
         let profilePicRef = storageRef.child("images"+"/profile pictures"+"/\(user.uid).jpg")
         // Create local filesystem URL
         //let localProfilePicURL: NSURL! = NSURL(fileURLWithPath: "file:///local/images/profile picture.jpg")
@@ -185,18 +185,18 @@ class UserService {
                 if localPicData == onlinePicData {
                     self.dateOfImage = localPicData as Data
                     checkIfLocalPicExist = true
-                    Error.manageError.changeError(typeOfError: "UserService", error: true)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: true)
                 }
             }
         }
         
         if checkIfLocalPicExist == false {
             _ = profilePicRef.write(toFile: localProfilePicURL as URL) { (URL, error) -> Void in
-                Error.manageError.changeError(typeOfError: "UserService", error: true)
+                AppError.manageError.changeError(typeOfError: "UserService", error: true)
                 if (error != nil) {
                     // Uh-oh, an error occurred!
                     print("unable to download the image")
-                    Error.manageError.changeError(typeOfError: "UserService", error: false)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: false)
                     self.loadProfilePictureFromFB(user: user, afterLoadingThePiture: afterLoadingThePiture)
                 } else {
                     // Local file URL for "images/island.jpg" is returned
@@ -212,7 +212,7 @@ class UserService {
     }
     
     func loadProfilePictureFromFB(user: FIRUser, afterLoadingThePiture : AfterAsynchronous) {
-        Error.manageError.changeError(typeOfError: "UserService", error: nil)
+        AppError.manageError.changeError(typeOfError: "UserService", error: nil)
         let profilePic = FBSDKGraphRequest(graphPath: "me/picture", parameters: ["height": 300, "width": 300, "redirect": false], httpMethod: "GET")
         profilePic?.start(completionHandler: {(connection, result, error) -> Void in
             // Handle the result
@@ -223,7 +223,7 @@ class UserService {
                 //                        let urlPic = ((data as AnyObject).object(forKey: "url"))! as! String
                 let urlPic = (dictionary?["data"]! as! [String : AnyObject])["url"] as! String
                 if let imageData = try? Data(contentsOf: URL(string: urlPic)!) {
-                    Error.manageError.changeError(typeOfError: "UserService", error: true)
+                    AppError.manageError.changeError(typeOfError: "UserService", error: true)
                     self.changePicture(user: user, imageData: imageData)
                     self.dateOfImage = imageData
                     print("FB profile picture imported to FIR")
@@ -231,7 +231,7 @@ class UserService {
                     return
                 }
             } else {
-                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                AppError.manageError.changeError(typeOfError: "UserService", error: false)
                 afterLoadingThePiture.onFinish();
                 return
             }

@@ -18,8 +18,9 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var typeOfAccTextField: UILabel!
     @IBOutlet weak var themeSwitch: UISwitch!
+    @IBOutlet weak var googleSwitch: UISwitch!
+    @IBOutlet weak var outlookSwitch: UISwitch!
     
-    var manageError = Error()
     let user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad() {
@@ -60,10 +61,18 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
                 self.profileImage.image = UIImage(data: data)
             }
         }
-        UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
+        UserService.shared.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
         
         if let savedValue = UserDefaults.standard.value(forKey: "theme") {
             themeSwitch.isOn = savedValue as! Bool
+        }
+        
+        if let googleConnected =  UserDefaults.standard.value(forKey: "GoogleCalStatus") {
+            googleSwitch.isOn = googleConnected as! Bool
+        }
+        
+        if let outlookConnected = UserDefaults.standard.value(forKey: "OutlookCalStatus") {
+            outlookSwitch.isOn = outlookConnected as! Bool
         }
     }
     
@@ -71,6 +80,13 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
         UserDefaults.standard.set(sender.isOn, forKey: "theme")
         ColorConstants.colorConstants.changeDefaultTheme()
     }
+    
+    @IBAction func googleSwitchIsChanged(_ sender: UISwitch) {
+    }
+    
+    @IBAction func outlookSwitchIsChanged(_ sender: UISwitch) {
+    }
+    
     
     @IBAction func logout() {
         let firebaseAuth = FIRAuth.auth()
@@ -88,9 +104,9 @@ class SettingTableViewController: UITableViewController, AfterAsynchronous {
     }
     
     func onFinish() {
-        let loadPic = manageError.giveError(typeOfError: "UserService")
+        let loadPic = AppError.manageError.giveError(typeOfError: "UserService")
         if loadPic == true {
-            let imageData = UserService.userService.giveImageData()
+            let imageData = UserService.shared.giveImageData()
             profileImage.image = UIImage(data: imageData!)
         }
         

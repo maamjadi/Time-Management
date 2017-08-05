@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="epO-E6-BD2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A315i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="epO-E6-BD2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -83,7 +83,7 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="gyW-eM-PjU" secondAttribute="leading" id="uk0-Lh-nSe"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.13320797681808472" green="0.13728177547454834" blue="0.13727876543998718" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.1764705882352941" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="DGF-Hm-ScT" kind="show" id="Ul5-9e-Emb"/>
                                         </connections>
@@ -122,38 +122,106 @@
                                                 <constraint firstItem="s7S-3W-RYf" firstAttribute="centerY" secondItem="Xqt-q0-qW2" secondAttribute="centerY" id="ytv-JP-mCK"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.13320797681808472" green="0.13728177547454834" blue="0.13727876543998718" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.1764705882352941" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="41b-2K-haL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="36" id="fUI-za-rpw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="36" id="gGg-bD-Spm">
                                         <rect key="frame" x="0.0" y="260" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fUI-za-rpw" id="ybX-gG-UlR">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gGg-bD-Spm" id="cCI-MR-y6H">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljl-xQ-GuX">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wV2-V8-Gv2">
+                                                    <rect key="frame" x="318" y="2" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="googleSwitchIsChanged:" destination="2QR-Cb-afK" eventType="valueChanged" id="ZYp-qP-QQ0"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Cal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4A-47-gDn">
+                                                    <rect key="frame" x="8" y="7" width="171" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="LdC-tq-09Z"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wV2-V8-Gv2" firstAttribute="trailing" secondItem="cCI-MR-y6H" secondAttribute="trailingMargin" id="3m3-oo-6BB"/>
+                                                <constraint firstItem="i4A-47-gDn" firstAttribute="leading" secondItem="cCI-MR-y6H" secondAttribute="leadingMargin" id="Szd-TW-V6h"/>
+                                                <constraint firstItem="i4A-47-gDn" firstAttribute="centerY" secondItem="wV2-V8-Gv2" secondAttribute="centerY" id="XJm-Oa-dTj"/>
+                                                <constraint firstItem="wV2-V8-Gv2" firstAttribute="centerY" secondItem="cCI-MR-y6H" secondAttribute="centerY" id="cza-D8-IOP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="36" id="NLO-Pa-mn6">
+                                        <rect key="frame" x="0.0" y="296" width="375" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NLO-Pa-mn6" id="aCP-bw-iLz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ta-1o-n6y">
+                                                    <rect key="frame" x="318" y="2" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="outlookSwitchIsChanged:" destination="2QR-Cb-afK" eventType="valueChanged" id="2qS-MZ-tls"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outlook Cal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4b-Ml-hZ0">
+                                                    <rect key="frame" x="8" y="7" width="171" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="N7s-1p-2ei"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j4b-Ml-hZ0" firstAttribute="centerY" secondItem="8Ta-1o-n6y" secondAttribute="centerY" id="8nV-Ok-llX"/>
+                                                <constraint firstItem="j4b-Ml-hZ0" firstAttribute="leading" secondItem="aCP-bw-iLz" secondAttribute="leadingMargin" id="Amy-LJ-9aS"/>
+                                                <constraint firstItem="8Ta-1o-n6y" firstAttribute="trailing" secondItem="aCP-bw-iLz" secondAttribute="trailingMargin" id="UvJ-R9-67p"/>
+                                                <constraint firstItem="8Ta-1o-n6y" firstAttribute="centerY" secondItem="aCP-bw-iLz" secondAttribute="centerY" id="uUU-0t-jAC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="QW5-Pl-Z5L">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="36" id="Eel-YX-mLg">
+                                        <rect key="frame" x="0.0" y="368" width="375" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eel-YX-mLg" id="sb0-5Y-wN6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BuO-ZV-C2m">
                                                     <rect key="frame" x="8" y="0.5" width="359" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <state key="normal" title="Log out">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="logout" destination="2QR-Cb-afK" eventType="touchUpInside" id="Z1C-Io-pIL"/>
+                                                        <action selector="logout" destination="2QR-Cb-afK" eventType="touchUpInside" id="7Qz-5o-vFY"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ljl-xQ-GuX" firstAttribute="centerX" secondItem="ybX-gG-UlR" secondAttribute="centerX" id="O5D-Ys-sYD"/>
-                                                <constraint firstItem="ljl-xQ-GuX" firstAttribute="leading" secondItem="ybX-gG-UlR" secondAttribute="leadingMargin" id="ntH-wH-5Fs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ljl-xQ-GuX" secondAttribute="trailing" id="qEb-F6-ZIC"/>
-                                                <constraint firstItem="ljl-xQ-GuX" firstAttribute="centerY" secondItem="ybX-gG-UlR" secondAttribute="centerY" id="uuf-tn-OAD"/>
+                                                <constraint firstItem="BuO-ZV-C2m" firstAttribute="centerY" secondItem="sb0-5Y-wN6" secondAttribute="centerY" id="RYl-aj-mZR"/>
+                                                <constraint firstItem="BuO-ZV-C2m" firstAttribute="centerX" secondItem="sb0-5Y-wN6" secondAttribute="centerX" id="TjH-vn-Nqn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BuO-ZV-C2m" secondAttribute="trailing" id="bv1-wM-Kaa"/>
+                                                <constraint firstItem="BuO-ZV-C2m" firstAttribute="leading" secondItem="sb0-5Y-wN6" secondAttribute="leadingMargin" id="w7H-eH-M7l"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.13320797681808472" green="0.13728177547454834" blue="0.13727876543998718" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -166,7 +234,9 @@
                     <navigationItem key="navigationItem" id="VBe-0T-DTL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="googleSwitch" destination="wV2-V8-Gv2" id="bPK-9S-WM5"/>
                         <outlet property="nameTextField" destination="59z-mQ-luE" id="v5N-7k-9Xy"/>
+                        <outlet property="outlookSwitch" destination="8Ta-1o-n6y" id="6hz-RR-EzB"/>
                         <outlet property="profileImage" destination="gyW-eM-PjU" id="Ozv-ik-5Ye"/>
                         <outlet property="themeSwitch" destination="s7S-3W-RYf" id="Mfj-dV-0G6"/>
                         <outlet property="typeOfAccTextField" destination="vfw-gS-fxp" id="IRk-uK-TqA"/>

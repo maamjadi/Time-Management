@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MSAL.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TM.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,17 +47,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1EB134E2F2F49E01C3CBEA6B32AD2CA5</key>
+		<key>33B7B7CA4D9A32EEC1CA1BD6D4F4E281</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7F90D96D75B721A87806F93D05FFB816</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9021A9CF737B40AFE8628CC73C7235C0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AB75CAC42D5304BB7B268B16107546B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,6 +73,11 @@
 			<true/>
 		</dict>
 		<key>D754D048A59EE2C949DB4030D58270DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA448427B945D8A25974FE296E01EC2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

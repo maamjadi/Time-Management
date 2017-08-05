@@ -6,7 +6,7 @@
 //  Copyright © 2017 MDJD. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ReminderTableViewCell: UITableViewCell {
     

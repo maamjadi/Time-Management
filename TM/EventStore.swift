@@ -11,7 +11,7 @@ import EventKit
 
 class EventStore {
     
-    static let eventKit = EventStore()
+    static let shared = EventStore()
     
     private var eventStore = EKEventStore()
     
@@ -23,10 +23,10 @@ class EventStore {
         let reminderAuthorization = checkEventAuthorizationStatus(typeOfEntity: EKEntityType.reminder)
         
         if calendarAuthorization == true && reminderAuthorization == true {
-            Error.manageError.changeError(typeOfError: "Permission", error: true)
+            AppError.manageError.changeError(typeOfError: "Permission", error: true)
             loadCalendars()
         } else {
-            Error.manageError.changeError(typeOfError: "Permission", error: false)
+            AppError.manageError.changeError(typeOfError: "Permission", error: false)
             afterCheck.onFinish()
         }
     }

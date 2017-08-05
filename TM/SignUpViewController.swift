@@ -116,7 +116,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
             var data = Data()
             data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
             defaultQueue.async {
-                UserService.userService.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data,afterSignUp: self)
+                UserService.shared.signUp(self.nameTextField.text!, email: self.emailTextField.text!, pass: self.passwordTextField.text!, imageData: data,afterSignUp: self)
             }
             
         } else {
@@ -137,7 +137,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
     }
     
     func onFinish() {
-        let checkSignUp = Error.manageError.giveError(typeOfError: "UserService")
+        let checkSignUp = AppError.manageError.giveError(typeOfError: "UserService")
         if checkSignUp == true {
             print("User successfully signed up")
             //            self.deregisterFromKeyboardNotifications()

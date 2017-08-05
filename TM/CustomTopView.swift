@@ -40,7 +40,6 @@ class CustomTopView: UIView {
         for jump in 1...jumps {
             let xPoint = (CGFloat(jump))*widthConstant
             var lineWidth: CGFloat = 1
-            let diff = (height-heightConstant - (height-heightConstant)*0.9)
             if jump % 4 == 0 {
                 lineWidth = 2.5
             }
@@ -49,6 +48,7 @@ class CustomTopView: UIView {
                 let substractionConstant = CGFloat(center*jump)
                 let constant = substractionConstant/(CGFloat(center)/5)
                 heightConstant = height - constant
+                let diff = (height-heightConstant - (height-heightConstant)*0.9)
                 constants.append(heightConstant)
                 view = UIView(frame: CGRect(x: xPoint, y: ((heightConstant+diff)/2), width: lineWidth, height: (height-heightConstant)*0.9))
             }
@@ -57,9 +57,11 @@ class CustomTopView: UIView {
             }
             else if jump > center {
                 heightConstant = constants.removeLast()
+                let diff = (height-heightConstant - (height-heightConstant)*0.9)
                 view = UIView(frame: CGRect(x: xPoint, y: ((heightConstant+diff)/2), width: lineWidth, height: (height-heightConstant)*0.9))
             }
             view.backgroundColor = UIColor.white
+            view.layer.cornerRadius = 1.3
             self.addSubview(view)
             self.lines.append(view)
             view.bringSubview(toFront: view)

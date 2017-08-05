@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  AppError.swift
 //  Authentication
 //
 //  Created by Amin Amjadi on 10/2/16.
@@ -9,15 +9,24 @@
 import Foundation
 import FirebaseCrash
 
-class Error {
+class AppError {
     
-    static let manageError = Error()
+    static let manageError = AppError()
     
     private var knownError = [String:Err]()
     
     private enum Err {
         case UserService(Bool?)
         case Permissions(Bool?)
+    }
+    
+    enum ErrorType: Error {
+        case PublicClientApplicationCreation(NSError)
+        case UserNotFound(NSError)
+        case NoUserSignedIn
+        case ServerInvalidResponse
+        case ImageCacheError(Error)
+        case FailedToMakeUIImageError
     }
     
     private var saveErrorForUserService = [Err]()

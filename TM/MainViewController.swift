@@ -17,8 +17,6 @@ class MainViewController: UIViewController, AfterAsynchronous {
     @IBOutlet weak var typeOfAccTextField: UILabel!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
-    var manageError = Error()
-    
     @IBAction func logOut() {
         
         let firebaseAuth = FIRAuth.auth()
@@ -76,7 +74,7 @@ class MainViewController: UIViewController, AfterAsynchronous {
                     self.profileImage.image = UIImage(data: data)
                 }
             }
-            UserService.userService.loadProfilePictureFromStorage(user: user, afterLoadingThePiture: self)
+            UserService.shared.loadProfilePictureFromStorage(user: user, afterLoadingThePiture: self)
             
             
         } else {
@@ -85,9 +83,9 @@ class MainViewController: UIViewController, AfterAsynchronous {
     }
     
     func onFinish() {
-        let loadPic = manageError.giveError(typeOfError: "UserService")
+        let loadPic = AppError.manageError.giveError(typeOfError: "UserService")
         if loadPic == true {
-            let imageData = UserService.userService.giveImageData()
+            let imageData = UserService.shared.giveImageData()
             if imageData != nil {
                 profileImage.image = UIImage(data: imageData!)
                 profileImage.isHidden = false

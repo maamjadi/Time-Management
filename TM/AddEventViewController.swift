@@ -16,10 +16,14 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var dimView: UIView!
     @IBOutlet var timeView: UIView!
-    @IBOutlet weak var hourSelector: UIView!
-    @IBOutlet weak var hourSelector2: UIView!
-    @IBOutlet weak var minuteSelector: UIView!
-    @IBOutlet weak var minuteSelector2: UIView!
+    @IBOutlet weak var hourSelector: UIImageView!
+    @IBOutlet weak var hourSelector2: UIImageView!
+    @IBOutlet weak var hourSelectorView: UIView!
+    @IBOutlet weak var hourSelectorView2: UIView!
+    @IBOutlet weak var minuteSelector: UIImageView!
+    @IBOutlet weak var minuteSelector2: UIImageView!
+    @IBOutlet weak var minuteSelectorView: UIView!
+    @IBOutlet weak var minuteSelectorView2: UIView!
     @IBOutlet weak var centertimeSelector: UIView!
     @IBOutlet weak var centertimeSelector2: UIView!
     @IBOutlet weak var expandChooseDateTimeBtn: UIButton!
@@ -72,9 +76,13 @@ class AddEventViewController: UIViewController {
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissSubviews(sender:)))
         dimView.addGestureRecognizer(dismissTap)
-        hourSelector.layer.cornerRadius = hourSelector.frame.size.width / 2
-        minuteSelector.layer.cornerRadius = minuteSelector.frame.size.width / 2
+        hourSelectorView.layer.cornerRadius = hourSelectorView.frame.size.width / 2
+        minuteSelectorView.layer.cornerRadius = minuteSelectorView.frame.size.width / 2
         centertimeSelector.layer.cornerRadius = centertimeSelector.frame.size.width / 2
+        hourSelectorView2.layer.cornerRadius = hourSelector2.frame.size.width / 2
+        minuteSelectorView2.layer.cornerRadius = minuteSelector2.frame.size.width / 2
+        centertimeSelector2.layer.cornerRadius = centertimeSelector2.frame.size.width / 2
+
         
         setupChooseDateCalendarView()
         
@@ -102,7 +110,6 @@ class AddEventViewController: UIViewController {
         if detailMenuBtnView.transform != .identity {
             UIView.animate(withDuration: 0.3, animations: {
                 self.detailMenuBtnView.transform = .identity
-                
                 self.menuButton.setImage(UIImage(named: "addEventMainButtonDetail"), for: .normal)
             })
         }
@@ -128,7 +135,7 @@ class AddEventViewController: UIViewController {
     func dismissSubviews(sender: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
             self.dimView.alpha = 0
-            self.timeView.transform = CGAffineTransform(scaleX: 0.1, y: 0.05)
+            self.timeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.005)
         }, completion: {(success) in
             self.timeView.removeFromSuperview()
         })
@@ -207,14 +214,38 @@ class AddEventViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.chooseDatePanelTimeView.transform = CGAffineTransform.identity
         }
+        monthTimeViewLabel.alpha = 0.7
+        dayTimeViewLabel.alpha = 0.7
+        dateTimeViewLabel.alpha = 0.7
     }
     
+    @IBAction func expandChooseDateTime2(_ sender: UIButton) {
+        expandChooseDateTimeBtn2.isHidden = true
+        chooseDatePanelTimeView2.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            self.chooseDatePanelTimeView2.transform = CGAffineTransform.identity
+        }
+    }
+    
+    
     func dismissChooseDatePanelTimeView() {
-        UIView.animate(withDuration: 0.3, animations: {
+        if expandChooseDateTimeBtn.isHidden == true {
+        UIView.animate(withDuration: 0.3, delay: 0.3, animations: {
             self.chooseDatePanelTimeView.transform = CGAffineTransform(translationX: self.chooseDatePanelTimeView.frame.size.width + 20, y: 0)
         }) { (sucess) in
             self.expandChooseDateTimeBtn.isHidden = false
             self.chooseDatePanelTimeView.isHidden = true
+            self.monthTimeViewLabel.alpha = 1
+            self.dayTimeViewLabel.alpha = 1
+            self.dateTimeViewLabel.alpha = 1
+        }
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0.3, animations: {
+                self.chooseDatePanelTimeView2.transform = CGAffineTransform(translationX: self.chooseDatePanelTimeView2.frame.size.width + 20, y: 0)
+            }) { (sucess) in
+                self.expandChooseDateTimeBtn2.isHidden = false
+                self.chooseDatePanelTimeView2.isHidden = true
+            }
         }
     }
     
@@ -247,23 +278,22 @@ class AddEventViewController: UIViewController {
     }
     
     func handleChooseDateCellTimeView(cell: JTAppleCell?, cellState: CellState) {
+        handleChooseDateSelectedViewTimeView(cell: cell, cellState: cellState)
+    }
+    
+    func handleChooseDateSelectedViewTimeView(cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? ChooseDateTimeCollectionViewCell else { return }
-    }
-    
-    func handleChooseDateTextColorTimeView() {
-        
-    }
-    
-    func handleChooseDateSelectedViewTimeView() {
-        
-    }
-    
-    func selectedCellUpdateTimeView(cell: JTAppleCell?, cellState: CellState) {
-        guard let validCell = cell as? ChooseDateTimeCollectionViewCell else { return }
-        formatter.dateFormat = "MMM"
-        monthTimeViewLabel.text = " " + formatter.string(from: cellState.date)
-        formatter.dateFormat = "dd"
-        dateTimeViewLabel.text = formatter.string(from: cellState.date)
+        validCell.selectedDateView.layer.cornerRadius = 2
+        validCell.selectedDateView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        if cellState.isSelected {
+            validCell.selectedDateView.isHidden = false
+            formatter.dateFormat = "MMM"
+            monthTimeViewLabel.text = " " + formatter.string(from: cellState.date)
+            formatter.dateFormat = "dd"
+            dateTimeViewLabel.text = formatter.string(from: cellState.date)
+        } else {
+            validCell.selectedDateView.isHidden = true
+        }
     }
     
     func setupChooseDateCalendarView() {
@@ -370,7 +400,7 @@ extension AddEventViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         
         let startDate = formatter.date(from: "2017 01 01")!
         let endDate = formatter.date(from: "2017 12 31")!
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1)
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1, generateInDates: .off, generateOutDates: .off, firstDayOfWeek: .monday, hasStrictBoundaries: true)
         return parameters
     }
     

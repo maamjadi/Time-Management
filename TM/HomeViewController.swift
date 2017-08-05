@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, AfterAsynchronous {
         //            appDelegate.login()
         //            }
         //        }
-        UserService.userService.createDirectory()
+        UserService.shared.createDirectory()
         
     }
     
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController, AfterAsynchronous {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        EventStore.eventKit.checkEventKitAuthorizationStatus(afterCheck: self)
+        EventStore.shared.checkEventKitAuthorizationStatus(afterCheck: self)
         setBackgroundImage()
     }
     
@@ -140,12 +140,12 @@ class HomeViewController: UIViewController, AfterAsynchronous {
     }
     
     func onFinish() {
-        let tabBar = self.tabBarController as! CustomTabBarController
-        let checkAuthorizationStatus = Error.manageError.giveError(typeOfError: "Permission")
+        //let tabBar = self.tabBarController as! CustomTabBarController
+        let checkAuthorizationStatus = AppError.manageError.giveError(typeOfError: "Permission")
         if checkAuthorizationStatus == true {
-            calendars = EventStore.eventKit.giveCalendarsSinceNow()
-            reminders = EventStore.eventKit.giveReminders()
-            EventStore.eventKit.eraseEventArrays()
+            calendars = EventStore.shared.giveCalendarsSinceNow()
+            reminders = EventStore.shared.giveReminders()
+            EventStore.shared.eraseEventArrays()
             DispatchQueue.main.async {
                 self.checkReminders(nReminders: self.reminders.count)
             }
@@ -153,10 +153,10 @@ class HomeViewController: UIViewController, AfterAsynchronous {
                 self.collectionViewEvents.reloadData()
                 self.reminderTableView.reloadData()
             }
-            tabBar.showTabBar()
+            //tabBar.showTabBar()
             needPermissionView.fadeOut()
         } else {
-            tabBar.hideTabBar()
+            //tabBar.hideTabBar()
             self.view.bringSubview(toFront: needPermissionView)
             needPermissionView.fadeIn()
         }

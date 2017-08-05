@@ -53,7 +53,6 @@
                                         </activityIndicatorView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7D-tw-9vN">
                                             <rect key="frame" x="-20" y="640" width="415" height="27"/>
-                                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="0.2479666095890411" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="27" id="kqw-Cz-Pe1"/>
                                             </constraints>
@@ -238,6 +237,7 @@
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="changeColorFB:" destination="BYZ-38-t0r" eventType="touchDown" id="mfX-VJ-Kru"/>
+                                                <action selector="changeColorFBToNormal:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="nA5-tS-9Ty"/>
                                                 <action selector="facebookLoginButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="W3g-xP-LJp"/>
                                             </connections>
                                         </button>
@@ -262,6 +262,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
+                                                <action selector="changeColorGToNormal:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="qcf-Vq-A4o"/>
                                                 <action selector="changeColorGoogle:" destination="BYZ-38-t0r" eventType="touchDown" id="nV2-rc-wYU"/>
                                                 <action selector="googleLoginButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="wK3-PI-a9y"/>
                                             </connections>
@@ -545,7 +546,6 @@
                                         </activityIndicatorView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBS-OV-PeJ">
                                             <rect key="frame" x="0.0" y="639" width="375" height="28"/>
-                                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="0.2479666096" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <state key="normal" title="Already have an account? Sign in">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.75321061643835618" colorSpace="custom" customColorSpace="sRGB"/>

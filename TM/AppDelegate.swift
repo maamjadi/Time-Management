@@ -46,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        Error.manageError.changeError(typeOfError: "UserService", error: true)
+        AppError.manageError.changeError(typeOfError: "UserService", error: true)
         let loginVC = LoginViewController()
         if error != nil {
-            Error.manageError.changeError(typeOfError: "UserService", error: false)
+            AppError.manageError.changeError(typeOfError: "UserService", error: false)
             loginVC.onFinish()
             return
         }
@@ -60,12 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             // ...
             if error != nil {
-                Error.manageError.changeError(typeOfError: "UserService", error: false)
+                AppError.manageError.changeError(typeOfError: "UserService", error: false)
                 loginVC.onFinish()
                 return
             } else {
                 print("You have been loged in")
-                UserService.userService.initialLicense(user!)
+                UserService.shared.initialLicense(user!)
                 loginVC.onFinish()
             }
         }

@@ -16,6 +16,8 @@ pod 'Firebase/Messaging'
 pod 'Firebase/Core'
 
 pod 'GoogleSignIn'
+
+pod "MSAL"
   
 pod 'JTAppleCalendar', '~> 7.0'
 

@@ -67,9 +67,9 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
         self.emailTextField.text = email
         self.nameTextField.text = name
         
-        UserService.userService.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
+        UserService.shared.loadProfilePictureFromStorage(user: user! , afterLoadingThePiture : self)
         
-        if let userBirthday = UserService.userService.getBirthday(uid: (user?.uid)!) {
+        if let userBirthday = UserService.shared.getBirthday(uid: (user?.uid)!) {
             birthdayTextField.text = userBirthday
         }
     }
@@ -162,7 +162,7 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
                     var data = Data()
                     let userName = self.nameTextField.text
                     data = UIImageJPEGRepresentation(profileImage.image!, 0.1)!
-                    UserService.userService.updateNamePicture(user: user, imageData: data, updateName: userName)
+                    UserService.shared.updateNamePicture(user: user, imageData: data, updateName: userName)
                     print("picture and name Updated")
                 }
                 
@@ -252,9 +252,9 @@ class ProfileTableViewController: UITableViewController, AfterAsynchronous {
     
     func onFinish() {
         
-        let loadPic = Error.manageError.giveError(typeOfError: "UserService")
+        let loadPic = AppError.manageError.giveError(typeOfError: "UserService")
         if loadPic == true {
-            let imageData = UserService.userService.giveImageData()
+            let imageData = UserService.shared.giveImageData()
             profileImage.image = UIImage(data: imageData!)
         }
     }

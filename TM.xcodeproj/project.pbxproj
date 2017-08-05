@@ -17,6 +17,11 @@
 		4D2DCC7D1F0E6BC2000EE7D0 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2DCC7C1F0E6BC2000EE7D0 /* EventKitUI.framework */; };
 		4D2DCC7F1F0E6D7F000EE7D0 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */; };
 		4D2DCC811F0E7ABB000EE7D0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */; };
+		4D34E1A61F35E4F400EC0C83 /* MSALUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1A51F35E4F400EC0C83 /* MSALUtil.swift */; };
+		4D34E1A91F35FCA200EC0C83 /* MSALCalendarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1A81F35FCA200EC0C83 /* MSALCalendarUtil.swift */; };
+		4D34E1AB1F35FCC700EC0C83 /* MSALPhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1AA1F35FCC700EC0C83 /* MSALPhotoUtil.swift */; };
+		4D34E1AD1F35FD0100EC0C83 /* CalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1AC1F35FD0100EC0C83 /* CalendarEvents.swift */; };
+		4D34E1B01F36022400EC0C83 /* MSALGraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1AF1F36022400EC0C83 /* MSALGraphRequest.swift */; };
 		4D3C74E91F1802B6001C21E6 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */; };
 		4D3E05F81F251EC20044B901 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */; };
 		4D6797F61F096ADB00746B3C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F21F096ADB00746B3C /* Bolts.framework */; };
@@ -35,6 +40,7 @@
 		4D9CB8721F17D9F200EF5357 /* Planner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D9CB8711F17D9F200EF5357 /* Planner.storyboard */; };
 		4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */; };
 		4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */; };
+		4DCB77391F2FE30A000CAD95 /* RotatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB77381F2FE30A000CAD95 /* RotatableView.swift */; };
 		4DD129E11E6ABBF7002BFAFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD129E01E6ABBF7002BFAFF /* AppDelegate.swift */; };
 		4DD129E91E6ABBF7002BFAFF /* TM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DD129E71E6ABBF7002BFAFF /* TM.xcdatamodeld */; };
 		4DD129EE1E6ABBF7002BFAFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD129EC1E6ABBF7002BFAFF /* LaunchScreen.storyboard */; };
@@ -42,7 +48,6 @@
 		4DD12A041E6ABBF7002BFAFF /* TMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD12A031E6ABBF7002BFAFF /* TMUITests.swift */; };
 		4DD12A121E6ABC30002BFAFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DD12A111E6ABC30002BFAFF /* GoogleService-Info.plist */; };
 		4DD4F1111E6ABE3500B0CAEE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD4F1101E6ABE3500B0CAEE /* QuartzCore.framework */; };
-		4DD4F1351E6ABF3100B0CAEE /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F11C1E6ABF3100B0CAEE /* iCarousel.m */; };
 		4DD4F1361E6ABF3100B0CAEE /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F11F1E6ABF3100B0CAEE /* IQNSArray+Sort.swift */; };
 		4DD4F1371E6ABF3100B0CAEE /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1201E6ABF3100B0CAEE /* IQUIScrollView+Additions.swift */; };
 		4DD4F1381E6ABF3100B0CAEE /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1211E6ABF3100B0CAEE /* IQUITextFieldView+Additions.swift */; };
@@ -60,7 +65,7 @@
 		4DD4F1441E6ABF3100B0CAEE /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1311E6ABF3100B0CAEE /* IQToolbar.swift */; };
 		4DD4F1451E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1321E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift */; };
 		4DD4F1461E6ABF3100B0CAEE /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4DD4F1341E6ABF3100B0CAEE /* IQKeyboardManager.bundle */; };
-		4DD4F1491E6ABF6400B0CAEE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1471E6ABF6400B0CAEE /* Error.swift */; };
+		4DD4F1491E6ABF6400B0CAEE /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1471E6ABF6400B0CAEE /* AppError.swift */; };
 		4DD4F14A1E6ABF6400B0CAEE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F1481E6ABF6400B0CAEE /* UserService.swift */; };
 		4DD4F14D1E6AC16E00B0CAEE /* Visualization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD4F14B1E6AC16E00B0CAEE /* Visualization.storyboard */; };
 		4DD4F14E1E6AC16E00B0CAEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD4F14C1E6AC16E00B0CAEE /* HomeViewController.swift */; };
@@ -116,6 +121,12 @@
 		4D2DCC7C1F0E6BC2000EE7D0 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		4D34E1A51F35E4F400EC0C83 /* MSALUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSALUtil.swift; sourceTree = "<group>"; };
+		4D34E1A81F35FCA200EC0C83 /* MSALCalendarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSALCalendarUtil.swift; sourceTree = "<group>"; };
+		4D34E1AA1F35FCC700EC0C83 /* MSALPhotoUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSALPhotoUtil.swift; sourceTree = "<group>"; };
+		4D34E1AC1F35FD0100EC0C83 /* CalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvents.swift; sourceTree = "<group>"; };
+		4D34E1AE1F36019D00EC0C83 /* TM-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TM-Bridging-Header.h"; sourceTree = "<group>"; };
+		4D34E1AF1F36022400EC0C83 /* MSALGraphRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSALGraphRequest.swift; sourceTree = "<group>"; };
 		4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D6797F21F096ADB00746B3C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -134,6 +145,7 @@
 		4D9CB8711F17D9F200EF5357 /* Planner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Planner.storyboard; sourceTree = "<group>"; };
 		4D9CB8731F17DB9A00EF5357 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4D9CB8751F17DBB200EF5357 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
+		4DCB77381F2FE30A000CAD95 /* RotatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotatableView.swift; sourceTree = "<group>"; };
 		4DD129DD1E6ABBF7002BFAFF /* TM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DD129E01E6ABBF7002BFAFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DD129E81E6ABBF7002BFAFF /* TM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TM.xcdatamodel; sourceTree = "<group>"; };
@@ -147,8 +159,6 @@
 		4DD12A051E6ABBF7002BFAFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DD12A111E6ABC30002BFAFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DD4F1101E6ABE3500B0CAEE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4DD4F11B1E6ABF3100B0CAEE /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		4DD4F11C1E6ABF3100B0CAEE /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		4DD4F11F1E6ABF3100B0CAEE /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		4DD4F1201E6ABF3100B0CAEE /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		4DD4F1211E6ABF3100B0CAEE /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
@@ -167,7 +177,7 @@
 		4DD4F1311E6ABF3100B0CAEE /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		4DD4F1321E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		4DD4F1341E6ABF3100B0CAEE /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
-		4DD4F1471E6ABF6400B0CAEE /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		4DD4F1471E6ABF6400B0CAEE /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		4DD4F1481E6ABF6400B0CAEE /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4DD4F14B1E6AC16E00B0CAEE /* Visualization.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Visualization.storyboard; sourceTree = "<group>"; };
 		4DD4F14C1E6AC16E00B0CAEE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +188,6 @@
 		4DD4F1531E6AC19B00B0CAEE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4DD4F1591E6AC1AB00B0CAEE /* AfterAsynchronous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterAsynchronous.swift; sourceTree = "<group>"; };
 		4DD4F15B1E6AC1C700B0CAEE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		4DD4F15D1E6AC20200B0CAEE /* TM-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TM-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		4DD4F1601E6B389600B0CAEE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -233,6 +242,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D34E1A71F35FC4500EC0C83 /* ExternalViews */ = {
+			isa = PBXGroup;
+			children = (
+				4DF80A871F1E3CDB0012250A /* DesignableX */,
+				4D7487F51F20DB2900334076 /* CustomTopView.swift */,
+				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
+				4D26F6321F2A62E600CDC102 /* CustomSegmentControl.swift */,
+				4DCB77381F2FE30A000CAD95 /* RotatableView.swift */,
+			);
+			name = ExternalViews;
+			sourceTree = "<group>";
+		};
+		4D34E1B11F3604FF00EC0C83 /* EventHandeling */ = {
+			isa = PBXGroup;
+			children = (
+				4D34E1AC1F35FD0100EC0C83 /* CalendarEvents.swift */,
+				4D34E1B41F36059700EC0C83 /* iCal */,
+				4D34E1B31F36058300EC0C83 /* GoogleCal */,
+				4D34E1B21F36051E00EC0C83 /* OutlookCal */,
+			);
+			name = EventHandeling;
+			sourceTree = "<group>";
+		};
+		4D34E1B21F36051E00EC0C83 /* OutlookCal */ = {
+			isa = PBXGroup;
+			children = (
+				4D34E1A51F35E4F400EC0C83 /* MSALUtil.swift */,
+				4D34E1A81F35FCA200EC0C83 /* MSALCalendarUtil.swift */,
+				4D34E1AA1F35FCC700EC0C83 /* MSALPhotoUtil.swift */,
+				4D34E1AF1F36022400EC0C83 /* MSALGraphRequest.swift */,
+			);
+			name = OutlookCal;
+			sourceTree = "<group>";
+		};
+		4D34E1B31F36058300EC0C83 /* GoogleCal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GoogleCal;
+			sourceTree = "<group>";
+		};
+		4D34E1B41F36059700EC0C83 /* iCal */ = {
+			isa = PBXGroup;
+			children = (
+				4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */,
+			);
+			name = iCal;
+			sourceTree = "<group>";
+		};
 		4D3D2EC41F17D1B2005442FB /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,9 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				4DD129E01E6ABBF7002BFAFF /* AppDelegate.swift */,
-				4DD4F1471E6ABF6400B0CAEE /* Error.swift */,
+				4DD4F1471E6ABF6400B0CAEE /* AppError.swift */,
 				4DD4F1481E6ABF6400B0CAEE /* UserService.swift */,
-				4D2DCC7E1F0E6D7F000EE7D0 /* EventStore.swift */,
 				4DD4F1621E6B3B4900B0CAEE /* CustomTabBarController.swift */,
 				4DD4F1501E6AC19B00B0CAEE /* Main.storyboard */,
 				4DD4F10E1E6ABE0200B0CAEE /* Home */,
@@ -328,19 +385,17 @@
 		4DD4F10C1E6ABDF200B0CAEE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4DF80A871F1E3CDB0012250A /* DesignableX */,
+				4D34E1A71F35FC4500EC0C83 /* ExternalViews */,
+				4D34E1B11F3604FF00EC0C83 /* EventHandeling */,
+				4D34E1AE1F36019D00EC0C83 /* TM-Bridging-Header.h */,
 				4DD4F1591E6AC1AB00B0CAEE /* AfterAsynchronous.swift */,
-				4D7487F51F20DB2900334076 /* CustomTopView.swift */,
 				4DD4F15E1E6AC24B00B0CAEE /* Keyboard.swift */,
 				4DD4F15B1E6AC1C700B0CAEE /* UIViewControllerExtensions.swift */,
-				4DD4F15D1E6AC20200B0CAEE /* TM-Bridging-Header.h */,
 				4D2DCC801F0E7ABB000EE7D0 /* UIViewExtensions.swift */,
-				4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */,
 				4D72C2AD1F1957DE0045CF8A /* DateExtension.swift */,
 				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
 				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
 				4D108BC41F261670000701EF /* ColorConstants.swift */,
-				4D26F6321F2A62E600CDC102 /* CustomSegmentControl.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -376,19 +431,9 @@
 		4DD4F10F1E6ABE0900B0CAEE /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				4DD4F11A1E6ABF3100B0CAEE /* iCarousel */,
 				4DD4F11D1E6ABF3100B0CAEE /* IQKeyboardManagerSwift */,
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		4DD4F11A1E6ABF3100B0CAEE /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				4DD4F11B1E6ABF3100B0CAEE /* iCarousel.h */,
-				4DD4F11C1E6ABF3100B0CAEE /* iCarousel.m */,
-			);
-			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		4DD4F11D1E6ABF3100B0CAEE /* IQKeyboardManagerSwift */ = {
@@ -720,10 +765,10 @@
 				4DF80A961F1E3CDB0012250A /* UIViewAnchorPoint.swift in Sources */,
 				4DF80A991F1E3CDB0012250A /* UIViewX.swift in Sources */,
 				4D8F97831F2B9D1B00D91C80 /* ChooseDateTimeCollectionViewCell.swift in Sources */,
+				4DCB77391F2FE30A000CAD95 /* RotatableView.swift in Sources */,
 				4DD4F13E1E6ABF3100B0CAEE /* IQKeyboardManager.swift in Sources */,
 				4D745E341F1B63C500FA7FC1 /* AppConstants.swift in Sources */,
 				4DD4F13A1E6ABF3100B0CAEE /* IQUIViewController+Additions.swift in Sources */,
-				4DD4F1351E6ABF3100B0CAEE /* iCarousel.m in Sources */,
 				4DD4F1431E6ABF3100B0CAEE /* IQTitleBarButtonItem.swift in Sources */,
 				4D108BC51F261670000701EF /* ColorConstants.swift in Sources */,
 				4D940A2D1F1A895100CF1D81 /* AddEventCollectionViewCell.swift in Sources */,
@@ -735,6 +780,7 @@
 				4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */,
 				4D85117E1F214CA4008A300D /* TagsCollectionViewCell.swift in Sources */,
 				4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */,
+				4D34E1A91F35FCA200EC0C83 /* MSALCalendarUtil.swift in Sources */,
 				4DE06B5B1F27D6E700062E61 /* MonthViewCollectionViewCell.swift in Sources */,
 				4DD4F1411E6ABF3100B0CAEE /* IQBarButtonItem.swift in Sources */,
 				4DD129E11E6ABBF7002BFAFF /* AppDelegate.swift in Sources */,
@@ -743,15 +789,19 @@
 				4DF80A921F1E3CDB0012250A /* UIViewXRadialGradient.swift in Sources */,
 				4DD4F1421E6ABF3100B0CAEE /* IQPreviousNextView.swift in Sources */,
 				4DD4F1451E6ABF3100B0CAEE /* IQUIView+IQKeyboardToolbar.swift in Sources */,
-				4DD4F1491E6ABF6400B0CAEE /* Error.swift in Sources */,
+				4D34E1A61F35E4F400EC0C83 /* MSALUtil.swift in Sources */,
+				4DD4F1491E6ABF6400B0CAEE /* AppError.swift in Sources */,
 				4DD4F1581E6AC19B00B0CAEE /* SignUpViewController.swift in Sources */,
 				4DD6B31B1F19328A00E70B67 /* EventCollectionViewCell.swift in Sources */,
 				4DD4F13D1E6ABF3100B0CAEE /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				4D2DCC811F0E7ABB000EE7D0 /* UIViewExtensions.swift in Sources */,
+				4D34E1B01F36022400EC0C83 /* MSALGraphRequest.swift in Sources */,
 				4DF80A941F1E3CDB0012250A /* UIButtonX.swift in Sources */,
+				4D34E1AB1F35FCC700EC0C83 /* MSALPhotoUtil.swift in Sources */,
 				4DF80A9B1F1E3CDB0012250A /* UISliderX.swift in Sources */,
 				4D2DCC7F1F0E6D7F000EE7D0 /* EventStore.swift in Sources */,
 				4DD4F15F1E6AC24B00B0CAEE /* Keyboard.swift in Sources */,
+				4D34E1AD1F35FD0100EC0C83 /* CalendarEvents.swift in Sources */,
 				4D2986B01F181449000688FD /* ReminderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
