@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol MSALGraphRequesting
+/*protocol MSALGraphRequesting
 {
     func getJSON(path: String, completion: @escaping (_ json: [String:Any]?, Error?) -> Void)
     func getData(path: String, completion: @escaping (_ data: Data?, Error?) -> Void)
-}
+}*/
 
-class MSALGraphRequest: MSALGraphRequesting {
+class MSALGraphRequest {
     
     let kGraphErrorDomain: NSErrorDomain = "MSALGraphErrorDomain"
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -623,7 +623,7 @@
                         <outlet property="passwordTextField" destination="ltO-9u-ynI" id="OTS-FV-x7Q"/>
                         <outlet property="profileImage" destination="0dB-Wb-zWp" id="XBK-hq-l0R"/>
                         <outlet property="signUpButton" destination="pSD-Gh-pfF" id="HGs-SV-CfM"/>
-                        <outlet property="vertifyPassTextField" destination="3Dh-AZ-yHU" id="iki-dd-O47"/>
+                        <outlet property="verifyPassTextField" destination="3Dh-AZ-yHU" id="PGt-Uh-l9u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7x-pO-OHS" sceneMemberID="firstResponder"/>
@@ -640,6 +640,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tabBarInstance" destination="Zk2-Dg-i4W" id="cE1-Vp-Nwa"/>
                         <segue destination="yhk-fC-qWa" kind="relationship" relationship="viewControllers" id="bZ0-2C-8tu"/>
                         <segue destination="NBj-dI-g9V" kind="relationship" relationship="viewControllers" id="Twg-tu-tfn"/>
                         <segue destination="pHy-xd-6AM" kind="relationship" relationship="viewControllers" id="4P9-To-DE2"/>

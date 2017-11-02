@@ -12,7 +12,7 @@ typealias PhotoCompletion = (UIImage?, Error?) -> Void
 
 class MSALPhotoUtil {
     // Constants
-    fileprivate let kLastPhotoCheckKey = "last_photo_check"
+    fileprivate let kLastPhotoCheckKey = "last_MSALphoto_check"
     fileprivate let kSecondsPerDay: Double = 3600 * 24
     
     // Variables

@@ -12,8 +12,8 @@ typealias CalendarCompletion = ([Date: [CalendarEvent]]?, Error?) -> Void
 
 class MSALCalendarUtil {
     // Constants
-    fileprivate let kLastEventsCheckKey = "last_events_check"
-    fileprivate let kEventsKey = "events"
+    fileprivate let kLastEventsCheckKey = "last_MSALevents_check"
+    fileprivate let kEventsKey = "MSALevents"
     
     // Singleton instance
     static let shared = MSALCalendarUtil()
@@ -91,9 +91,9 @@ fileprivate extension MSALCalendarUtil {
         
         for jsonEvent in events {
             if let event = CalendarEvent.event(withJson: jsonEvent) {
-                if event.startDate.timeIntervalSinceNow < 0 {
+                /*if event.startDate.timeIntervalSinceNow < 0 {
                     continue
-                }
+                }*/
                 
                 let day = calendar.startOfDay(for: event.startDate)
                 

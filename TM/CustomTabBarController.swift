@@ -10,6 +10,8 @@ import UIKit
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    @IBOutlet var tabBarInstance: UITabBar!
+    
     let centerBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
     
     override func viewDidLoad() {
@@ -33,8 +35,14 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func setupMiddleButton(centerButton: UIButton, image: String, backgroundColor: UIColor = .clear) {
         
+        
+        
         var menuButtonFrame = centerButton.frame
-        menuButtonFrame.origin.y = self.view.bounds.height - menuButtonFrame.height
+        if UIDevice().type == .iPhoneX {
+            menuButtonFrame.origin.y = self.tabBarInstance.frame.origin.y - menuButtonFrame.size.height/1.5
+        } else {
+            menuButtonFrame.origin.y = self.view.bounds.height - menuButtonFrame.height
+        }
         menuButtonFrame.origin.x = self.view.bounds.width/2 - menuButtonFrame.size.width/2
         centerButton.frame = menuButtonFrame
         

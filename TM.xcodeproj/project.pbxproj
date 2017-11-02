@@ -24,6 +24,7 @@
 		4D34E1B01F36022400EC0C83 /* MSALGraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34E1AF1F36022400EC0C83 /* MSALGraphRequest.swift */; };
 		4D3C74E91F1802B6001C21E6 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */; };
 		4D3E05F81F251EC20044B901 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */; };
+		4D5B46661FAAB97400D6572D /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5B46651FAAB97400D6572D /* UIDeviceExtension.swift */; };
 		4D6797F61F096ADB00746B3C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F21F096ADB00746B3C /* Bolts.framework */; };
 		4D6797F71F096ADB00746B3C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F31F096ADB00746B3C /* FBSDKCoreKit.framework */; };
 		4D6797F81F096ADB00746B3C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */; };
@@ -129,6 +130,7 @@
 		4D34E1AF1F36022400EC0C83 /* MSALGraphRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSALGraphRequest.swift; sourceTree = "<group>"; };
 		4D3C74E81F1802B6001C21E6 /* CheckBoxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		4D3E05F71F251EC20044B901 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D5B46651FAAB97400D6572D /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		4D6797F21F096ADB00746B3C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		4D6797F31F096ADB00746B3C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4D6797F41F096ADB00746B3C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				4D745E311F1B5EF400FA7FC1 /* SpringyScrollView.swift */,
 				4D745E331F1B63C500FA7FC1 /* AppConstants.swift */,
 				4D108BC41F261670000701EF /* ColorConstants.swift */,
+				4D5B46651FAAB97400D6572D /* UIDeviceExtension.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				4D745E321F1B5EF400FA7FC1 /* SpringyScrollView.swift in Sources */,
 				4D9CB8761F17DBB200EF5357 /* PlannerViewController.swift in Sources */,
 				4DD4F1561E6AC19B00B0CAEE /* MainViewController.swift in Sources */,
+				4D5B46661FAAB97400D6572D /* UIDeviceExtension.swift in Sources */,
 				4D7D8B251F1A7A0200837C98 /* AddEventViewController.swift in Sources */,
 				4D85117E1F214CA4008A300D /* TagsCollectionViewCell.swift in Sources */,
 				4D9CB8741F17DB9A00EF5357 /* CalendarViewController.swift in Sources */,

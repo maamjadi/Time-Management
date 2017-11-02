@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var vertifyPassTextField: UITextField!
+    @IBOutlet weak var verifyPassTextField: UITextField!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
@@ -38,6 +38,9 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        verifyPassTextField.isEnabled = false
+        passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
         profileImage.tintColor = UIColor.white.withAlphaComponent(0.5)
         self.hidden(false)
@@ -102,9 +105,24 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func editingChanged(_ textField: UITextField) {
+        if textField.text?.characters.count == 1 {
+            if textField.text?.characters.first == " " {
+                textField.text = ""
+                return
+            }
+        }
+        guard let pass = passwordTextField.text, !pass.isEmpty else {
+            verifyPassTextField.text = nil
+            verifyPassTextField.isEnabled = false
+            return
+        }
+        verifyPassTextField.isEnabled = true
+    }
+    
     
     @IBAction func signUp() {
-        guard let name = nameTextField.text , !name.isEmpty, let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty, let verPass = vertifyPassTextField.text , !verPass.isEmpty else {
+        guard let name = nameTextField.text , !name.isEmpty, let email = emailTextField.text , !email.isEmpty, let pass = passwordTextField.text , !pass.isEmpty, let verPass = verifyPassTextField.text , !verPass.isEmpty else {
             
             giveAnAlert("Please fill all the informations", alertControllerTitle: "Warning")
             
@@ -128,7 +146,7 @@ class SignUpViewController: UIViewController, AfterAsynchronous {
     
     func hidden(_ bool: Bool) {
         self.nameTextField.isHidden = bool
-        self.vertifyPassTextField.isHidden = bool
+        self.verifyPassTextField.isHidden = bool
         self.emailTextField.isHidden = bool
         self.passwordTextField.isHidden = bool
         self.profileImage.isHidden = bool

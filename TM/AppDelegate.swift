@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
+import MSAL
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // The MSAL Logger should be set as early as possible in the app launch sequence, before any MSAL
+        // requests are made.
+        MSALUtil.shared.setup()
         
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
@@ -41,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             open: url,
             sourceApplication: sourceApplication,
             annotation: annotation)
+        
+        if MSALPublicClientApplication.handleMSALResponse(url) == true {
+            print("This URL is handled by MSAL")
+        }
         
         return googleDidHandle || facebookDidHandle
     }
@@ -143,19 +152,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+}
+
+extension AppDelegate {
+    func mainView() -> UIViewController {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "mainView")
+    }
+    
+    func loginView() -> UIViewController {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "loginView")
+    }
     
     func login() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let initialViewController: UIViewController
+        
         if FIRAuth.auth()?.currentUser != nil {
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "mainView")
-            self.window?.rootViewController = mainViewController
+            initialViewController = mainView()
         } else {
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let mainViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "loginView")
-            self.window?.rootViewController = mainViewController
+            initialViewController = loginView()
         }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
     }
-
-
 }
 
